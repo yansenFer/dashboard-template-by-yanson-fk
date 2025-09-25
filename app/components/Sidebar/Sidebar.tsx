@@ -59,7 +59,7 @@ export default function Sidebar() {
         'border-r border-[var(--color-sidebar-border)]',
         'bg-white text-[var(--color-sidebar-foreground)]',
         'transition-all duration-300 ease-in-out will-change-[width]',
-        collapsed ? 'w-24' : 'w-64',
+        collapsed ? 'w-20 -ml-2' : 'w-64',
       ].join(' ')}
       aria-label="Primary"
       data-collapsed={collapsed}
@@ -76,9 +76,9 @@ export default function Sidebar() {
           />
           <span
             className={[
-              'text-sm font-semibold origin-left transition-all duration-300 ease-in-out',
+              'text-sm font-semibold origin-left transition-all ease-in-out',
               collapsed
-                ? 'opacity-0 -translate-x-2 w-0 overflow-hidden'
+                ? 'opacity-0 -translate-x-2 w-0  overflow-hidden'
                 : 'opacity-100 translate-x-0 w-auto',
             ].join(' ')}
             aria-hidden={collapsed}
@@ -91,7 +91,7 @@ export default function Sidebar() {
           <button
             type="button"
             onClick={() => setCollapsed((v) => !v)}
-            className="inline-flex size-8 rounded-full absolute -left-1 bg-white z-10 items-center justify-center border border-[var(--color-sidebar-border)] hover:bg-[var(--color-sidebar-accent)]"
+            className="inline-flex size-8 cursor-pointer rounded-full absolute -left-1 bg-white z-10 items-center justify-center border border-[var(--color-sidebar-border)] hover:bg-[var(--color-sidebar-accent)]"
             aria-label={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
             title={collapsed ? 'Expand' : 'Collapse'}
             aria-live="polite"

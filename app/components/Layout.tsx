@@ -1,7 +1,6 @@
 import type React from 'react'
 import Header from './Header/Header'
 import Sidebar from './Sidebar/Sidebar'
-import { useLocation } from 'react-router'
 
 type LayoutProps = {
   children: React.ReactNode
