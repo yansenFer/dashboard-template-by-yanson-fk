@@ -19,6 +19,7 @@ import {
   Users,
 } from 'lucide-react'
 import CardStyle1 from '~/components/Dashboard/Card/CardStyle1'
+import ChartStyle from '~/components/Dashboard/Chart/ChartStyle'
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -32,7 +33,7 @@ export default function Home() {
     <Layout>
       <div className="flex flex-col gap-5">
         <div className="grid gap-5 lg:grid-cols-4 md:grid-cols-2 grid-cols-1">
-          {/* nanti card disini */}
+          {/* card section */}
           <CardStyle1
             descriptionCard="Last Website Views"
             footerCard="Card Visitors for the last 6 months"
@@ -70,6 +71,8 @@ export default function Home() {
             valueCard="4.5%"
           />
         </div>
+        {/* chart section */}
+        <ChartStyle />
       </div>
     </Layout>
   )
