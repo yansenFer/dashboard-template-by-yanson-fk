@@ -1,10 +1,10 @@
-import { Bell, Grid, Menu, Settings, Sun, User } from 'lucide-react'
+import { Bell, Grid, Settings, Sun, User } from 'lucide-react'
 import { Button } from '../ui/button'
 import SearchBar from './SearchBar'
 
 export default function Header() {
   return (
-    <header className=" bg-white sticky border-b border-border px-6 py-4">
+    <header className=" bg-white sticky z-10 top-0 border-b border-border px-6 py-4">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-4 ml-5">
           <SearchBar />
