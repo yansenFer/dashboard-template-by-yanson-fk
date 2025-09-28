@@ -10,7 +10,7 @@ export default function Layout({ children }: LayoutProps) {
     <div className="min-h-screen bg-background text-foreground">
       <div className="flex max-h-screen overflow-auto">
         <Sidebar />
-        <div className="flex-1">
+        <div className="flex-1 max-h-screen overflow-auto relative">
           <Header />
           <div className="p-5">{children}</div>
         </div>

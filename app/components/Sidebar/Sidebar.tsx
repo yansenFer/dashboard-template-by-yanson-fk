@@ -1,18 +1,6 @@
-import {
-  ChevronLeft,
-  LayoutDashboard,
-  Users,
-  RefreshCw,
-  DollarSign,
-  UserX,
-  CalendarDays,
-  ActivityIcon,
-  Settings,
-  CircleUser,
-  LayoutDashboardIcon,
-} from 'lucide-react'
+import { ChevronLeft, CircleUser, LayoutDashboardIcon } from 'lucide-react'
 import SidebarItem from './SidebarItem'
-import React, { useState, type ReactNode } from 'react'
+import { useState, type ReactNode } from 'react'
 import { Link, useLocation } from 'react-router'
 
 type ISidebarList = {
@@ -91,7 +79,7 @@ export default function Sidebar() {
           <button
             type="button"
             onClick={() => setCollapsed((v) => !v)}
-            className="inline-flex size-8 cursor-pointer rounded-full absolute -left-1 bg-white z-10 items-center justify-center border border-[var(--color-sidebar-border)] hover:bg-[var(--color-sidebar-accent)]"
+            className="inline-flex size-8 cursor-pointer rounded-full absolute -left-1 bg-white z-20 items-center justify-center border border-[var(--color-sidebar-border)] hover:bg-[var(--color-sidebar-accent)]"
             aria-label={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
             title={collapsed ? 'Expand' : 'Collapse'}
             aria-live="polite"
