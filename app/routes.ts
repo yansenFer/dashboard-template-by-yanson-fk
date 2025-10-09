@@ -2,5 +2,5 @@ import { type RouteConfig, index, route } from '@react-router/dev/routes'
 
 export default [
   index('pages/dashboard.tsx'),
-  route('/account/sign-in', 'pages/account/sign-in.tsx'),
+  route('/account/simple-sign-in', 'pages/account/simple-sign-in.tsx'),
 ] satisfies RouteConfig

@@ -32,9 +32,9 @@ export default function Sidebar() {
       titleMenu: 'Account',
       menu: [
         {
-          href: '/account/sign-in',
+          href: '/account/simple-sign-in',
           icon: <CircleUser />,
-          label: 'Sign In',
+          label: 'Simple Sign In',
         },
       ],
     },
