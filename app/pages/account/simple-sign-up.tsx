@@ -1,25 +1,39 @@
-import { LockKeyhole, Mail } from 'lucide-react'
+import { LockKeyhole, Mail, User } from 'lucide-react'
 import { useNavigate } from 'react-router'
 import { Button } from '~/components/ui/button'
 import { Card } from '~/components/ui/card'
 import { Input } from '~/components/ui/input'
 
-export default function SimpleSignIn() {
+export default function SimpleSignUp() {
   const navigate = useNavigate()
   return (
     <main className="flex w-full h-screen justify-center items-center bg-gradient-to-r from-orange-300 via-orange-100 to-orange-300">
-      <Card className="px-16 w-xl  flex flex-col gap-0 justify-center items-center shadow-none border-none">
-        <span className="text-2xl font-bold text-black">YFK Template</span>
-        <span className="text-4xl font-semibold text-black mt-5">
-          Welcome Back!
+      <Card className="px-16 w-xl flex flex-col gap-0 justify-center items-center shadow-none border-none">
+        <span className="text-4xl self-start font-bold text-gray-800 mt-10">
+          Sign Up
         </span>
-        <span className="text-gray-500 mt-2">
-          Sign in to your account to continue
+        <span className="text-gray-500 mt-2 self-start">
+          Sign up to continue
         </span>
         <form className="flex flex-col gap-10 w-full mt-10">
           <div className="flex w-full relative">
             <Input
               type="text"
+              id="name"
+              placeholder=""
+              className="peer w-full border border-gray-300 rounded-md pb-2 pt-6 h-12 focus:border-orange-500 hover:border-orange-500"
+            />
+            <label
+              htmlFor="name"
+              className="absolute flex items-center gap-1 left-3 top-1/2 -translate-y-1/2 text-gray-500 text-sm transition-all duration-200 peer-hover:top-3 peer-hover:text-xs peer-hover:text-orange-500 peer-focus:top-3 peer-focus:text-xs peer-focus:text-orange-500 peer-[&:not(:placeholder-shown)]:top-3 peer-[&:not(:placeholder-shown)]:text-xs"
+            >
+              <User className="w-4 h-4" />
+              Name
+            </label>
+          </div>
+          <div className="flex w-full relative">
+            <Input
+              type="email"
               id="email"
               placeholder=""
               className="peer w-full border border-gray-300 rounded-md pb-2 pt-6 h-12 focus:border-orange-500 hover:border-orange-500"
@@ -35,12 +49,12 @@ export default function SimpleSignIn() {
           <div className="flex w-full relative">
             <Input
               type="text"
-              id="email"
+              id="password"
               placeholder=""
               className="peer w-full border border-gray-300 rounded-md pb-2 pt-6 h-12 focus:border-orange-500 hover:border-orange-500"
             />
             <label
-              htmlFor="email"
+              htmlFor="password"
               className="absolute flex items-center gap-1 left-3 top-1/2 -translate-y-1/2 text-gray-500 text-sm transition-all duration-200 peer-hover:top-3 peer-hover:text-xs peer-hover:text-orange-500 peer-focus:top-3 peer-focus:text-xs peer-focus:text-orange-500 peer-[&:not(:placeholder-shown)]:top-3 peer-[&:not(:placeholder-shown)]:text-xs"
             >
               <LockKeyhole className="w-4 h-4" />
@@ -63,13 +77,13 @@ export default function SimpleSignIn() {
             <img src="/google.png" width={24} height={24} /> Login With Google
           </Button>
           <div className="flex gap-1">
-            <p>Don't have an account?</p>
+            <p>Already have an account?</p>
             <button
               type="button"
-              onClick={() => navigate('/account/simple-sign-up')}
+              onClick={() => navigate('/account/simple-sign-in')}
               className="text-blue-600 cursor-pointer"
             >
-              Sign Up
+              Sign In
             </button>
           </div>
         </form>
