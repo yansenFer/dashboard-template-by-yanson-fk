@@ -2,43 +2,12 @@ import { ChevronLeft, CircleUser, LayoutDashboardIcon } from 'lucide-react'
 import SidebarItem from './SidebarItem'
 import { useState, type ReactNode } from 'react'
 import { Link, useLocation } from 'react-router'
-
-type ISidebarList = {
-  titleMenu: string
-  menu: {
-    href: string
-    icon: ReactNode
-    label: string
-  }[]
-}
+import { sidebarList } from '~/constants/sidebarList'
 
 export default function Sidebar() {
   const [collapsed, setCollapsed] = useState(false)
   const location = useLocation()
   const pathname = location.pathname
-
-  const sidebarList: ISidebarList[] = [
-    {
-      titleMenu: 'Dashboard',
-      menu: [
-        {
-          href: '/',
-          icon: <LayoutDashboardIcon />,
-          label: 'Dashboard',
-        },
-      ],
-    },
-    {
-      titleMenu: 'Account',
-      menu: [
-        {
-          href: '/account/simple-sign-in',
-          icon: <CircleUser />,
-          label: 'Simple Sign In',
-        },
-      ],
-    },
-  ]
 
   return (
     <aside
