@@ -1,14 +1,15 @@
 import type { ChangeEventHandler, ComponentProps } from 'react'
 import { Input } from '../ui/input'
 import { Label } from '../ui/label'
+import { Textarea } from '../ui/textarea'
 
 export type DefaultInputProps = {
   labelName: string
   onChange: ChangeEventHandler<HTMLInputElement>
   error?: string
   isSuccess?: boolean
-} & ComponentProps<'input'>
-export default function DefaultInput({
+} & ComponentProps<'textarea'>
+export default function TextareaField({
   labelName,
   error,
   isSuccess = false,
@@ -23,12 +24,12 @@ export default function DefaultInput({
       >
         {labelName}
       </Label>
-      <Input
+      <Textarea
         disabled={disabled}
-        className={`outline-none mt-3 relative bg-white ring-0 ${disabled && 'bg-gray-200 border-gray-300'} ${error && 'border-red-600'} ${isSuccess && 'border-green-600'} focus:outline-none focus:ring-0 focus:ring-transparent focus:outline-transparent ${className}`}
+        className={`mt-3 relative bg-white ${disabled && 'bg-gray-200 border-gray-300'} ${error && 'border-red-600'} ${isSuccess && 'border-green-600'} ${className}`}
         {...props}
       />
-      {error && <span className="text-red-600 ml-3 text-sm">{error}</span>}
+      {error && <span className="text-red-600 text-sm">{error}</span>}
     </div>
   )
 }

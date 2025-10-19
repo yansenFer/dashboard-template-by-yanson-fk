@@ -6,7 +6,7 @@ import {
   Line,
   XAxis,
 } from 'recharts'
-import SelectField from '~/components/SelectField'
+import SelectField from '~/components/Dashboard/SelectFieldDashboard'
 import {
   CardHeader,
   CardTitle,
@@ -57,7 +57,7 @@ export default function ChartStyle({
         <SelectField
           dataDropdown={dropdownData}
           onChange={setTimeRange}
-          selectedTrigger={dropdownData[0].label}
+          placeholder={dropdownData[0].label}
           value={timeRange}
         />
       </CardHeader>

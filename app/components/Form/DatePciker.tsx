@@ -29,9 +29,13 @@ function isValidDate(date: Date | undefined) {
 
 type CalendarPickerProps = {
   labelTitle: string
-}
+} & React.ComponentProps<'input'>
 
-export function CalendarPicker({ labelTitle }: CalendarPickerProps) {
+export function CalendarPicker({
+  labelTitle,
+  className,
+  ...props
+}: CalendarPickerProps) {
   const [open, setOpen] = React.useState(false)
   const [date, setDate] = React.useState<Date | undefined>(
     new Date('2025-06-01')
@@ -46,10 +50,11 @@ export function CalendarPicker({ labelTitle }: CalendarPickerProps) {
       </Label>
       <div className="relative flex gap-2">
         <Input
+          {...props}
           id="date"
           value={value}
           placeholder="June 01, 2025"
-          className="bg-transparent pr-10"
+          className={`bg-transparent pr-10 ${className}`}
           onChange={(e) => {
             const date = new Date(e.target.value)
             setValue(e.target.value)

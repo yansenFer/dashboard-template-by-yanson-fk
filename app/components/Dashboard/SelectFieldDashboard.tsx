@@ -4,20 +4,20 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from './ui/select'
+} from '../ui/select'
 
 type SelectFieldProps<T = { value: string; label: string }> = {
   value: string
   onChange: (e: string) => void
   dataDropdown: T[]
-  selectedTrigger: string
+  placeholder?: string
 }
 
-export default function SelectField({
+export default function SelectFieldDashboard({
   value,
   onChange,
   dataDropdown,
-  selectedTrigger,
+  placeholder,
 }: SelectFieldProps) {
   return (
     <Select value={value} onValueChange={onChange}>
@@ -25,7 +25,7 @@ export default function SelectField({
         className="hidden w-[160px] rounded-lg sm:ml-auto sm:flex"
         aria-label="Select a value"
       >
-        <SelectValue placeholder={selectedTrigger} />
+        <SelectValue placeholder={placeholder} />
       </SelectTrigger>
       <SelectContent className="rounded-xl">
         {dataDropdown.length > 0 ? (
