@@ -24,7 +24,7 @@ export default function SidebarItem({
       className={cn(
         'group flex items-center h-7 rounded-md px-2 transition-colors',
         // tighten spacing when collapsed so icon stays centered
-        collapsed ? 'gap-0 justify-center pl-5' : 'gap-3 ml-4',
+        collapsed ? 'gap-0 justify-center pl-5' : 'gap-3 ml-2',
         'text-[var(--color-sidebar-foreground)] border-l-2 border-white hover:border-orange-600 rounded-none  hover:border-l-2 ',
         active && 'border-l-2 border-orange-600'
       )}

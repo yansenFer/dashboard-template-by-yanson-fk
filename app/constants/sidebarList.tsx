@@ -1,5 +1,10 @@
 import type { ISidebarList } from '~/interfaces/ISidebarList'
-import { CircleUser, FormInput, LayoutDashboardIcon } from 'lucide-react'
+import {
+  BookCopy,
+  CircleUser,
+  FormInput,
+  LayoutDashboardIcon,
+} from 'lucide-react'
 
 export const sidebarList: ISidebarList[] = [
   {
@@ -29,6 +34,11 @@ export const sidebarList: ISidebarList[] = [
         href: '/form/form-element',
         icon: <FormInput />,
         label: 'Form Element',
+      },
+      {
+        href: '/form/form-layout',
+        icon: <BookCopy />,
+        label: 'Form Layout',
       },
     ],
   },

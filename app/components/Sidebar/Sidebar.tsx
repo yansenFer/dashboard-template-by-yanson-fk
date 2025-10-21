@@ -1,6 +1,6 @@
-import { ChevronLeft, CircleUser, LayoutDashboardIcon } from 'lucide-react'
+import { ChevronLeft } from 'lucide-react'
 import SidebarItem from './SidebarItem'
-import { useState, type ReactNode } from 'react'
+import { useState } from 'react'
 import { Link, useLocation } from 'react-router'
 import { sidebarList } from '~/constants/sidebarList'
 
@@ -81,7 +81,7 @@ export default function Sidebar() {
               </p>
             </div>
             {parent.menu.map((menu) => (
-              <ul key={menu.href} className="space-y-1">
+              <ul key={menu.href} className="space-y-1 mb-2">
                 <li>
                   <SidebarItem
                     href={menu.href}

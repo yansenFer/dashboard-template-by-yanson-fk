@@ -10,4 +10,5 @@ export default [
 
   //Form
   route('/form/form-element', 'pages/form/form-element.tsx'),
+  route('/form/form-layout', 'pages/form/form-layout.tsx'),
 ] satisfies RouteConfig

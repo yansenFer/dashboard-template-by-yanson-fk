@@ -20,16 +20,16 @@ export default function TextareaField({
   return (
     <div className="flex  flex-col">
       <Label
-        className={`${error && 'text-red-600'} ${isSuccess && 'text-green-600'} `}
+        className={`${error && 'text-red-500'} ${isSuccess && 'text-green-600'} `}
       >
         {labelName}
       </Label>
       <Textarea
         disabled={disabled}
-        className={`mt-3 relative bg-white ${disabled && 'bg-gray-200 border-gray-300'} ${error && 'border-red-600'} ${isSuccess && 'border-green-600'} ${className}`}
+        className={`mt-3 relative focus:ring-orange-500 bg-white ${disabled && 'bg-gray-200 border-gray-300'} ${error && 'border-red-500'} ${isSuccess && 'border-green-600'} ${className}`}
         {...props}
       />
-      {error && <span className="text-red-600 text-sm">{error}</span>}
+      {error && <span className="text-red-500 text-sm">{error}</span>}
     </div>
   )
 }
