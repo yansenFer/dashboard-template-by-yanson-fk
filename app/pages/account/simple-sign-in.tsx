@@ -22,14 +22,14 @@ export default function SimpleSignIn() {
             onChange={() => {}}
             type="email"
             Icon={Mail}
-            variant="float-label-1"
+            variant="float-label-2"
           />
           <InputField
             labelName="Password"
             onChange={() => {}}
             type="password"
             Icon={LockKeyhole}
-            variant="float-label-1"
+            variant="float-label-2"
           />
           <Button
             type="button"

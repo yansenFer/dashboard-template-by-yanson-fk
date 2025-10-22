@@ -30,7 +30,11 @@ export default function SelectFieldDashboard({
       <SelectContent className="rounded-xl">
         {dataDropdown.length > 0 ? (
           dataDropdown.map((data) => (
-            <SelectItem value={data.value} className="rounded-lg">
+            <SelectItem
+              key={data.value}
+              value={data.value}
+              className="rounded-lg"
+            >
               {data.label}
             </SelectItem>
           ))

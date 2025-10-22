@@ -1,7 +1,7 @@
-import type { ChangeEvent, ChangeEventHandler, ComponentProps } from 'react'
+import type { ChangeEventHandler, ComponentProps } from 'react'
 import { Input } from '../ui/input'
 import { Label } from '../ui/label'
-import { ALargeSmall, type LucideIcon } from 'lucide-react'
+import { type LucideIcon } from 'lucide-react'
 import {
   InputGroup,
   InputGroupInput,

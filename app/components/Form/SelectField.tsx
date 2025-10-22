@@ -29,9 +29,10 @@ type SelectFieldProps<T = { value: string; label: string }> = {
   dataDropdown: T[]
   placeholder?: string
   value: string | undefined
-  labelName: string
+  labelName?: string
   className?: string
   isSuccess?: boolean
+  placeholderSearch?: string
   error?: string
 }
 
@@ -42,6 +43,7 @@ export function SelectField({
   labelName,
   value,
   onChange,
+  placeholderSearch = 'Search...',
   error,
   className,
   placeholder = 'Select',
@@ -58,11 +60,14 @@ export function SelectField({
 
   return (
     <div className="flex flex-col">
-      <Label
-        className={`${error && 'text-red-500'} ${isSuccess && 'text-green-600'}`}
-      >
-        {labelName}
-      </Label>
+      {labelName && (
+        <Label
+          className={`${error && 'text-red-500'} ${isSuccess && 'text-green-600'}`}
+        >
+          {labelName}
+        </Label>
+      )}
+
       {isShowSearch ? (
         <>
           <Popover open={open} onOpenChange={setOpen}>
@@ -72,7 +77,7 @@ export function SelectField({
                 variant="outline"
                 role="combobox"
                 aria-expanded={open}
-                className={`w-full mt-3 ${error && 'border-red-500'} ${isSuccess && 'border-green-600'} justify-between ${className}`}
+                className={`w-full ${labelName && 'mt-3'} ${error && 'border-red-500'} ${isSuccess && 'border-green-600'} justify-between ${className}`}
               >
                 {value
                   ? dataDropdown.find((data) => data.value === value)?.label
@@ -82,10 +87,7 @@ export function SelectField({
             </PopoverTrigger>
             <PopoverContent style={{ width: triggerWidth }} className="p-0">
               <Command>
-                <CommandInput
-                  placeholder="Search framework..."
-                  className="h-9"
-                />
+                <CommandInput placeholder={placeholderSearch} className="h-9" />
                 <CommandList>
                   <CommandEmpty>No framework found.</CommandEmpty>
                   <CommandGroup>
@@ -118,7 +120,7 @@ export function SelectField({
         <>
           <Select value={value} onValueChange={onChange}>
             <SelectTrigger
-              className={`hidden hover:ring-orange-500 hover:ring-2 mt-3 cursor-pointer hover:border-none bg-white w-full rounded-lg sm:ml-auto sm:flex ${error && 'border-red-500'} ${isSuccess && 'border-green-600'}`}
+              className={`hidden hover:ring-orange-500 hover:ring-2 mt-3 ${className} bg cursor-pointer hover:border-none bg-white w-full rounded-lg sm:ml-auto sm:flex ${error && 'border-red-500'} ${isSuccess && 'border-green-600'}`}
               aria-label="Select a value"
             >
               <SelectValue placeholder={placeholder} />
