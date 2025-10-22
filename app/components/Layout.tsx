@@ -12,7 +12,9 @@ export default function Layout({ children }: LayoutProps) {
         <Sidebar />
         <div className="flex-1 max-h-screen overflow-auto relative">
           <Header />
-          <div className="p-5">{children}</div>
+          <div className="p-5 justify-center flex">
+            <div className="w-[1920px] justify-center">{children}</div>
+          </div>
         </div>
       </div>
     </div>
