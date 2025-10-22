@@ -1,12 +1,29 @@
 import { Bell, Grid, Settings, Sun, User } from 'lucide-react'
 import { Button } from '../ui/button'
 import SearchBar from './SearchBar'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import NotificationModal from './NotificationModal'
 
 export default function Header() {
   const [isHaveNotif, setIsHaveNotif] = useState(true)
   const [isShowNotif, setIsShowNotif] = useState(false)
+  const notifRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        notifRef.current &&
+        !notifRef.current.contains(event.target as Node)
+      ) {
+        setIsShowNotif(false)
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [])
 
   console.log(isShowNotif, '<<')
   return (
@@ -26,7 +43,7 @@ export default function Header() {
           <Button variant="ghost" size="icon">
             <Settings name="settings" />
           </Button>
-          <div className="relative">
+          <div className="relative" ref={notifRef}>
             <Button
               className="bg-transparent relative border rounded-full hover:border-orange-600 hover:bg-transparent"
               size="icon"

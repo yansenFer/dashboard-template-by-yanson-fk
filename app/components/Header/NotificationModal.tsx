@@ -1,6 +1,5 @@
 import { notifications } from '~/data/dataNotification'
 import { Button } from '../ui/button'
-import { useEffect, useRef } from 'react'
 import { X } from 'lucide-react'
 
 type NotificationModalProps = {
@@ -8,30 +7,8 @@ type NotificationModalProps = {
 }
 
 export default function NotificationModal({ onClose }: NotificationModalProps) {
-  const notifRef = useRef<HTMLDivElement>(null) // untuk deteksi area notif
-
-  useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      // cek kalau klik di luar elemen ref
-      if (
-        notifRef.current &&
-        !notifRef.current.contains(event.target as Node)
-      ) {
-        onClose()
-      }
-    }
-
-    document.addEventListener('mousedown', handleClickOutside)
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside)
-    }
-  }, [])
-
   return (
-    <div
-      ref={notifRef}
-      className="bg-white shadow-lg absolute top-14 z-50 w-[360px] right-0 rounded-lg px-3 py-2"
-    >
+    <div className="bg-white shadow-lg absolute top-14 z-50 w-[360px] right-0 rounded-lg px-3 py-2">
       <div className="flex pb-2 border-b justify-between">
         <span className="font-semibold text-lg text-gray-700">
           Notification
