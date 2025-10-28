@@ -10,10 +10,6 @@
 html,
 body {
   @apply bg-white;
-
-  @media (prefers-color-scheme: dark) {
-    color-scheme: dark;
-  }
 }
 
 @theme inline {
@@ -32,7 +28,6 @@ body {
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
   --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
   --color-destructive: var(--destructive);
@@ -66,7 +61,6 @@ body {
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.278 0 0);
   --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(26.033% 0.00003 271.152);
   --accent: oklch(0.646 0.222 41.116);
   --accent-foreground: oklch(1 0 0);
   --destructive: oklch(0.577 0.245 27.325);
@@ -119,11 +113,33 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
-
+@layer components {
+  .bg-dark {
+    @apply bg-slate-950
+  }
+  .bg-content-dark {
+    @apply bg-slate-900
+  }
+  .input-dark {
+    @apply bg-slate-950 placeholder:text-white text-white border border-gray-800
+  }
+  .input-light {
+    @apply bg-transparent placeholder:text-black text-black border border-gray-300
+  }
+  .border-dark {
+    @apply border-gray-600
+  }
+  .border-light {
+    @apply border-gray-300
+  }
+  .card-dark {
+    @apply bg-slate-950
+  }
+ }
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    @apply border-border outline-ring/50 transition-all duration-150;
   }
   body {
     @apply bg-background text-foreground;
@@ -133,9 +149,21 @@ input[type=number] {
     box-shadow: 0 0 0px 1000px white inset !important;
     -webkit-text-fill-color: black !important;
   }
-  input[data-border="orange-500"]:-webkit-autofill:focus {
+  input[data-border="orange-500"]:focus {
     border: 2px solid theme('colors.orange.500') !important;
+  }
+  input[data-border="orange-500"]:-webkit-autofill {
     box-shadow: 0 0 0px 1000px white inset !important;
+    -webkit-text-fill-color: black !important;
+    color: black !important;
+  }
+  input[data-border="orange-dark-500"]:focus {
+    border: 2px solid theme('colors.orange.500') !important;
+  }
+  input[data-border="orange-dark-500"]:-webkit-autofill {
+    box-shadow: 0 0 0px 1000px theme('colors.slate.950') inset !important;
+    -webkit-text-fill-color: white !important;
+    color: white !important;
   }
 }
 

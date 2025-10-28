@@ -24,7 +24,6 @@ export default function FormElement() {
               {/* standart input  */}
               <InputField
                 labelName="Input"
-                data-border="orange-500"
                 className="focus:ring-orange-500"
                 onChange={() => {}}
               />
@@ -32,7 +31,6 @@ export default function FormElement() {
               <InputField
                 labelName="Input with placeholder"
                 placeholder="Input with placeholder"
-                data-border="orange-500"
                 className="focus:ring-orange-500"
                 onChange={() => {}}
               />
@@ -41,7 +39,6 @@ export default function FormElement() {
                 labelName="Password input"
                 type="password"
                 className="focus:ring-orange-500"
-                data-border="orange-500"
                 placeholder="Input your password"
                 onChange={() => {}}
               />

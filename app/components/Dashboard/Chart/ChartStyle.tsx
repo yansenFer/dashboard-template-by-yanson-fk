@@ -24,6 +24,8 @@ import {
 } from '~/components/ui/chart'
 import TableStyle, { type Views } from '../Table/TableStyle1'
 import type { ColumnDef } from '@tanstack/react-table'
+import { useSelector } from 'react-redux'
+import type { RootState } from '~/store/store'
 
 type ChartStyleProps = {
   dropdownData: any[]
@@ -44,6 +46,8 @@ export default function ChartStyle({
   setTimeRange,
   timeRange,
 }: ChartStyleProps) {
+  const isDark = useSelector((state: RootState) => state.dark.isDark)
+
   return (
     <Card className="pt-0">
       {/* chart section */}
@@ -100,6 +104,7 @@ export default function ChartStyle({
               axisLine={false}
               tickMargin={8}
               minTickGap={32}
+              tick={{ fill: isDark ? 'white' : 'black' }}
               tickFormatter={(value) => {
                 const date = new Date(value)
                 return date.toLocaleDateString('en-US', {
@@ -159,7 +164,6 @@ export default function ChartStyle({
           </AreaChart>
         </ChartContainer>
       </CardContent>
-
       {/* table section */}
       <CardHeader className="flex items-center gap-2 space-y-0 pt-5 sm:flex-row">
         <div className="grid gap-1">
@@ -169,7 +173,7 @@ export default function ChartStyle({
           </CardDescription>
         </div>
       </CardHeader>
-      <CardContent className=" grid lg:grid-cols-2 gap-10 md:grid-cols-1 grid-cols-1 px-2 sm:px-6">
+      <CardContent className="grid lg:grid-cols-2 gap-10 md:grid-cols-1 grid-cols-1 px-2 sm:px-6">
         <TableStyle
           searchKey="desktop"
           data={filteredData
