@@ -34,7 +34,7 @@ export default function NotificationModal({ onClose }: NotificationModalProps) {
             onClick={onClose}
             className="cursor-pointer mr-2"
           >
-            <X className="w-5 h-5" color="black" />
+            <X className="w-5 h-5" color={isDark ? 'white' : 'black'} />
           </button>
         </div>
         <div className="flex flex-col w-full max-h-[400px] mt-3 overflow-y-auto">
