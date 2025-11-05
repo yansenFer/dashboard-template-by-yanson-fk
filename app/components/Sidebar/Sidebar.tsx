@@ -27,7 +27,7 @@ export default function Sidebar() {
       <div className="flex items-center justify-between px-3 py-4">
         <Link
           to={{ pathname: '/' }}
-          className="flex items-center gap-2 rounded-md px-2"
+          className="flex items-center gap-2 w-full rounded-md px-2"
         >
           {collapsed ? (
             <span className="font-extrabold py-2 w-full text-center">YnB</span>

@@ -14,7 +14,7 @@ function Card({
     <div
       data-slot="card"
       className={cn(
-        `${isDark ? 'card-dark text-white border-transparent' : 'bg-card text-card-foreground border-gray-300'} flex flex-col gap-6 rounded-xl border pt-3 pb-6`,
+        `${isDark ? 'card-dark text-white border-transparent' : 'bg-card text-card-foreground border-gray-300'} flex flex-col gap-6 rounded-xl border pt-3 pb-6 shadow-sm`,
         className
       )}
       {...props}
