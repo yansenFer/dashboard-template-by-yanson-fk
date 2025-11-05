@@ -44,22 +44,6 @@ export default function Sidebar() {
               src="/YnB_template_specialist_light_mode.png"
             />
           )}
-
-          {/* <div
-            className="size-6 rounded-md bg-[var(--color-sidebar-primary)]"
-            aria-hidden="true"
-          />
-          <span
-            className={[
-              'text-sm font-semibold origin-left  ease-in-out',
-              collapsed
-                ? 'opacity-0 -translate-x-2 w-0  overflow-hidden'
-                : 'opacity-100 translate-x-0 w-auto',
-            ].join(' ')}
-            aria-hidden={collapsed}
-          >
-            Membership
-          </span> */}
         </Link>
 
         <div className="flex items-center gap-2 relative">
