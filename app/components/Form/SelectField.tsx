@@ -22,6 +22,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from '../ui/select'
+import { useSelector } from 'react-redux'
+import type { RootState } from '~/store/store'
 
 type SelectFieldProps<T = { value: string; label: string }> = {
   isShowSearch?: boolean
@@ -51,7 +53,7 @@ export function SelectField({
   const [open, setOpen] = React.useState(false)
   const triggerRef = useRef<HTMLButtonElement>(null)
   const [triggerWidth, setTriggerWidth] = React.useState<number | undefined>()
-
+  const isDark = useSelector((state: RootState) => state.dark.isDark)
   React.useEffect(() => {
     if (triggerRef.current) {
       setTriggerWidth(triggerRef.current.offsetWidth)
@@ -77,7 +79,7 @@ export function SelectField({
                 variant="outline"
                 role="combobox"
                 aria-expanded={open}
-                className={`w-full ${labelName && 'mt-3'} ${error && 'border-red-500'} ${isSuccess && 'border-green-600'} justify-between ${className}`}
+                className={`w-full ${labelName && 'mt-3'} ${error && 'border-red-500'} ${isDark ? 'bg-dark' : 'bg-white'} ${isSuccess && 'border-green-600'} justify-between ${className}`}
               >
                 {value
                   ? dataDropdown.find((data) => data.value === value)?.label
@@ -87,14 +89,18 @@ export function SelectField({
             </PopoverTrigger>
             <PopoverContent style={{ width: triggerWidth }} className="p-0">
               <Command>
+                {/* for search list dropdown */}
                 <CommandInput placeholder={placeholderSearch} className="h-9" />
                 <CommandList>
-                  <CommandEmpty>No framework found.</CommandEmpty>
+                  <CommandEmpty className={`${isDark && 'text-white'}`}>
+                    No framework found.
+                  </CommandEmpty>
                   <CommandGroup>
                     {dataDropdown.map((data) => (
                       <CommandItem
                         key={data.value}
                         value={data.value}
+                        className={`${isDark && 'text-white'}`}
                         onSelect={(currentValue) => {
                           onChange(currentValue === value ? '' : currentValue)
                           setOpen(false)
@@ -120,7 +126,7 @@ export function SelectField({
         <>
           <Select value={value} onValueChange={onChange}>
             <SelectTrigger
-              className={`hidden hover:ring-orange-500 hover:ring-2 mt-3 ${className} bg cursor-pointer hover:border-none bg-white w-full rounded-lg sm:ml-auto sm:flex ${error && 'border-red-500'} ${isSuccess && 'border-green-600'}`}
+              className={`hidden hover:ring-orange-500 hover:ring-2 mt-3 ${className}  bg cursor-pointer hover:border-none ${isDark ? 'bg-dark' : 'bg-white'} w-full rounded-lg sm:ml-auto sm:flex ${error && 'border-red-500'} ${isSuccess && 'border-green-600'}`}
               aria-label="Select a value"
             >
               <SelectValue placeholder={placeholder} />

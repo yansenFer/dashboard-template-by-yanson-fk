@@ -116,15 +116,17 @@ export default function ChartStyle({
             <ChartTooltip
               cursor={false}
               content={
-                <ChartTooltipContent
-                  labelFormatter={(value) => {
-                    return new Date(value).toLocaleDateString('en-US', {
-                      month: 'short',
-                      day: 'numeric',
-                    })
-                  }}
-                  indicator="dot"
-                />
+                (
+                  <ChartTooltipContent
+                    labelFormatter={(value) => {
+                      return new Date(value).toLocaleDateString('en-US', {
+                        month: 'short',
+                        day: 'numeric',
+                      })
+                    }}
+                    indicator="dot"
+                  />
+                ) as any
               }
             />
             <Line

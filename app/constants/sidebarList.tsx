@@ -3,6 +3,7 @@ import {
   BookCopy,
   CircleUser,
   FormInput,
+  HomeIcon,
   LayoutDashboardIcon,
 } from 'lucide-react'
 
@@ -12,8 +13,8 @@ export const sidebarList: ISidebarList[] = [
     menu: [
       {
         href: '/',
-        icon: <LayoutDashboardIcon />,
-        label: 'Dashboard',
+        icon: <HomeIcon />,
+        label: 'Overview',
       },
     ],
   },

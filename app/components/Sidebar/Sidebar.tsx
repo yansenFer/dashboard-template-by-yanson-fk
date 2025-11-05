@@ -15,7 +15,7 @@ export default function Sidebar() {
   return (
     <aside
       className={[
-        'hidden md:flex md:flex-col md:shrink-0 h-screen',
+        'hidden md:flex md:flex-col md:shrink-0 h-screen transition-all duration-300',
         `${isDark ? 'bg-dark text-white border-transparent' : 'bg-white text-black border-gray-300'} border-r text-[var(--color-sidebar-foreground)]`,
         'will-change-[width]',
         collapsed ? 'w-20 -ml-2' : 'w-64',
@@ -27,9 +27,25 @@ export default function Sidebar() {
       <div className="flex items-center justify-between px-3 py-4">
         <Link
           to={{ pathname: '/' }}
-          className="flex items-center  gap-2 rounded-md px-2 py-1.5"
+          className="flex items-center gap-2 rounded-md px-2"
         >
-          <div
+          {collapsed ? (
+            <span className="font-extrabold py-2 w-full text-center">YnB</span>
+          ) : isDark ? (
+            <img
+              className="h-10"
+              alt="logo dark mode"
+              src="/YnB_template_specialist_dark_mode.png"
+            />
+          ) : (
+            <img
+              className="h-10"
+              alt="logo light mode"
+              src="/YnB_template_specialist_light_mode.png"
+            />
+          )}
+
+          {/* <div
             className="size-6 rounded-md bg-[var(--color-sidebar-primary)]"
             aria-hidden="true"
           />
@@ -43,7 +59,7 @@ export default function Sidebar() {
             aria-hidden={collapsed}
           >
             Membership
-          </span>
+          </span> */}
         </Link>
 
         <div className="flex items-center gap-2 relative">
@@ -57,7 +73,7 @@ export default function Sidebar() {
           >
             <ChevronLeft
               className={[
-                'size-4 transition-transform duration-150 ease-in-out',
+                'size-4 transition-transform duration-300 ease-in-out',
                 collapsed ? 'rotate-180' : 'rotate-0',
               ].join(' ')}
               color={isDark ? 'white' : 'black'}
@@ -73,7 +89,7 @@ export default function Sidebar() {
             <div className="mb-2">
               <p
                 className={[
-                  `${isDark ? 'text-white' : 'text-[var(--muted-foreground)]'} text-sm font-b  origin-left  ease-in-out`,
+                  `${isDark ? 'text-white' : 'text-[var(--muted-foreground)]'} transition-all duration-300 text-sm font-b  origin-left  ease-in-out`,
                   collapsed
                     ? 'opacity-0 -translate-x-2 w-0 overflow-hidden'
                     : 'opacity-100 translate-x-0 w-auto',
@@ -101,29 +117,31 @@ export default function Sidebar() {
       </nav>
 
       {/* Footer */}
-      <div className="mt-auto p-3">
-        <div
-          className={[
-            `rounded-md border ${isDark ? 'border-dark' : 'border-light'}`,
-            `${isDark ? 'input-dark' : 'bg-[var(--color-sidebar-accent)]'} `,
-            'px-3 py-2',
-          ].join(' ')}
-        >
-          <p
+      {!collapsed && (
+        <div className="mt-auto p-3">
+          <div
             className={[
-              'text-xs origin-left  ease-in-out',
-              collapsed
-                ? 'opacity-0 -translate-x-2 w-0 overflow-hidden'
-                : 'opacity-100 translate-x-0 w-auto',
+              `rounded-md border ${isDark ? 'border-dark' : 'border-light'}`,
+              `${isDark ? 'input-dark' : 'bg-[var(--color-sidebar-accent)]'} `,
+              'px-3 py-2',
             ].join(' ')}
-            aria-hidden={collapsed}
           >
-            Signed in as{' '}
-            <span className="ml-1 font-medium">you@example.com</span>
-          </p>
-          {collapsed && <span className="sr-only">Signed in</span>}
+            <p
+              className={[
+                'text-xs origin-left  ease-in-out',
+                collapsed
+                  ? 'opacity-0 -translate-x-2 w-0 overflow-hidden'
+                  : 'opacity-100 translate-x-0 w-auto',
+              ].join(' ')}
+              aria-hidden={collapsed}
+            >
+              Signed in as{' '}
+              <span className="ml-1 font-medium">you@example.com</span>
+            </p>
+            {collapsed && <span className="sr-only">Signed in</span>}
+          </div>
         </div>
-      </div>
+      )}
     </aside>
   )
 }

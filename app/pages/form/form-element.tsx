@@ -76,7 +76,7 @@ export default function FormElement() {
                 labelName="Select input with search"
                 dataDropdown={frameworks}
                 value={select2}
-                onChange={(e) => setSelect2}
+                onChange={(e) => setSelect2(e)}
               />
             </CardContent>
           </Card>

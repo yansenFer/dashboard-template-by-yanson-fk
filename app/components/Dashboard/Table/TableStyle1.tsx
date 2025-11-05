@@ -16,12 +16,9 @@ import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '~/components/ui/dropdown-menu'
-import { ArrowUpDown, ChevronDown, MoreHorizontal } from 'lucide-react'
+import { ChevronDown } from 'lucide-react'
 import { Button } from '~/components/ui/button'
 import {
   Table,
@@ -31,6 +28,8 @@ import {
   TableHeader,
   TableRow,
 } from '~/components/ui/table'
+import { useSelector } from 'react-redux'
+import type { RootState } from '~/store/store'
 
 export type Views = {
   date: string
@@ -55,6 +54,7 @@ export default function TableStyle1({
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({})
   const [rowSelection, setRowSelection] = useState({})
+  const isDark = useSelector((state: RootState) => state.dark.isDark)
   const table = useReactTable({
     data,
     columns,
@@ -84,11 +84,11 @@ export default function TableStyle1({
           onChange={(event) =>
             table.getColumn(searchKey)?.setFilterValue(event.target.value)
           }
-          className="max-w-sm bg-white"
+          className="max-w-sm"
         />
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="outline" className="ml-auto">
+            <Button className="ml-auto">
               Columns <ChevronDown />
             </Button>
           </DropdownMenuTrigger>
@@ -120,7 +120,10 @@ export default function TableStyle1({
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => {
                   return (
-                    <TableHead key={header.id}>
+                    <TableHead
+                      className={`${isDark && 'text-white'}`}
+                      key={header.id}
+                    >
                       {header.isPlaceholder
                         ? null
                         : flexRender(
@@ -163,6 +166,7 @@ export default function TableStyle1({
           </TableBody>
         </Table>
       </div>
+      {/* pagination */}
       <div className="flex items-center justify-end space-x-2 py-4">
         <div className="space-x-2">
           <Button

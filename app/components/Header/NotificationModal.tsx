@@ -2,12 +2,15 @@ import { notifications } from '~/data/dataNotification'
 import { Button } from '../ui/button'
 import { X } from 'lucide-react'
 import { motion } from 'framer-motion'
+import type { RootState } from '~/store/store'
+import { useSelector } from 'react-redux'
 
 type NotificationModalProps = {
   onClose: () => void
 }
 
 export default function NotificationModal({ onClose }: NotificationModalProps) {
+  const isDark = useSelector((state: RootState) => state.dark.isDark)
   return (
     <motion.div
       initial={{ opacity: 0, y: 0 }}
@@ -15,9 +18,15 @@ export default function NotificationModal({ onClose }: NotificationModalProps) {
       exit={{ opacity: 0, y: 0 }}
       transition={{ duration: 0.2, ease: 'easeInOut' }}
     >
-      <div className="bg-white animate-fade-in-up shadow-lg absolute top-14 z-50 w-[360px] right-0 rounded-lg px-3 py-2">
-        <div className="flex pb-2 border-b justify-between">
-          <span className="font-semibold text-lg text-gray-700">
+      <div
+        className={` ${isDark ? 'bg-dark' : 'bg-white'} animate-fade-in-up shadow-lg absolute top-14 z-50 w-[360px] right-0 rounded-lg px-3 py-2`}
+      >
+        <div
+          className={`flex pb-2 border-b justify-between ${isDark && 'border-dark'}`}
+        >
+          <span
+            className={`font-semibold text-lg ${isDark ? 'text-white' : 'text-gray-700'}`}
+          >
             Notification
           </span>
           <button
@@ -40,16 +49,28 @@ export default function NotificationModal({ onClose }: NotificationModalProps) {
                 alt="Random Image"
               />
               <div className="flex flex-col text-start">
-                <p className="text-gray-700 font-bold text-sm">{notif.title}</p>
-                <p className="text-gray-700 whitespace-normal text-sm">
+                <p
+                  className={`${isDark ? 'text-white' : 'text-gray-700'} font-bold text-sm`}
+                >
+                  {notif.title}
+                </p>
+                <p
+                  className={`${isDark ? 'text-white' : 'text-gray-700'} whitespace-normal text-sm`}
+                >
                   {notif.content}
                 </p>
-                <p className="text-gray-700 text-sm">{notif.footer}</p>
+                <p
+                  className={`${isDark ? 'text-white' : 'text-gray-700'} text-sm`}
+                >
+                  {notif.footer}
+                </p>
               </div>
             </div>
           ))}
         </div>
-        <Button className="mt-2 flex w-full bg-transparent text-black border border-gray-300 py-5 hover:bg-gray-100">
+        <Button
+          className={`mt-2 flex w-full bg-transparent ${isDark ? 'text-white border-dark hover:bg-slate-900' : 'text-black border-gray-300 hover:bg-gray-100'}  border  py-5 `}
+        >
           View All Notification
         </Button>
       </div>
