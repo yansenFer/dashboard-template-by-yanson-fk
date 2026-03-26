@@ -5,14 +5,18 @@ import { cn } from '~/lib/utils'
 import { Button } from '~/components/ui/button'
 import { Input } from '~/components/ui/input'
 import { Textarea } from '~/components/ui/textarea'
+import { useSelector } from 'react-redux'
+import type { RootState } from '~/store/store'
 
 function InputGroup({ className, ...props }: React.ComponentProps<'div'>) {
+  const isDark = useSelector((state: RootState) => state.dark.isDark)
   return (
     <div
       data-slot="input-group"
       role="group"
       className={cn(
-        'group/input-group border-input relative flex w-full items-center rounded-md border shadow-xs transition-[color,box-shadow] outline-none',
+        'group/input-group relative flex w-full items-center rounded-md border shadow-xs transition-colors outline-none',
+        `${isDark ? 'input-dark' : 'input-light border-input'}`,
         'h-9 min-w-0 has-[>textarea]:h-auto',
 
         // Variants based on alignment.

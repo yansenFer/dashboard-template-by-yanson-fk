@@ -1,16 +1,16 @@
-import { CalendarPicker } from '~/components/Form/DatePciker'
-import InputField from '~/components/Form/InputField'
-import { SelectField } from '~/components/Form/SelectField'
-import TextareaField from '~/components/Form/TextareaField'
-import Layout from '~/components/Layout'
-import { Card, CardContent, CardHeader } from '~/components/ui/card'
-import { frameworks } from '~/data/dataFrameworks'
-import { useState } from 'react'
-import { ALargeSmall } from 'lucide-react'
+import { CalendarPicker } from "~/components/Form/DatePciker";
+import InputField from "~/components/Form/InputField";
+import { SelectField } from "~/components/Form/SelectField";
+import TextareaField from "~/components/Form/TextareaField";
+import Layout from "~/components/Layout";
+import { Card, CardContent, CardHeader } from "~/components/ui/card";
+import { frameworks } from "~/data/dataFrameworks";
+import { useState } from "react";
+import { ALargeSmall } from "lucide-react";
 
 export default function FormElement() {
-  const [select1, setSelect1] = useState<string | undefined>('')
-  const [select2, setSelect2] = useState<string | undefined>('')
+  const [select1, setSelect1] = useState<string | undefined>("");
+  const [select2, setSelect2] = useState<string | undefined>("");
   return (
     <Layout>
       <div className="grid gap-5 lg:grid-cols-2 grid-cols-1 w-full">
@@ -24,27 +24,27 @@ export default function FormElement() {
               {/* standart input  */}
               <InputField
                 labelName="Input"
-                className="focus:ring-orange-500"
+               
                 onChange={() => {}}
               />
               {/* input with placeholder */}
               <InputField
                 labelName="Input with placeholder"
                 placeholder="Input with placeholder"
-                className="focus:ring-orange-500"
+               
                 onChange={() => {}}
               />
               {/* password input */}
               <InputField
                 labelName="Password input"
                 type="password"
-                className="focus:ring-orange-500"
+               
                 placeholder="Input your password"
                 onChange={() => {}}
               />
               {/* date picker input */}
               <CalendarPicker
-                className="focus:ring-orange-500"
+               
                 labelTitle="Date Picker"
               />
               {/* disabled input */}
@@ -245,5 +245,5 @@ export default function FormElement() {
         </div>
       </div>
     </Layout>
-  )
+  );
 }

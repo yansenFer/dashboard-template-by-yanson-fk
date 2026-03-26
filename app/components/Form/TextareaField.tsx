@@ -49,7 +49,7 @@ export default function TextareaField({
           <Textarea
             disabled={disabled}
             placeholder={placeholder || ''}
-            className={` ${error ? 'border-red-500' : 'border-gray-300'} ${isSuccess && 'border-green-600'} ${className} focus:ring-orange-500 peer w-full border rounded-md pb-2 pt-6 h-12 focus:border-orange-500 hover:border-orange-500`}
+            className={` ${error ? 'border-red-500' : isDark ? 'border-gray-800' : 'border-gray-300'} ${isSuccess && 'border-green-600'} ${className} focus:ring-orange-500 peer w-full border rounded-md pb-2 pt-6 h-12 focus:border-orange-500 hover:border-orange-500`}
             {...props}
           />
           <label
@@ -71,7 +71,7 @@ export default function TextareaField({
           <Textarea
             disabled={disabled}
             placeholder={placeholder || ''}
-            className={`${error ? 'border-red-500' : 'border-gray-300'}  ${isSuccess && 'border-green-600'} ${className} focus:ring-orange-500 peer w-full border  rounded-md pb-2 pt-2 h-12 focus:border-orange-500 hover:border-orange-500`}
+            className={`${error ? 'border-red-500' : isDark ? 'border-gray-800' : 'border-gray-300'}  ${isSuccess && 'border-green-600'} ${className} focus:ring-orange-500 peer w-full border  rounded-md pb-2 pt-2 h-12 focus:border-orange-500 hover:border-orange-500`}
             {...props}
           />
           <label

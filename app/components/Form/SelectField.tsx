@@ -79,7 +79,7 @@ export function SelectField({
                 variant="outline"
                 role="combobox"
                 aria-expanded={open}
-                className={`w-full ${labelName && 'mt-3'} ${error && 'border-red-500'} ${isDark ? 'bg-dark' : 'bg-white'} ${isSuccess && 'border-green-600'} justify-between ${className}`}
+                className={`w-full ${labelName && 'mt-3'} ${error && 'border-red-500'} ${isDark ? 'input-dark' : 'bg-white border-gray-300'} ${isSuccess && 'border-green-600'} justify-between ${className}`}
               >
                 {value
                   ? dataDropdown.find((data) => data.value === value)?.label
@@ -126,7 +126,7 @@ export function SelectField({
         <>
           <Select value={value} onValueChange={onChange}>
             <SelectTrigger
-              className={`hidden hover:ring-orange-500 hover:ring-2 mt-3 ${className}  bg cursor-pointer hover:border-none ${isDark ? 'bg-dark' : 'bg-white'} w-full rounded-lg sm:ml-auto sm:flex ${error && 'border-red-500'} ${isSuccess && 'border-green-600'}`}
+              className={`hidden hover:ring-orange-500 hover:ring-2 mt-3 ${className} bg cursor-pointer hover:border-none w-full rounded-lg sm:ml-auto sm:flex ${error && 'border-red-500'} ${isSuccess && 'border-green-600'}`}
               aria-label="Select a value"
             >
               <SelectValue placeholder={placeholder} />

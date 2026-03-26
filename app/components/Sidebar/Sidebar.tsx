@@ -16,7 +16,7 @@ export default function Sidebar() {
     <aside
       className={[
         'hidden md:flex md:flex-col md:shrink-0 h-screen transition-all duration-300',
-        `${isDark ? 'bg-dark text-white border-transparent' : 'bg-white text-black border-gray-300'} border-r text-[var(--color-sidebar-foreground)]`,
+        `${isDark ? 'bg-dark text-white border-transparent' : 'bg-white text-black border-slate-200'} border-r text-[var(--color-sidebar-foreground)]`,
         'will-change-[width]',
         collapsed ? 'w-20 -ml-2' : 'w-64',
       ].join(' ')}
@@ -50,7 +50,7 @@ export default function Sidebar() {
           <button
             type="button"
             onClick={() => setCollapsed((v) => !v)}
-            className={`inline-flex size-8 cursor-pointer rounded-full absolute -left-1  z-20 items-center justify-center border  ${isDark ? 'bg-dark border-dark' : 'bg-white border-gray-300'}`}
+            className={`inline-flex size-8 cursor-pointer rounded-full absolute -left-1  z-20 items-center justify-center border  ${isDark ? 'bg-dark border-dark' : 'bg-white border-slate-200'}`}
             aria-label={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
             title={collapsed ? 'Expand' : 'Collapse'}
             aria-live="polite"

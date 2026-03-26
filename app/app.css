@@ -47,6 +47,7 @@ body {
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --color-content-background: var(--content-background);
 }
 
 :root {
@@ -81,6 +82,7 @@ body {
   --sidebar-accent-foreground: oklch(0.278 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.646 0.222 41.116);
+  --content-background: oklch(0.985 0 0);
 }
 
 
@@ -130,7 +132,7 @@ input[type=number] {
     @apply border-gray-600
   }
   .border-light {
-    @apply border-gray-300
+    @apply border-slate-200
   }
   .card-dark {
     @apply bg-slate-950
@@ -139,31 +141,24 @@ input[type=number] {
 
 @layer base {
   * {
-    @apply border-border outline-ring/50 transition-[color,background-color] duration-300 ease-in-out;
+    @apply border-border outline-ring/50 transition-colors duration-300 ease-in-out;
   }
   body {
     @apply bg-background text-foreground;
     font-family: 'Funnel Sans', sans-serif;
   }
+  .input-light {
+    --autofill-bg: white;
+    --autofill-text: black;
+  }
+  .input-dark {
+    --autofill-bg: #020617; /* slate-950 */
+    --autofill-text: white;
+  }
   input:-webkit-autofill {
-    box-shadow: 0 0 0px 1000px white inset !important;
-    -webkit-text-fill-color: black !important;
-  }
-  input[data-border="orange-500"]:focus {
-    border: 2px solid theme('colors.orange.500') !important;
-  }
-  input[data-border="orange-500"]:-webkit-autofill {
-    box-shadow: 0 0 0px 1000px white inset !important;
-    -webkit-text-fill-color: black !important;
-    color: black !important;
-  }
-  input[data-border="orange-dark-500"]:focus {
-    border: 2px solid theme('colors.orange.500') !important;
-  }
-  input[data-border="orange-dark-500"]:-webkit-autofill {
-    box-shadow: 0 0 0px 1000px theme('colors.slate.950') inset !important;
-    -webkit-text-fill-color: white !important;
-    color: white !important;
+    -webkit-box-shadow: 0 0 0px 1000px var(--autofill-bg) inset !important;
+    -webkit-text-fill-color: var(--autofill-text) !important;
+    transition: box-shadow 0.2s ease-in-out, -webkit-text-fill-color 0.2s ease-in-out, border-color 0.2s ease-in-out !important;
   }
 }
 

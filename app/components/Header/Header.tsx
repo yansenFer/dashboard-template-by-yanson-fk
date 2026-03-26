@@ -33,7 +33,7 @@ export default function Header() {
 
   return (
     <header
-      className={` ${isDark ? 'bg-dark border-transparent' : 'bg-white border-gray-300'} border-b sticky z-10 top-0 px-6 py-4`}
+      className={` ${isDark ? 'bg-dark border-transparent' : 'bg-white border-slate-200'} border-b sticky z-10 top-0 px-6 py-4`}
     >
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-4 ml-5">

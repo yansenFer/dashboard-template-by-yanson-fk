@@ -17,7 +17,7 @@ export default function Layout({ children }: LayoutProps) {
         <div className="flex-1 max-h-screen overflow-auto relative">
           <Header />
           <div
-            className={`p-5 justify-center flex  ${isDark && 'bg-content-dark'}`}
+            className={`p-5 justify-center flex  ${isDark ? 'bg-content-dark' : 'bg-content-background'}`}
           >
             <div className="w-[1920px] justify-center">{children}</div>
           </div>
