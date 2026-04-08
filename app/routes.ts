@@ -1,14 +1,21 @@
-import { type RouteConfig, index, route } from '@react-router/dev/routes'
+import { type RouteConfig, index, route } from "@react-router/dev/routes";
 
 export default [
   //dashboard
-  index('pages/dashboard.tsx'),
+  index("pages/dashboard.tsx"),
 
-  //Account
-  route('/account/simple-sign-in', 'pages/account/simple-sign-in.tsx'),
-  route('/account/simple-sign-up', 'pages/account/simple-sign-up.tsx'),
+  //Pages
+  route(
+    "/pages-template/simple-sign-in",
+    "pages/pages-template/simple-sign-in.tsx",
+  ),
+  route(
+    "/pages-template/simple-sign-up",
+    "pages/pages-template/simple-sign-up.tsx",
+  ),
+  route("/pages-template/profile", "pages/pages-template/profile.tsx"),
 
   //Form
-  route('/form/form-element', 'pages/form/form-element.tsx'),
-  route('/form/form-layout', 'pages/form/form-layout.tsx'),
-] satisfies RouteConfig
+  route("/form/form-element", "pages/form/form-element.tsx"),
+  route("/form/form-layout", "pages/form/form-layout.tsx"),
+] satisfies RouteConfig;

@@ -1,46 +1,52 @@
-import type { ISidebarList } from '~/interfaces/ISidebarList'
+import type { ISidebarList } from "~/interfaces/ISidebarList";
 import {
   BookCopy,
   CircleUser,
   FormInput,
   HomeIcon,
   LayoutDashboardIcon,
-} from 'lucide-react'
+  LogIn,
+} from "lucide-react";
 
 export const sidebarList: ISidebarList[] = [
   {
-    titleMenu: 'Dashboard',
+    titleMenu: "Dashboard",
     menu: [
       {
-        href: '/',
+        href: "/",
         icon: <HomeIcon />,
-        label: 'Overview',
+        label: "Overview",
       },
     ],
   },
   {
-    titleMenu: 'Account',
+    titleMenu: "Pages",
     menu: [
       {
-        href: '/account/simple-sign-in',
+        href: "/pages-template/simple-sign-in",
+        icon: <LogIn />,
+        label: "Simple Sign In",
+      },
+      {
+        href: "/pages-template/profile",
         icon: <CircleUser />,
-        label: 'Simple Sign In',
+        label: "Profile",
       },
     ],
   },
   {
-    titleMenu: 'Form',
+    titleMenu: "Form",
     menu: [
       {
-        href: '/form/form-element',
+        href: "/form/form-element",
         icon: <FormInput />,
-        label: 'Form Element',
+        label: "Form Element",
       },
       {
-        href: '/form/form-layout',
+        href: "/form/form-layout",
         icon: <BookCopy />,
-        label: 'Form Layout',
+        label: "Form Layout",
       },
     ],
   },
-]
+];
