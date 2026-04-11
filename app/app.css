@@ -120,7 +120,7 @@ input[type="number"] {
     @apply bg-slate-950;
   }
   .bg-content-dark {
-    @apply bg-slate-900;
+    background-color: #0b1120;
   }
   .input-dark {
     @apply bg-slate-950 placeholder:text-white text-white border border-gray-800;

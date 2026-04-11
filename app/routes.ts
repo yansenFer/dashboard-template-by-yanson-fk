@@ -19,6 +19,7 @@ export default [
     "pages/pages-template/edit-profile.tsx",
   ),
   route("/pages-template/invoice", "pages/pages-template/invoice.tsx"),
+  route("/pages-template/gallery", "pages/pages-template/gallery.tsx"),
 
   //Form
   route("/form/form-element", "pages/form/form-element.tsx"),
