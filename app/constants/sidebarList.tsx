@@ -6,6 +6,7 @@ import {
   HomeIcon,
   UserPen,
   LogIn,
+  FileText,
 } from "lucide-react";
 
 export const sidebarList: ISidebarList[] = [
@@ -36,6 +37,11 @@ export const sidebarList: ISidebarList[] = [
         href: "/pages-template/edit-profile",
         icon: <UserPen />,
         label: "Edit Profile",
+      },
+      {
+        href: "/pages-template/invoice",
+        icon: <FileText />,
+        label: "Invoice",
       },
     ],
   },
