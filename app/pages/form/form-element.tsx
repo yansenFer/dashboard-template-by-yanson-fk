@@ -6,47 +6,62 @@ import Layout from "~/components/Layout";
 import { Card, CardContent, CardHeader } from "~/components/ui/card";
 import { frameworks } from "~/data/dataFrameworks";
 import { useState } from "react";
-import { ALargeSmall } from "lucide-react";
+import {
+  ALargeSmall,
+  Type,
+  ListFilter,
+  AlertCircle,
+  AlignLeft,
+  LayoutGrid,
+  CheckCheck,
+} from "lucide-react";
+import { useSelector } from "react-redux";
+import type { RootState } from "~/store/store";
+import { CardTitle } from "~/components/ui/card";
 
 export default function FormElement() {
+  const isDark = useSelector((state: RootState) => state.dark.isDark);
   const [select1, setSelect1] = useState<string | undefined>("");
   const [select2, setSelect2] = useState<string | undefined>("");
+
   return (
     <Layout>
       <div className="grid gap-5 lg:grid-cols-2 grid-cols-1 w-full">
         <div className="flex flex-col gap-5">
           {/* start default input */}
-          <Card>
-            <CardHeader className="border-b">
-              <span className="font-bold text-xl">Default Input</span>
+          <Card className="overflow-hidden shadow-sm border-none">
+            <CardHeader>
+              <div className="flex items-center gap-3">
+                <div className="w-1 h-6 bg-orange-500 rounded-full" />
+                <CardTitle
+                  className={`text-lg flex items-center gap-2 ${isDark ? "text-white" : "text-black"}`}
+                >
+                  <Type
+                    className={`w-5 h-5 ${isDark ? "text-slate-400" : "text-slate-600"}`}
+                    strokeWidth={2.5}
+                  />
+                  Default Input
+                </CardTitle>
+              </div>
             </CardHeader>
             <CardContent className="gap-5 flex flex-col">
               {/* standart input  */}
-              <InputField
-                labelName="Input"
-               
-                onChange={() => {}}
-              />
+              <InputField labelName="Input" onChange={() => {}} />
               {/* input with placeholder */}
               <InputField
                 labelName="Input with placeholder"
                 placeholder="Input with placeholder"
-               
                 onChange={() => {}}
               />
               {/* password input */}
               <InputField
                 labelName="Password input"
                 type="password"
-               
                 placeholder="Input your password"
                 onChange={() => {}}
               />
               {/* date picker input */}
-              <CalendarPicker
-               
-                labelTitle="Date Picker"
-              />
+              <CalendarPicker labelTitle="Date Picker" />
               {/* disabled input */}
               <InputField
                 labelName="Input disabled"
@@ -58,9 +73,20 @@ export default function FormElement() {
           {/* end default input */}
 
           {/* start select input */}
-          <Card>
-            <CardHeader className="border-b">
-              <span className="font-bold text-xl">Select Input</span>
+          <Card className="overflow-hidden shadow-sm border-none">
+            <CardHeader>
+              <div className="flex items-center gap-3">
+                <div className="w-1 h-6 bg-orange-500 rounded-full" />
+                <CardTitle
+                  className={`text-lg flex items-center gap-2 ${isDark ? "text-white" : "text-black"}`}
+                >
+                  <ListFilter
+                    className={`w-5 h-5 ${isDark ? "text-slate-400" : "text-slate-600"}`}
+                    strokeWidth={2.5}
+                  />
+                  Select Input
+                </CardTitle>
+              </div>
             </CardHeader>
             <CardContent className="flex flex-col gap-5">
               {/* default select */}
@@ -83,9 +109,20 @@ export default function FormElement() {
           {/* end select input */}
 
           {/* start input error */}
-          <Card>
-            <CardHeader className="border-b">
-              <span className="font-bold text-xl">Error Input</span>
+          <Card className="overflow-hidden shadow-sm border-none">
+            <CardHeader>
+              <div className="flex items-center gap-3">
+                <div className="w-1 h-6 bg-orange-500 rounded-full" />
+                <CardTitle
+                  className={`text-lg flex items-center gap-2 ${isDark ? "text-white" : "text-black"}`}
+                >
+                  <AlertCircle
+                    className={`w-5 h-5 ${isDark ? "text-slate-400" : "text-slate-600"}`}
+                    strokeWidth={2.5}
+                  />
+                  Error Input
+                </CardTitle>
+              </div>
             </CardHeader>
             <CardContent className="flex flex-col gap-5">
               <InputField
@@ -131,9 +168,20 @@ export default function FormElement() {
         </div>
         <div className="flex flex-col gap-5">
           {/* start textarea input */}
-          <Card>
-            <CardHeader className="border-b">
-              <span className="font-bold text-xl">Textarea Input</span>
+          <Card className="overflow-hidden shadow-sm border-none">
+            <CardHeader>
+              <div className="flex items-center gap-3">
+                <div className="w-1 h-6 bg-orange-500 rounded-full" />
+                <CardTitle
+                  className={`text-lg flex items-center gap-2 ${isDark ? "text-white" : "text-black"}`}
+                >
+                  <AlignLeft
+                    className={`w-5 h-5 ${isDark ? "text-slate-400" : "text-slate-600"}`}
+                    strokeWidth={2.5}
+                  />
+                  Textarea Input
+                </CardTitle>
+              </div>
             </CardHeader>
             <CardContent className="flex flex-col gap-5">
               {/* text area normal */}
@@ -156,9 +204,20 @@ export default function FormElement() {
           {/* end textarea input */}
 
           {/* start input group */}
-          <Card>
-            <CardHeader className="border-b">
-              <span className="font-bold text-xl">Input Group</span>
+          <Card className="overflow-hidden shadow-sm border-none">
+            <CardHeader>
+              <div className="flex items-center gap-3">
+                <div className="w-1 h-6 bg-orange-500 rounded-full" />
+                <CardTitle
+                  className={`text-lg flex items-center gap-2 ${isDark ? "text-white" : "text-black"}`}
+                >
+                  <LayoutGrid
+                    className={`w-5 h-5 ${isDark ? "text-slate-400" : "text-slate-600"}`}
+                    strokeWidth={2.5}
+                  />
+                  Input Group
+                </CardTitle>
+              </div>
             </CardHeader>
             <CardContent className="flex flex-col gap-5">
               {/* input group variant float label 1 */}
@@ -197,9 +256,20 @@ export default function FormElement() {
           {/* end input group */}
 
           {/* start success input */}
-          <Card>
-            <CardHeader className="border-b">
-              <span className="font-bold text-xl">Success Input</span>
+          <Card className="overflow-hidden shadow-sm border-none">
+            <CardHeader>
+              <div className="flex items-center gap-3">
+                <div className="w-1 h-6 bg-orange-500 rounded-full" />
+                <CardTitle
+                  className={`text-lg flex items-center gap-2 ${isDark ? "text-white" : "text-black"}`}
+                >
+                  <CheckCheck
+                    className={`w-5 h-5 ${isDark ? "text-slate-400" : "text-slate-600"}`}
+                    strokeWidth={2.5}
+                  />
+                  Success Input
+                </CardTitle>
+              </div>
             </CardHeader>
             <CardContent className="flex flex-col gap-5">
               <InputField

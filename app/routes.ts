@@ -14,6 +14,10 @@ export default [
     "pages/pages-template/simple-sign-up.tsx",
   ),
   route("/pages-template/profile", "pages/pages-template/profile.tsx"),
+  route(
+    "/pages-template/edit-profile",
+    "pages/pages-template/edit-profile.tsx",
+  ),
 
   //Form
   route("/form/form-element", "pages/form/form-element.tsx"),

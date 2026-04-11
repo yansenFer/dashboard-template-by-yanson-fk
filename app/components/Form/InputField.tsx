@@ -57,10 +57,10 @@ export default function InputField({
             {...props}
             disabled={disabled}
             placeholder={placeholder || ""}
-            className={` ${error ? "border-red-500" : isDark ? "border-gray-800" : "border-slate-200"}  ${isSuccess && "border-green-600"}  ${className} peer w-full border rounded-md pb-2 pt-6 h-11 hover:border-orange-500`}
+            className={` ${error ? "border-red-500" : isDark ? "border-gray-800" : "border-slate-200"}  ${isSuccess && "border-green-600"}  ${className} peer w-full border rounded-md pb-2 pt-6 h-11 hover:border-orange-500 transition-all duration-300 ease-in-out`}
           />
           <label
-            className={`${error && "text-red-500"} ${isSuccess && "text-green-600"} ${isDark && "text-white"} select-none pointer-events-none absolute flex items-center gap-1 left-3 top-1/2 -translate-y-1/2 text-gray-500 text-sm transition-all duration-200 peer-hover:top-3 peer-hover:text-xs peer-hover:text-orange-500 peer-focus:top-3 peer-focus:text-xs peer-focus:text-orange-500 peer-[&:not(:placeholder-shown)]:top-3 peer-[&:not(:placeholder-shown)]:text-xs`}
+            className={`${error && "text-red-500"} ${isSuccess && "text-green-600"} ${isDark && "text-white"} select-none pointer-events-none absolute flex items-center gap-1 left-3 top-1/2 -translate-y-1/2 text-gray-500 text-sm transition-all duration-300 ease-in-out peer-hover:top-3 peer-hover:text-xs peer-hover:text-orange-500 peer-focus:top-3 peer-focus:text-xs peer-focus:text-orange-500 peer-[&:not(:placeholder-shown)]:top-3 peer-[&:not(:placeholder-shown)]:text-xs`}
           >
             {Icon && <Icon className="w-4 h-4" />}
             {labelName}
@@ -79,10 +79,10 @@ export default function InputField({
             {...props}
             disabled={disabled}
             placeholder={placeholder || ""}
-            className={`${error ? "border-red-500" : isDark ? "border-gray-800" : "border-slate-200"} ${isSuccess && "border-green-600"}  ${className} peer w-full border rounded-md pb-2 pt-2 h-10 hover:border-orange-500`}
+            className={`${error ? "border-red-500" : isDark ? "border-gray-800" : "border-slate-200"} ${isSuccess && "border-green-600"}  ${className} peer w-full border rounded-md pb-2 pt-2 h-10 hover:border-orange-500 transition-all duration-300 ease-in-out`}
           />
           <label
-            className={`${error && "text-red-500"} ${isSuccess && "text-green-600"}  ${isDark ? "bg-dark text-white" : "bg-white"} rounded-full select-none pointer-events-none absolute flex items-center gap-1 left-3 top-1/2 -translate-y-1/2 text-gray-500 text-sm transition-all duration-200 peer-hover:top-0 peer-hover:text-xs peer-hover:text-orange-500 peer-focus:top-0 peer-focus:text-xs peer-focus:text-orange-500 peer-[&:not(:placeholder-shown)]:top-0 peer-hover:px-1 peer-focus:px-1 peer-[&:not(:placeholder-shown)]:text-xs`}
+            className={`${error && "text-red-500"} px-1 ${isSuccess && "text-green-600"}  ${isDark ? "bg-dark text-white" : "bg-white"} rounded-full select-none pointer-events-none absolute flex items-center gap-1 left-3 top-1/2 -translate-y-1/2 text-gray-500 text-sm transition-all duration-400 ease-in-out peer-hover:top-0 peer-hover:text-xs peer-hover:text-orange-500 peer-focus:top-0 peer-focus:text-xs peer-focus:text-orange-500 peer-[&:not(:placeholder-shown)]:top-0 peer-hover:pl-2 peer-focus:pl-2 peer-[&:not(:placeholder-shown)]:text-xs`}
           >
             {Icon && <Icon className="w-4 h-4" />}
             {labelName}

@@ -14,10 +14,10 @@ export default function Layout({ children }: LayoutProps) {
     <div className="min-h-screen bg-background text-foreground">
       <div className="flex max-h-screen overflow-auto">
         <Sidebar />
-        <div className="flex-1 max-h-screen overflow-auto relative">
+        <div className="flex-1 flex flex-col max-h-screen overflow-auto relative">
           <Header />
           <div
-            className={`p-5 justify-center flex  ${isDark ? 'bg-content-dark' : 'bg-content-background'}`}
+            className={`p-5 justify-center flex flex-1 ${isDark ? 'bg-content-dark' : 'bg-content-background'}`}
           >
             <div className="w-[1920px] justify-center">{children}</div>
           </div>

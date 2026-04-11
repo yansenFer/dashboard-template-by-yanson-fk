@@ -41,19 +41,23 @@ export default function Sidebar() {
           className="flex items-center gap-2 w-full rounded-md px-2"
         >
           {collapsed ? (
-            <span className="font-extrabold py-2 w-full text-center">YnB</span>
-          ) : isDark ? (
-            <img
-              className="h-10"
-              alt="logo dark mode"
-              src="/YnB_template_specialist_dark_mode.png"
-            />
+            <span className="font-black py-2 w-full text-center text-xl bg-clip-text text-transparent bg-gradient-to-br from-orange-400 to-orange-600">
+              Gv
+            </span>
           ) : (
-            <img
-              className="h-10"
-              alt="logo light mode"
-              src="/YnB_template_specialist_light_mode.png"
-            />
+            <div className="flex items-center gap-2 py-1">
+              <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-gradient-to-br from-orange-400 to-orange-600 text-white font-black text-lg shadow-md">
+                Gv
+              </div>
+              <span
+                className={[
+                  "font-extrabold text-2xl tracking-tight",
+                  isDark ? "text-white" : "text-slate-900",
+                ].join(" ")}
+              >
+                Gvixer
+              </span>
+            </div>
           )}
         </Link>
 

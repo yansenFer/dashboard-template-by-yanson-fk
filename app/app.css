@@ -4,7 +4,7 @@
 
 @theme {
   --font-sans:
-    "Funnel Sans", "Inter", ui-sans-serif, system-ui, sans-serif,
+    "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
@@ -145,7 +145,7 @@ input[type="number"] {
   }
   body {
     @apply bg-background text-foreground;
-    font-family: "Funnel Sans", sans-serif;
+    font-family: "Plus Jakarta Sans", sans-serif;
   }
   .input-light {
     --autofill-bg: white;

@@ -4,7 +4,7 @@ import {
   CircleUser,
   FormInput,
   HomeIcon,
-  LayoutDashboardIcon,
+  UserPen,
   LogIn,
 } from "lucide-react";
 
@@ -31,6 +31,11 @@ export const sidebarList: ISidebarList[] = [
         href: "/pages-template/profile",
         icon: <CircleUser />,
         label: "Profile",
+      },
+      {
+        href: "/pages-template/edit-profile",
+        icon: <UserPen />,
+        label: "Edit Profile",
       },
     ],
   },

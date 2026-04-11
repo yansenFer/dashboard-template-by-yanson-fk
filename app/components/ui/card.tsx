@@ -14,7 +14,7 @@ function Card({
     <div
       data-slot="card"
       className={cn(
-        `${isDark ? "card-dark text-white border-transparent" : "bg-card text-card-foreground border-transparent shadow-md"} flex flex-col gap-6 rounded-xl border pt-3 pb-6`,
+        `${isDark ? "card-dark text-white" : "bg-card text-card-foreground shadow-md"} flex flex-col gap-6 rounded-xl pt-3 pb-6`,
         className,
       )}
       {...props}
@@ -31,7 +31,7 @@ function CardHeader({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="card-header"
       className={cn(
-        `${isDark ? "border-slate-800" : "border-gray-300"} @container/card-header grid auto-rows-min grid-rows-[auto_auto] items-start gap-1.5 px-6 has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-3`,
+        `@container/card-header grid auto-rows-min grid-rows-[auto_auto] items-start gap-1.5 px-6 has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-3`,
         className,
       )}
       {...props}

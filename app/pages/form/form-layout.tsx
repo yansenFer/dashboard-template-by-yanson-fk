@@ -1,22 +1,50 @@
-import { Hourglass, Key, Mail, MapPin, Phone, User } from 'lucide-react'
-import InputField from '~/components/Form/InputField'
-import { SelectField } from '~/components/Form/SelectField'
-import TextareaField from '~/components/Form/TextareaField'
-import Layout from '~/components/Layout'
-import { Button } from '~/components/ui/button'
-import { Card, CardContent, CardHeader } from '~/components/ui/card'
-import { country } from '~/data/dataCountry'
-import { region } from '~/data/dataRegion'
+import {
+  Hourglass,
+  Key,
+  Mail,
+  MapPin,
+  Phone,
+  User,
+  FileText,
+  Columns,
+  LayoutTemplate,
+  Layers,
+  FileBox,
+  UserCheck,
+} from "lucide-react";
+import { useSelector } from "react-redux";
+import type { RootState } from "~/store/store";
+import { CardTitle } from "~/components/ui/card";
+import InputField from "~/components/Form/InputField";
+import { SelectField } from "~/components/Form/SelectField";
+import TextareaField from "~/components/Form/TextareaField";
+import Layout from "~/components/Layout";
+import { Button } from "~/components/ui/button";
+import { Card, CardContent, CardHeader } from "~/components/ui/card";
+import { country } from "~/data/dataCountry";
+import { region } from "~/data/dataRegion";
 
 export default function FormLayout() {
+  const isDark = useSelector((state: RootState) => state.dark.isDark);
   return (
     <Layout>
       <div className="grid lg:grid-cols-2 grid-cols-1 w-full gap-5">
         <div className="flex flex-col gap-5">
           {/* start basic form */}
-          <Card>
-            <CardHeader className="border-b">
-              <span className="font-bold text-xl">Basic Form</span>
+          <Card className="overflow-hidden shadow-sm">
+            <CardHeader>
+              <div className="flex items-center gap-3">
+                <div className="w-1 h-6 bg-orange-500 rounded-full" />
+                <CardTitle
+                  className={`text-lg flex items-center gap-2 ${isDark ? "text-white" : "text-black"}`}
+                >
+                  <FileText
+                    className={`w-5 h-5 ${isDark ? "text-slate-400" : "text-slate-600"}`}
+                    strokeWidth={2.5}
+                  />
+                  Basic Form
+                </CardTitle>
+              </div>
             </CardHeader>
             <CardContent className="gap-5 grid grid-cols-2">
               <InputField labelName="First Name" onChange={() => {}} />
@@ -48,9 +76,20 @@ export default function FormLayout() {
           {/* end basic form */}
 
           {/* start form input group 1 */}
-          <Card>
-            <CardHeader className="border-b">
-              <span className="font-bold text-xl">Form Input Group 1</span>
+          <Card className="overflow-hidden shadow-sm">
+            <CardHeader>
+              <div className="flex items-center gap-3">
+                <div className="w-1 h-6 bg-orange-500 rounded-full" />
+                <CardTitle
+                  className={`text-lg flex items-center gap-2 ${isDark ? "text-white" : "text-black"}`}
+                >
+                  <Columns
+                    className={`w-5 h-5 ${isDark ? "text-slate-400" : "text-slate-600"}`}
+                    strokeWidth={2.5}
+                  />
+                  Form Input Group 1
+                </CardTitle>
+              </div>
             </CardHeader>
             <CardContent className="gap-5 grid grid-cols-2">
               <InputField
@@ -105,9 +144,20 @@ export default function FormLayout() {
           {/* end form input group 1 */}
 
           {/* start form input group 2 */}
-          <Card>
-            <CardHeader className="border-b">
-              <span className="font-bold text-xl">Form Input Group 2</span>
+          <Card className="overflow-hidden shadow-sm">
+            <CardHeader>
+              <div className="flex items-center gap-3">
+                <div className="w-1 h-6 bg-orange-500 rounded-full" />
+                <CardTitle
+                  className={`text-lg flex items-center gap-2 ${isDark ? "text-white" : "text-black"}`}
+                >
+                  <LayoutTemplate
+                    className={`w-5 h-5 ${isDark ? "text-slate-400" : "text-slate-600"}`}
+                    strokeWidth={2.5}
+                  />
+                  Form Input Group 2
+                </CardTitle>
+              </div>
             </CardHeader>
             <CardContent className="gap-5 grid grid-cols-2">
               <InputField
@@ -162,11 +212,20 @@ export default function FormLayout() {
           {/* end form input group 2 */}
 
           {/* start combine form input */}
-          <Card>
-            <CardHeader className="border-b">
-              <span className="font-bold text-xl">
-                Combine Form Input Group
-              </span>
+          <Card className="overflow-hidden shadow-sm">
+            <CardHeader>
+              <div className="flex items-center gap-3">
+                <div className="w-1 h-6 bg-orange-500 rounded-full" />
+                <CardTitle
+                  className={`text-lg flex items-center gap-2 ${isDark ? "text-white" : "text-black"}`}
+                >
+                  <Layers
+                    className={`w-5 h-5 ${isDark ? "text-slate-400" : "text-slate-600"}`}
+                    strokeWidth={2.5}
+                  />
+                  Combine Form Input Group
+                </CardTitle>
+              </div>
             </CardHeader>
             <CardContent className="gap-5 grid grid-cols-2">
               <InputField
@@ -256,9 +315,20 @@ export default function FormLayout() {
         </div>
         <div className="flex flex-col gap-5">
           {/* start combine form input */}
-          <Card>
-            <CardHeader className="border-b">
-              <span className="font-bold text-xl">Combine Basic Form</span>
+          <Card className="overflow-hidden shadow-sm">
+            <CardHeader>
+              <div className="flex items-center gap-3">
+                <div className="w-1 h-6 bg-orange-500 rounded-full" />
+                <CardTitle
+                  className={`text-lg flex items-center gap-2 ${isDark ? "text-white" : "text-black"}`}
+                >
+                  <FileBox
+                    className={`w-5 h-5 ${isDark ? "text-slate-400" : "text-slate-600"}`}
+                    strokeWidth={2.5}
+                  />
+                  Combine Basic Form
+                </CardTitle>
+              </div>
             </CardHeader>
             <CardContent className="gap-5 grid grid-cols-2">
               <InputField labelName="First Name" onChange={() => {}} />
@@ -316,11 +386,20 @@ export default function FormLayout() {
           {/* end combine form input */}
 
           {/* start combine form input with icon*/}
-          <Card>
-            <CardHeader className="border-b">
-              <span className="font-bold text-xl">
-                Combine Form Input Group With Icon
-              </span>
+          <Card className="overflow-hidden shadow-sm">
+            <CardHeader>
+              <div className="flex items-center gap-3">
+                <div className="w-1 h-6 bg-orange-500 rounded-full" />
+                <CardTitle
+                  className={`text-lg flex items-center gap-2 ${isDark ? "text-white" : "text-black"}`}
+                >
+                  <UserCheck
+                    className={`w-5 h-5 ${isDark ? "text-slate-400" : "text-slate-600"}`}
+                    strokeWidth={2.5}
+                  />
+                  Combine Form Input Group With Icon
+                </CardTitle>
+              </div>
             </CardHeader>
             <CardContent className="gap-5 grid grid-cols-2">
               <InputField
@@ -419,5 +498,5 @@ export default function FormLayout() {
         </div>
       </div>
     </Layout>
-  )
+  );
 }
