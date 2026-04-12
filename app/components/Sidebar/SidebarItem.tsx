@@ -26,7 +26,7 @@ export default function SidebarItem({
   const content = (
     <div
       className={cn(
-        "group flex items-center h-12 rounded-md transition-all duration-300 relative",
+        "group flex items-center h-8 rounded-md transition-all duration-300 relative",
         // tighten spacing when collapsed so icon stays centered
         collapsed ? "justify-center px-0" : "gap-3 ml-2 px-2",
         `${isDark ? "text-white " : "text-[var(--color-sidebar-foreground)]"} border-transparent border-l-2 hover:border-orange-600 rounded-none`,

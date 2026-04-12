@@ -89,28 +89,30 @@ export default function Sidebar() {
       >
         {collapsed ? (
           <div className="flex flex-col gap-1">
-            {sidebarList.flatMap((parent) => parent.menu).map((menu) => (
-              <SidebarItem
-                key={menu.href}
-                href={menu.href}
-                icon={menu.icon}
-                label={menu.label}
-                active={pathname === menu.href}
-                collapsed={collapsed}
-              />
-            ))}
+            {sidebarList
+              .flatMap((parent) => parent.menu)
+              .map((menu) => (
+                <SidebarItem
+                  key={menu.href}
+                  href={menu.href}
+                  icon={menu.icon}
+                  label={menu.label}
+                  active={pathname === menu.href}
+                  collapsed={collapsed}
+                />
+              ))}
           </div>
         ) : (
           sidebarList.map((parent) => {
             const isExpanded = expandedSections.includes(parent.titleMenu);
             return (
               <div
-                className="px-4 mb-2 transition-all duration-300"
+                className="px-4 mb-1 transition-all duration-300"
                 key={parent.titleMenu}
               >
                 <button
                   onClick={() => toggleSection(parent.titleMenu)}
-                  className="w-full flex items-center justify-between mb-2 group cursor-pointer"
+                  className="w-full flex items-center justify-between mb-1 group cursor-pointer"
                 >
                   <p
                     className={`transition-all duration-300 text-sm font-bold origin-left ease-in-out ${isDark ? "text-white" : "text-[var(--muted-foreground)]"}`}
@@ -138,7 +140,7 @@ export default function Sidebar() {
                       }}
                       className="overflow-hidden"
                     >
-                      <ul className="mb-4 space-y-1">
+                      <ul className="mb-2 space-y-0.5">
                         {parent.menu.map((menu) => (
                           <li key={menu.href}>
                             <SidebarItem
