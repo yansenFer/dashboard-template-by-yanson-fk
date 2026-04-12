@@ -83,78 +83,81 @@ export default function Sidebar() {
 
       {/* Navigation */}
       <nav
-        className="px-2 pb-4 overflow-y-auto no-scrollbar"
+        className={`px-2 pb-4 no-scrollbar flex-1 relative z-10 ${collapsed ? "overflow-y-visible" : "overflow-y-auto"}`}
         role="navigation"
         aria-label="Main navigation"
       >
-        {sidebarList.map((parent) => {
-          const isExpanded = expandedSections.includes(parent.titleMenu);
-          return (
-            <div className="mb-2 px-4" key={parent.titleMenu}>
-              <button
-                onClick={() => toggleSection(parent.titleMenu)}
-                className={[
-                  "w-full flex items-center justify-between mb-2 group cursor-pointer",
-                  collapsed ? "justify-center" : "",
-                ].join(" ")}
+        {collapsed ? (
+          <div className="flex flex-col gap-1">
+            {sidebarList.flatMap((parent) => parent.menu).map((menu) => (
+              <SidebarItem
+                key={menu.href}
+                href={menu.href}
+                icon={menu.icon}
+                label={menu.label}
+                active={pathname === menu.href}
+                collapsed={collapsed}
+              />
+            ))}
+          </div>
+        ) : (
+          sidebarList.map((parent) => {
+            const isExpanded = expandedSections.includes(parent.titleMenu);
+            return (
+              <div
+                className="px-4 mb-2 transition-all duration-300"
+                key={parent.titleMenu}
               >
-                <p
-                  className={[
-                    `${isDark ? "text-white" : "text-[var(--muted-foreground)]"} transition-all duration-300 text-sm font-bold origin-left ease-in-out`,
-                    collapsed
-                      ? "opacity-0 -translate-x-2 w-0 overflow-hidden"
-                      : "opacity-100 translate-x-0 w-auto",
-                  ].join(" ")}
-                  aria-hidden={collapsed}
+                <button
+                  onClick={() => toggleSection(parent.titleMenu)}
+                  className="w-full flex items-center justify-between mb-2 group cursor-pointer"
                 >
-                  {parent.titleMenu}
-                </p>
-                {!collapsed && (
-                  <ChevronDown
-                    className={[
-                      "size-3 transition-transform duration-300",
-                      isDark ? "text-gray-400" : "text-gray-500",
-                      isExpanded ? "rotate-180" : "rotate-0",
-                    ].join(" ")}
-                  />
-                )}
-              </button>
-
-              <AnimatePresence initial={false}>
-                {(isExpanded || collapsed) && (
-                  <motion.div
-                    initial="collapsed"
-                    animate="expanded"
-                    exit="collapsed"
-                    variants={{
-                      expanded: { opacity: 1, height: "auto", marginTop: 0 },
-                      collapsed: { opacity: 0, height: 0, marginTop: 0 },
-                    }}
-                    transition={{
-                      duration: 0.3,
-                      ease: [0.04, 0.62, 0.23, 0.98],
-                    }}
-                    className="overflow-hidden"
+                  <p
+                    className={`transition-all duration-300 text-sm font-bold origin-left ease-in-out ${isDark ? "text-white" : "text-[var(--muted-foreground)]"}`}
                   >
-                    <ul className="space-y-1 mb-4">
-                      {parent.menu.map((menu) => (
-                        <li key={menu.href}>
-                          <SidebarItem
-                            href={menu.href}
-                            icon={menu.icon}
-                            label={menu.label}
-                            active={pathname === menu.href}
-                            collapsed={collapsed}
-                          />
-                        </li>
-                      ))}
-                    </ul>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-          );
-        })}
+                    {parent.titleMenu}
+                  </p>
+                  <ChevronDown
+                    className={`size-3 transition-transform duration-300 ${isDark ? "text-gray-400" : "text-gray-500"} ${isExpanded ? "rotate-180" : "rotate-0"}`}
+                  />
+                </button>
+
+                <AnimatePresence initial={false}>
+                  {isExpanded && (
+                    <motion.div
+                      initial="collapsed"
+                      animate="expanded"
+                      exit="collapsed"
+                      variants={{
+                        expanded: { opacity: 1, height: "auto", marginTop: 0 },
+                        collapsed: { opacity: 0, height: 0, marginTop: 0 },
+                      }}
+                      transition={{
+                        duration: 0.3,
+                        ease: [0.04, 0.62, 0.23, 0.98],
+                      }}
+                      className="overflow-hidden"
+                    >
+                      <ul className="mb-4 space-y-1">
+                        {parent.menu.map((menu) => (
+                          <li key={menu.href}>
+                            <SidebarItem
+                              href={menu.href}
+                              icon={menu.icon}
+                              label={menu.label}
+                              active={pathname === menu.href}
+                              collapsed={collapsed}
+                            />
+                          </li>
+                        ))}
+                      </ul>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            );
+          })
+        )}
       </nav>
 
       {/* Footer */}

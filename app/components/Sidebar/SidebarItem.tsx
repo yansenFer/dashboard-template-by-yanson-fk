@@ -1,17 +1,17 @@
-import type { ReactNode } from 'react'
-import { useSelector } from 'react-redux'
-import { Link } from 'react-router'
-import { cn } from '~/lib/utils'
-import type { RootState } from '~/store/store'
+import type { ReactNode } from "react";
+import { useSelector } from "react-redux";
+import { Link } from "react-router";
+import { cn } from "../../lib/utils";
+import type { RootState } from "~/store/store";
 
 type SidebarItemProps = {
-  href?: string
-  icon: ReactNode
-  label: string
-  active?: boolean
-  badge?: string | number
-  collapsed?: boolean
-}
+  href?: string;
+  icon: ReactNode;
+  label: string;
+  active?: boolean;
+  badge?: string | number;
+  collapsed?: boolean;
+};
 
 export default function SidebarItem({
   icon,
@@ -21,22 +21,29 @@ export default function SidebarItem({
   collapsed,
   href,
 }: SidebarItemProps) {
-  const isDark = useSelector((state: RootState) => state.dark.isDark)
+  const isDark = useSelector((state: RootState) => state.dark.isDark);
 
   const content = (
     <div
       className={cn(
-        'group flex items-center h-7 rounded-md px-2 transition-all duration-300',
+        "group flex items-center h-12 rounded-md transition-all duration-300 relative",
         // tighten spacing when collapsed so icon stays centered
-        collapsed ? 'gap-0 justify-center pl-5' : 'gap-3 ml-2',
-        `${isDark ? 'text-white ' : 'text-[var(--color-sidebar-foreground)]'} border-transparent border-l-2 hover:border-orange-600 rounded-none  ${isDark ? 'text-white' : ''} `,
-        active && 'border-l-2 border-orange-600'
+        collapsed ? "justify-center px-0" : "gap-3 ml-2 px-2",
+        `${isDark ? "text-white " : "text-[var(--color-sidebar-foreground)]"} border-transparent border-l-2 hover:border-orange-600 rounded-none`,
+        active && "border-l-2 border-orange-600",
       )}
-      title={collapsed ? label : undefined}
     >
+      {/* Tooltip for collapsed mode */}
+      {collapsed && (
+        <div className="absolute left-full top-1/2 -translate-y-1/2 ml-3 px-2 py-1.5 rounded-md bg-slate-900 dark:bg-slate-800 text-white text-xs hidden group-hover:flex items-center transition-all duration-200 whitespace-nowrap z-[100] shadow-2xl pointer-events-none">
+          <span className="relative z-10">{label}</span>
+          {/* Tooltip arrow */}
+          <div className="absolute top-1/2 -left-1 -translate-y-1/2 border-y-[6px] border-y-transparent border-r-[6px] border-r-slate-900 dark:border-r-slate-800" />
+        </div>
+      )}
       <span
         className={cn(
-          `size-5 flex items-center justify-center ${isDark ? 'text-white' : 'text-[var(--color-sidebar-foreground)]'}`
+          `size-5 flex items-center justify-center ${isDark ? "text-white" : "text-[var(--color-sidebar-foreground)]"}`,
         )}
         aria-hidden="true"
       >
@@ -46,10 +53,10 @@ export default function SidebarItem({
       {/* Animated label: slide+fade and collapse width */}
       <span
         className={cn(
-          'text-xs font-medium origin-left transition-all duration-1000 ease-in-out',
+          "text-xs font-medium origin-left transition-all duration-1000 ease-in-out",
           collapsed
-            ? 'opacity-0 -translate-x-2 w-0 overflow-hidden'
-            : 'opacity-100 translate-x-0 w-auto'
+            ? "opacity-0 -translate-x-2 w-0 overflow-hidden"
+            : "opacity-100 translate-x-0 w-auto",
         )}
         aria-hidden={collapsed}
       >
@@ -60,11 +67,11 @@ export default function SidebarItem({
       {badge !== undefined && (
         <span
           className={cn(
-            'ml-auto inline-flex items-center rounded-full px-2 py-0.5 text-xs transition-all duration-300 ease-in-out',
-            'bg-[var(--color-sidebar-primary)] text-[var(--color-sidebar-primary-foreground)]',
+            "ml-auto inline-flex items-center rounded-full px-2 py-0.5 text-xs transition-all duration-300 ease-in-out",
+            "bg-[var(--color-sidebar-primary)] text-[var(--color-sidebar-primary-foreground)]",
             collapsed
-              ? 'opacity-0 scale-95 w-0 overflow-hidden ml-0'
-              : 'opacity-100 scale-100 w-auto'
+              ? "opacity-0 scale-95 w-0 overflow-hidden ml-0"
+              : "opacity-100 scale-100 w-auto",
           )}
           aria-hidden={collapsed}
         >
@@ -72,7 +79,7 @@ export default function SidebarItem({
         </span>
       )}
     </div>
-  )
+  );
 
   return href ? (
     <Link to={{ pathname: href }} className="block">
@@ -80,5 +87,5 @@ export default function SidebarItem({
     </Link>
   ) : (
     content
-  )
+  );
 }
