@@ -22,6 +22,7 @@ export default [
   route("/pages-template/gallery", "pages/pages-template/gallery.tsx"),
   route("/pages-template/task-list", "pages/pages-template/task-list.tsx"),
   route("/pages-template/faq", "pages/pages-template/faq.tsx"),
+  route("/pages-template/pricing", "pages/pages-template/pricing.tsx"),
 
   //Form
   route("/form/form-element", "pages/form/form-element.tsx"),

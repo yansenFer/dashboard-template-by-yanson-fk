@@ -10,6 +10,7 @@ import {
   Image,
   List,
   Info,
+  DollarSign,
 } from "lucide-react";
 
 export const sidebarList: ISidebarList[] = [
@@ -60,6 +61,11 @@ export const sidebarList: ISidebarList[] = [
         href: "/pages-template/faq",
         icon: <Info />,
         label: "FAQ",
+      },
+      {
+        href: "/pages-template/pricing",
+        icon: <DollarSign />,
+        label: "Pricing",
       },
     ],
   },
