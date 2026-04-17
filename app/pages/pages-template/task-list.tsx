@@ -478,7 +478,7 @@ export default function TaskList() {
 
                       <CardContent className="p-0">
                         {/* Panel Header */}
-                        <div className="p-6 border-b border-slate-200 dark:border-slate-800">
+                        <div className="p-6 relative">
                           <div className="flex items-center justify-between mb-6">
                             <div className="flex items-center gap-3">
                               <div className="relative size-12 flex items-center justify-center">
@@ -625,6 +625,8 @@ export default function TaskList() {
                               </div>
                             </div>
                           </div>
+                          {/* Premium Gradient Separator */}
+                          <div className="absolute bottom-0 left-6 right-6 h-px bg-gradient-to-r from-transparent via-slate-200 dark:via-slate-800 to-transparent opacity-60" />
                         </div>
 
                         {/* Tabs */}

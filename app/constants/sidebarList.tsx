@@ -9,6 +9,7 @@ import {
   FileText,
   Image,
   List,
+  Info,
 } from "lucide-react";
 
 export const sidebarList: ISidebarList[] = [
@@ -54,6 +55,11 @@ export const sidebarList: ISidebarList[] = [
         href: "/pages-template/task-list",
         icon: <List />,
         label: "Task List",
+      },
+      {
+        href: "/pages-template/faq",
+        icon: <Info />,
+        label: "FAQ",
       },
     ],
   },
