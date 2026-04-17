@@ -290,7 +290,8 @@ export default function Faq() {
                 Live Chat Support
               </Button>
               <Button variant="outline" className={cn(
-                "h-14 px-8 rounded-2xl gap-2 font-bold text-base transition-all border-2 hover:bg-slate-100 dark:hover:bg-slate-800 hover:scale-105 active:scale-95",
+                "h-14 px-8 rounded-2xl gap-2 font-bold text-base transition-all border-2 hover:scale-105 active:scale-95",
+                "hover:bg-orange-500 hover:text-white hover:border-orange-500",
                 isDark ? "text-white border-slate-700" : "text-slate-900 border-slate-200"
               )}>
                 <Mail className="w-5 h-5" />
