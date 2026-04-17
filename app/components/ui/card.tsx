@@ -4,25 +4,42 @@ import { useSelector } from "react-redux";
 import { cn } from "~/lib/utils";
 import type { RootState } from "~/store/store";
 
-function Card({
-  className,
-  children,
-  ...props
-}: React.PropsWithChildren<React.ComponentProps<"div">>) {
-  const isDark = useSelector((state: RootState) => state.dark.isDark);
-  return (
-    <div
-      data-slot="card"
-      className={cn(
-        `${isDark ? "card-dark text-white" : "bg-card text-card-foreground shadow-md"} flex flex-col gap-6 rounded-xl pt-3 pb-6`,
-        className,
-      )}
-      {...props}
-    >
-      {children}
-    </div>
-  );
+interface CardProps extends React.ComponentProps<"div"> {
+  active?: boolean;
 }
+
+const Card = React.forwardRef<HTMLDivElement, CardProps>(
+  ({ className, children, active, ...props }, ref) => {
+    const isDark = useSelector((state: RootState) => state.dark.isDark);
+    return (
+      <div
+        ref={ref}
+        data-slot="card"
+        className={cn(
+          // Base backgrounds
+          isDark
+            ? "card-dark text-white"
+            : "bg-card text-card-foreground shadow-md",
+          // Layout and shape
+          "flex flex-col gap-6 rounded-xl",
+          // Selection state logic
+          active
+            ? isDark
+              ? "bg-orange-500/5 border-slate-800 !border-l-orange-500 border-l-[3px]"
+              : "bg-orange-50/60 border-orange-200 !border-l-orange-500 border-l-[3px] shadow-sm"
+            : "border-l-[3px] border-l-transparent",
+          // Default padding (can be overridden)
+          "pt-3 pb-6",
+          className,
+        )}
+        {...props}
+      >
+        {children}
+      </div>
+    );
+  },
+);
+Card.displayName = "Card";
 
 function CardHeader({ className, ...props }: React.ComponentProps<"div">) {
   const isDark = useSelector((state: RootState) => state.dark.isDark);

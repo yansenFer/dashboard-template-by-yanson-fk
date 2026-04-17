@@ -25,6 +25,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useSelector } from "react-redux";
 import type { RootState } from "~/store/store";
 import { cn } from "~/lib/utils";
+const MotionCard = motion.create(Card);
 
 // --- Types ---
 type Priority = "High" | "Medium" | "Low";
@@ -276,12 +277,18 @@ export default function TaskList() {
               size="sm"
               className={cn(
                 "gap-2 cursor-pointer transition-all",
-                isDark 
-                  ? "bg-slate-900/50 border-slate-800 text-white" 
-                  : "bg-white border-slate-200 text-slate-900"
+                isDark
+                  ? "bg-slate-900/50 border-slate-800 text-white"
+                  : "bg-white border-slate-200 text-slate-900",
               )}
             >
-              Bulk actions <ChevronDown className={cn("w-4 h-4", isDark ? "text-slate-300" : "text-slate-500")} />
+              Bulk actions{" "}
+              <ChevronDown
+                className={cn(
+                  "w-4 h-4",
+                  isDark ? "text-slate-300" : "text-slate-500",
+                )}
+              />
             </Button>
             <Button className="bg-orange-500 hover:bg-orange-600 text-white shadow-lg shadow-orange-500/20 cursor-pointer">
               Apply
@@ -291,10 +298,18 @@ export default function TaskList() {
               size="sm"
               className={cn(
                 "gap-2 cursor-pointer transition-all",
-                isDark ? "text-white hover:bg-white/10" : "text-slate-900 hover:bg-slate-100"
+                isDark
+                  ? "text-white hover:bg-white/10"
+                  : "text-slate-900 hover:bg-slate-100",
               )}
             >
-              Sort by date <ChevronDown className={cn("w-4 h-4", isDark ? "text-slate-300" : "text-slate-500")} />
+              Sort by date{" "}
+              <ChevronDown
+                className={cn(
+                  "w-4 h-4",
+                  isDark ? "text-slate-300" : "text-slate-500",
+                )}
+              />
             </Button>
           </div>
           <div className="flex items-center gap-4 text-sm text-slate-500">
@@ -329,7 +344,7 @@ export default function TaskList() {
 
                 <div className="flex flex-col gap-3">
                   {MOCK_TASKS.filter((t) => t.group === group).map((task) => (
-                    <motion.div
+                    <MotionCard
                       key={task.id}
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -340,15 +355,10 @@ export default function TaskList() {
                         damping: 25,
                       }}
                       onClick={() => setSelectedTaskId(task.id)}
+                      active={selectedTaskId === task.id}
                       className={cn(
-                        "group p-4 rounded-xl border transition-all cursor-pointer flex items-center gap-4",
-                        selectedTaskId === task.id
-                          ? isDark
-                            ? "bg-orange-500/10 border-orange-500/50"
-                            : "bg-orange-50 border-orange-200 shadow-sm"
-                          : isDark
-                            ? "bg-slate-900 border-slate-800 hover:border-slate-700 shadow-xl shadow-black/20"
-                            : "bg-white border-slate-200 hover:border-orange-200 shadow-sm",
+                        "group p-4 transition-all cursor-pointer flex-row items-center gap-4 pt-4 pb-4 shadow-xl shadow-black/20",
+                        !isDark && "hover:border-orange-200 shadow-sm",
                       )}
                     >
                       <Checkbox
@@ -429,7 +439,7 @@ export default function TaskList() {
                           <MoreVertical className="w-4 h-4" />
                         </Button>
                       </div>
-                    </motion.div>
+                    </MotionCard>
                   ))}
                 </div>
               </div>
@@ -459,7 +469,7 @@ export default function TaskList() {
                       className={cn(
                         "border-none overflow-hidden backdrop-blur-xl shadow-2xl relative",
                         isDark
-                          ? "bg-slate-900/80 ring-1 ring-white/10"
+                          ? "bg-slate-950/80 ring-1 ring-white/10"
                           : "bg-white/95 ring-1 ring-black/5 shadow-orange-500/10",
                       )}
                     >
