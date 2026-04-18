@@ -12,6 +12,7 @@ import {
   Info,
   DollarSign,
   MessageCircle,
+  Calendar,
 } from "lucide-react";
 
 export const sidebarList: ISidebarList[] = [
@@ -32,6 +33,11 @@ export const sidebarList: ISidebarList[] = [
         href: "/apps/chat",
         icon: <MessageCircle />,
         label: "Chat",
+      },
+      {
+        href: "/apps/calendar",
+        icon: <Calendar />,
+        label: "Calendar",
       },
     ],
   },

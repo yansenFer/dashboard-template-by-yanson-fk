@@ -635,6 +635,7 @@ export default function Chat() {
               initial={{ width: 0, opacity: 0 }}
               animate={{ width: 340, opacity: 1 }}
               exit={{ width: 0, opacity: 0 }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
               className={cn(
                 "border-l h-full overflow-hidden flex flex-col transition-all duration-300",
                 borderMuted,
