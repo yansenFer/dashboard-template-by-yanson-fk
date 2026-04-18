@@ -1,28 +1,40 @@
-import type React from 'react'
-import Header from './Header/Header'
-import Sidebar from './Sidebar/Sidebar'
-import { useSelector } from 'react-redux'
-import type { RootState } from '~/store/store'
+import type React from "react";
+import Header from "./Header/Header";
+import Sidebar from "./Sidebar/Sidebar";
+import { useSelector } from "react-redux";
+import type { RootState } from "~/store/store";
 
 type LayoutProps = {
-  children: React.ReactNode
-}
-export default function Layout({ children }: LayoutProps) {
-  const isDark = useSelector((state: RootState) => state.dark.isDark)
+  children: React.ReactNode;
+  isFullscreen?: boolean;
+};
+export default function Layout({
+  children,
+  isFullscreen = false,
+}: LayoutProps) {
+  const isDark = useSelector((state: RootState) => state.dark.isDark);
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <div className="flex max-h-screen overflow-auto">
+      <div
+        className={`flex ${isFullscreen ? "h-screen overflow-hidden" : "max-h-screen overflow-auto"}`}
+      >
         <Sidebar />
-        <div className="flex-1 flex flex-col max-h-screen overflow-auto relative">
+        <div
+          className={`relative flex flex-1 flex-col ${isFullscreen ? "h-screen overflow-hidden" : "max-h-screen overflow-auto"}`}
+        >
           <Header />
           <div
-            className={`p-5 justify-center flex flex-1 ${isDark ? 'bg-content-dark' : 'bg-content-background'}`}
+            className={`flex flex-1 justify-center ${isFullscreen ? "p-0 overflow-hidden" : "p-5"} ${isDark ? "bg-content-dark" : "bg-content-background"}`}
           >
-            <div className="w-[1920px] justify-center">{children}</div>
+            <div
+              className={`flex flex-1 justify-center ${isFullscreen ? "h-full w-full" : "w-[1920px]"}`}
+            >
+              {children}
+            </div>
           </div>
         </div>
       </div>
     </div>
-  )
+  );
 }

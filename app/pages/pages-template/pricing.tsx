@@ -226,13 +226,13 @@ export default function Pricing() {
               >
                 <Card
                   active={tier.isPopular}
-                    className={cn(
-                      "flex flex-col w-full relative transition-all duration-500 hover:scale-[1.02] p-0! overflow-hidden border-none shadow-2xl",
-                      tier.isPopular
-                        ? "ring-2 ring-orange-500/50 shadow-orange-500/10"
-                        : "hover:border-slate-800",
-                      isDark ? "bg-slate-950/50" : "bg-white",
-                    )}
+                  className={cn(
+                    "flex flex-col w-full relative transition-all duration-500 hover:scale-[1.02] p-0! overflow-hidden border-none shadow-2xl",
+                    tier.isPopular
+                      ? "ring-2 ring-orange-500/50 shadow-orange-500/10"
+                      : "hover:border-slate-800",
+                    isDark ? "bg-slate-950/50" : "bg-white",
+                  )}
                 >
                   {tier.isPopular && (
                     <div className="absolute top-0 right-0">
@@ -345,13 +345,14 @@ export default function Pricing() {
 
                     {/* CTA Button */}
                     <Button
+                      variant={tier.isPopular ? "default" : "ghost"}
                       className={cn(
-                        "w-full h-14 rounded-2xl font-bold text-base transition-all active:scale-95 shadow-lg",
+                        "w-full h-14 rounded-2xl font-bold text-base transition-all active:scale-95 shadow-lg outline-none ring-0",
                         tier.isPopular
-                          ? "bg-orange-500 hover:bg-orange-600 text-white shadow-orange-500/20"
+                          ? "bg-orange-500 hover:bg-orange-600 text-white shadow-orange-500/20 border-none"
                           : isDark
-                            ? "bg-slate-800 hover:bg-slate-700 text-white"
-                            : "bg-white border-2 border-slate-200 text-slate-900 hover:border-slate-900 hover:scale-[1.02]",
+                            ? "bg-slate-800 hover:bg-orange-500 text-white border-transparent hover:text-white"
+                            : "bg-white hover:bg-orange-500 text-slate-900 hover:text-white border-transparent",
                       )}
                     >
                       {tier.buttonText}

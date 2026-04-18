@@ -4,6 +4,9 @@ export default [
   //dashboard
   index("pages/dashboard.tsx"),
 
+  //Apps
+  route("/apps/chat", "pages/apps/chat.tsx"),
+
   //Pages
   route(
     "/pages-template/simple-sign-in",

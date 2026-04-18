@@ -11,6 +11,7 @@ import {
   List,
   Info,
   DollarSign,
+  MessageCircle,
 } from "lucide-react";
 
 export const sidebarList: ISidebarList[] = [
@@ -21,6 +22,16 @@ export const sidebarList: ISidebarList[] = [
         href: "/",
         icon: <HomeIcon />,
         label: "Overview",
+      },
+    ],
+  },
+  {
+    titleMenu: "Apps",
+    menu: [
+      {
+        href: "/apps/chat",
+        icon: <MessageCircle />,
+        label: "Chat",
       },
     ],
   },
