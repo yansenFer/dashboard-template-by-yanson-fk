@@ -26,11 +26,22 @@ export default function SidebarItem({
   const content = (
     <div
       className={cn(
-        "group flex items-center h-8 rounded-md transition-all duration-300 relative",
+        "group flex items-center h-9 rounded-sm relative transition-none",
         // tighten spacing when collapsed so icon stays centered
         collapsed ? "justify-center px-0" : "gap-3 ml-2 px-2",
-        `${isDark ? "text-white " : "text-[var(--color-sidebar-foreground)]"} border-transparent border-l-2 hover:border-orange-600 rounded-none`,
-        active && "border-l-2 border-orange-600",
+        `${isDark ? "text-white" : "text-[var(--color-sidebar-foreground)]"}`,
+        // Hover & focus gradient — dark vs light
+        isDark
+          ? "hover:bg-gradient-to-r hover:from-slate-800 hover:to-slate-500 focus-within:bg-gradient-to-r focus-within:from-slate-800 focus-within:to-slate-500"
+          : "hover:bg-gradient-to-r hover:from-orange-600 hover:to-orange-50 focus-within:bg-gradient-to-r focus-within:from-orange-600 focus-within:to-orange-100",
+        isDark
+          ? "hover:text-white focus-within:text-white transition-none"
+          : "hover:text-white focus-within:text-white transition-none",
+        // Active state gradient — dark vs light
+        active &&
+          (isDark
+            ? "bg-gradient-to-r from-slate-800 to-slate-500 text-white transition-none"
+            : "bg-gradient-to-r from-orange-600 to-orange-50 text-white transition-none"),
       )}
     >
       {/* Tooltip for collapsed mode */}
@@ -43,7 +54,13 @@ export default function SidebarItem({
       )}
       <span
         className={cn(
-          `size-5 flex items-center justify-center ${isDark ? "text-white" : "text-[var(--color-sidebar-foreground)]"}`,
+          "size-5 flex items-center justify-center",
+          active
+            ? "text-white"
+            : isDark
+              ? "text-white"
+              : "text-[var(--color-sidebar-foreground)]",
+          "group-hover:text-white !transition-none !duration-0 [&_*]:!transition-none [&_*]:!duration-0",
         )}
         aria-hidden="true"
       >
@@ -53,7 +70,8 @@ export default function SidebarItem({
       {/* Animated label: slide+fade and collapse width */}
       <span
         className={cn(
-          "text-xs font-medium origin-left transition-all duration-1000 ease-in-out",
+          "text-xs font-medium origin-left transition-[opacity,transform,width] duration-300 ease-in-out",
+          "group-hover:text-white group-focus-within:text-white group-hover:transition-none",
           collapsed
             ? "opacity-0 -translate-x-2 w-0 overflow-hidden"
             : "opacity-100 translate-x-0 w-auto",

@@ -637,7 +637,7 @@ export default function Chat() {
               exit={{ width: 0, opacity: 0 }}
               transition={{ duration: 0.2, ease: "easeOut" }}
               className={cn(
-                "border-l h-full overflow-hidden flex flex-col transition-all duration-300",
+                "border-l h-full overflow-hidden flex flex-col",
                 borderMuted,
                 isDark ? "bg-slate-950/80" : "bg-white",
               )}
