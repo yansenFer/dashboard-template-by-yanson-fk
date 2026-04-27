@@ -13,6 +13,7 @@ import {
   DollarSign,
   MessageCircle,
   Calendar,
+  Mail,
 } from "lucide-react";
 
 export const sidebarList: ISidebarList[] = [
@@ -38,6 +39,11 @@ export const sidebarList: ISidebarList[] = [
         href: "/apps/calendar",
         icon: <Calendar />,
         label: "Calendar",
+      },
+      {
+        href: "/apps/email",
+        icon: <Mail />,
+        label: "Email",
       },
     ],
   },
