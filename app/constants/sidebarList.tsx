@@ -14,6 +14,7 @@ import {
   MessageCircle,
   Calendar,
   Mail,
+  Contact,
 } from "lucide-react";
 
 export const sidebarList: ISidebarList[] = [
@@ -44,6 +45,11 @@ export const sidebarList: ISidebarList[] = [
         href: "/apps/email",
         icon: <Mail />,
         label: "Email",
+      },
+      {
+        href: "/apps/contact-list",
+        icon: <Contact />,
+        label: "Contact List",
       },
     ],
   },

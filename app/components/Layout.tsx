@@ -28,7 +28,7 @@ export default function Layout({
             className={`flex flex-1 justify-center ${isFullscreen ? "p-0 overflow-hidden" : "p-5"} ${isDark ? "bg-content-dark" : "bg-content-background"}`}
           >
             <div
-              className={`flex flex-1 justify-center ${isFullscreen ? "h-full w-full" : "w-[1920px]"}`}
+              className={`flex flex-1 justify-center ${isFullscreen ? "h-full w-full" : "max-w-[1920px] w-full"}`}
             >
               {children}
             </div>
