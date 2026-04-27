@@ -47,7 +47,7 @@ export default function EditProfile() {
 
   return (
     <Layout>
-      <div className="flex flex-col gap-8 pb-10">
+      <div className="flex flex-col gap-8 pb-10 w-full">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <h1
             className={`text-2xl font-bold tracking-tight ${isDark ? "text-white" : "text-black"}`}
@@ -86,7 +86,7 @@ export default function EditProfile() {
             {activeTab === "my-profile" && (
               <div className="flex flex-col gap-4 animate-in fade-in duration-500">
                 {/* Profile Header */}
-                <Card className={`border-none shadow-sm`}>
+                <Card className={`w-full border-none shadow-sm`}>
                   <CardContent className="p-6">
                     <div className="flex flex-col sm:flex-row items-center gap-6">
                       <div className="relative group w-28 h-28 rounded-full overflow-hidden border border-gray-200 shadow-sm">
@@ -121,7 +121,7 @@ export default function EditProfile() {
                 </Card>
 
                 {/* Personal Information */}
-                <Card className={`border-none shadow-sm group overflow-hidden`}>
+                <Card className={`w-full border-none shadow-sm group overflow-hidden`}>
                   <CardHeader>
                     <div className="flex items-center gap-3">
                       <div className="w-1 h-6 bg-orange-500 rounded-full" />
@@ -187,7 +187,7 @@ export default function EditProfile() {
                 </Card>
 
                 {/* Address */}
-                <Card className={`border-none shadow-sm overflow-hidden`}>
+                <Card className={`w-full border-none shadow-sm overflow-hidden`}>
                   <CardHeader>
                     <div className="flex items-center gap-3">
                       <div className="w-1 h-6 bg-orange-500 rounded-full" />
@@ -249,8 +249,8 @@ export default function EditProfile() {
             )}
 
             {activeTab === "security" && (
-              <div className="animate-in fade-in duration-500">
-                <Card className={`border-none shadow-sm overflow-hidden`}>
+              <div className="flex flex-col gap-4 animate-in fade-in duration-500 w-full">
+                <Card className={`w-full border-none shadow-sm overflow-hidden`}>
                   <CardHeader>
                     <div className="flex items-center gap-3">
                       <div className="w-1 h-6 bg-orange-500 rounded-full" />
@@ -297,8 +297,8 @@ export default function EditProfile() {
             )}
 
             {activeTab === "notifications" && (
-              <div className="animate-in fade-in duration-500">
-                <Card className={`border-none shadow-sm overflow-hidden`}>
+              <div className="flex flex-col gap-4 animate-in fade-in duration-500 w-full">
+                <Card className={`w-full border-none shadow-sm overflow-hidden`}>
                   <CardHeader>
                     <div className="flex items-center gap-3">
                       <div className="w-1 h-6 bg-orange-500 rounded-full" />
