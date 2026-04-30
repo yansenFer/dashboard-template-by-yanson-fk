@@ -26,7 +26,7 @@ export default function Sidebar() {
   return (
     <aside
       className={[
-        "hidden md:flex md:flex-col md:shrink-0 h-screen transition-all duration-300",
+        "sidebar-scroll-container hidden md:flex md:flex-col md:shrink-0 h-screen transition-all duration-300",
         `${isDark ? "bg-dark text-white border-transparent" : "bg-white text-black border-slate-200"} border-r text-[var(--color-sidebar-foreground)]`,
         "will-change-[width]",
         collapsed ? "w-20 -ml-2" : "w-64",
@@ -83,7 +83,7 @@ export default function Sidebar() {
 
       {/* Navigation */}
       <nav
-        className={`px-2 pb-4 no-scrollbar flex-1 relative z-10 ${collapsed ? "overflow-y-visible" : "overflow-y-auto"}`}
+        className={`px-2 pb-4 flex-1 relative z-10 ${collapsed ? "overflow-y-visible" : "overflow-y-auto"} premium-scrollbar`}
         role="navigation"
         aria-label="Main navigation"
       >

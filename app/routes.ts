@@ -9,6 +9,7 @@ export default [
   route("/apps/calendar", "pages/apps/calendar.tsx"),
   route("/apps/email", "pages/apps/email.tsx"),
   route("/apps/contact-list", "pages/apps/contact-list.tsx"),
+  route("/apps/file-manager-list", "pages/apps/file-manager-list.tsx"),
 
   //Pages
   route(

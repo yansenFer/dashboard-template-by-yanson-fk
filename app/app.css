@@ -139,44 +139,50 @@ input[type="number"] {
   }
 }
 
-/* Higher specificity for premium scrollbar to override defaults */
-.premium-scrollbar {
-  scrollbar-width: thin;
-  scrollbar-color: transparent transparent;
-}
-.premium-scrollbar:hover {
-  scrollbar-color: oklch(0.3 0 0 / 0.5) transparent;
-}
-.dark .premium-scrollbar:hover {
-  scrollbar-color: oklch(0.8 0 0 / 0.5) transparent;
-}
-
+/* Premium scrollbar: invisible by default, visible on hover */
 .premium-scrollbar::-webkit-scrollbar {
   width: 6px !important;
   height: 6px !important;
   display: block !important;
 }
+
 .premium-scrollbar::-webkit-scrollbar-track {
   background: transparent !important;
 }
+
 .premium-scrollbar::-webkit-scrollbar-thumb {
   background-color: transparent !important;
   border-radius: 10px !important;
 }
-.premium-scrollbar:hover::-webkit-scrollbar-thumb {
-  background-color: oklch(
-    0.3 0 0 / 0.5
-  ) !important; /* more visible, darker grey */
+
+/* Muncul saat element itu sendiri di-hover atau parent dengan class .sidebar-scroll-container di-hover */
+.premium-scrollbar:hover::-webkit-scrollbar-thumb,
+.sidebar-scroll-container:hover .premium-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.4) !important; /* Abu-abu gelap di light mode */
 }
-.dark .premium-scrollbar:hover::-webkit-scrollbar-thumb {
-  background-color: oklch(
-    0.8 0 0 / 0.5
-  ) !important; /* brighter for dark mode */
+
+/* Selector lebih spesifik untuk Dark Mode agar pasti menang */
+:is(.dark, [data-theme='dark']) .premium-scrollbar:hover::-webkit-scrollbar-thumb,
+:is(.dark, [data-theme='dark']) .sidebar-scroll-container:hover .premium-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.25) !important; /* Lebih halus di dark mode */
 }
+
 .premium-scrollbar::-webkit-scrollbar-thumb:hover {
-  background-color: oklch(
-    0.3 0 0 / 0.8
-  ) !important; /* solid color on direct hover */
+  background-color: rgba(0, 0, 0, 0.6) !important;
+}
+
+:is(.dark, [data-theme='dark']) .premium-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 255, 255, 0.5) !important; /* Terlihat jelas tapi tetap elegan */
+}
+
+/* Hide scrollbar utility */
+.no-scrollbar::-webkit-scrollbar {
+  display: none !important;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
 }
 
 @layer base {

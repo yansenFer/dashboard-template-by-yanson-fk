@@ -15,7 +15,7 @@ export default function Layout({
   const isDark = useSelector((state: RootState) => state.dark.isDark);
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className={`min-h-screen bg-background text-foreground ${isDark ? "dark" : ""}`}>
       <div
         className={`flex ${isFullscreen ? "h-screen overflow-hidden" : "max-h-screen overflow-auto"}`}
       >

@@ -228,13 +228,13 @@ const MOCK_EMAILS: EmailMessage[] = [
 ];
 
 const FOLDERS = [
-  { id: "inbox", label: "Inbox", icon: <Inbox />, count: 12 },
-  { id: "starred", label: "Starred", icon: <Star />, count: 5 },
-  { id: "sent", label: "Sent", icon: <Send />, count: 0 },
-  { id: "drafts", label: "Drafts", icon: <FileText />, count: 2 },
-  { id: "archive", label: "Archive", icon: <Archive />, count: 0 },
-  { id: "spam", label: "Spam", icon: <AlertCircle />, count: 1 },
-  { id: "trash", label: "Trash", icon: <Trash2 />, count: 0 },
+  { id: "inbox", label: "Inbox", icon: <Inbox size={16} />, count: 12 },
+  { id: "starred", label: "Starred", icon: <Star size={16} />, count: 5 },
+  { id: "sent", label: "Sent", icon: <Send size={16} />, count: 0 },
+  { id: "drafts", label: "Drafts", icon: <FileText size={16} />, count: 2 },
+  { id: "archive", label: "Archive", icon: <Archive size={16} />, count: 0 },
+  { id: "spam", label: "Spam", icon: <AlertCircle size={16} />, count: 1 },
+  { id: "trash", label: "Trash", icon: <Trash2 size={16} />, count: 0 },
 ];
 
 const LABELS = [
@@ -277,7 +277,7 @@ export default function Email() {
 
   // --- Theme Classes ---
   const textPrimary = isDark ? "text-white" : "text-slate-900";
-  const textMuted = isDark ? "text-slate-400" : "text-slate-500";
+  const textMuted = isDark ? "text-slate-400" : "text-slate-500 ";
   const borderMuted = isDark ? "border-slate-800" : "border-slate-100";
   const bgPane = isDark ? "bg-slate-950" : "bg-white";
 
@@ -287,7 +287,7 @@ export default function Email() {
         {/* --- Left Sidebar: Navigation --- */}
         <aside
           className={cn(
-            "w-72 hidden lg:flex flex-col border-r transition-all duration-300 relative z-20 backdrop-blur-3xl shadow-2xl shadow-black/5",
+            "sidebar-scroll-container w-72 hidden lg:flex flex-col border-r transition-all duration-300 relative z-20 backdrop-blur-3xl shadow-2xl shadow-black/5",
             borderMuted,
             isDark ? "bg-slate-950/60" : "bg-white/80",
           )}
@@ -295,20 +295,20 @@ export default function Email() {
           <div className="p-8">
             <Button
               onClick={() => setIsComposeOpen(true)}
-              className="w-full h-14 bg-orange-500 hover:bg-orange-600 text-white rounded-[1.25rem] font-black text-sm shadow-xl shadow-orange-500/20 gap-3 transition-all active:scale-95 group overflow-hidden"
+              className="w-full h-12 bg-orange-500 hover:bg-orange-600 text-white rounded-[1.25rem] font-black text-[13px] shadow-xl shadow-orange-500/20 gap-2 transition-all active:scale-95 group overflow-hidden"
             >
               <div className="absolute inset-x-0 bottom-0 top-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
-              <Plus className="w-5 h-5 relative z-10" />
+              <Plus className="w-4 h-4 relative z-10" />
               <span className="relative z-10">Compose Message</span>
             </Button>
           </div>
 
-          <div className="flex-1 overflow-y-auto premium-scrollbar px-4 space-y-8">
+          <div className="flex-1 overflow-y-auto px-4 space-y-8 premium-scrollbar">
             {/* Folders Section */}
             <div>
               <h3
                 className={cn(
-                  "px-4 mb-4 text-[10px] font-black uppercase tracking-[0.2em] opacity-40",
+                  "px-4 mb-3 text-[9px] font-black uppercase tracking-[0.2em] opacity-40",
                   textPrimary,
                 )}
               >
@@ -320,7 +320,7 @@ export default function Email() {
                     key={folder.id}
                     onClick={() => setActiveFolder(folder.id)}
                     className={cn(
-                      "w-full flex items-center justify-between px-4 py-3 rounded-2xl transition-all duration-300 group",
+                      "w-full flex items-center justify-between px-4 py-2.5 rounded-xl transition-all duration-300 group",
                       activeFolder === folder.id
                         ? "bg-orange-500 text-white shadow-lg shadow-orange-500/20 font-bold"
                         : cn(
@@ -334,17 +334,17 @@ export default function Email() {
                     <div className="flex items-center gap-4">
                       <span
                         className={cn(
-                          "w-5 h-5 transition-transform duration-300 group-hover:scale-110",
+                          "w-4 h-4 flex items-center justify-center transition-transform duration-300 group-hover:scale-110",
                         )}
                       >
                         {folder.icon}
                       </span>
-                      <span className="text-sm">{folder.label}</span>
+                      <span className="text-[13px]">{folder.label}</span>
                     </div>
                     {folder.count > 0 && (
                       <span
                         className={cn(
-                          "px-2 py-0.5 rounded-lg text-[10px] font-bold",
+                          "px-1.5 py-0.5 rounded-md text-[9px] font-bold",
                           activeFolder === folder.id
                             ? "bg-white/20 text-white"
                             : "bg-slate-500/10 text-slate-500",
@@ -362,7 +362,7 @@ export default function Email() {
             <div className="pb-10">
               <h3
                 className={cn(
-                  "px-4 mb-4 text-[10px] font-black uppercase tracking-[0.2em] opacity-40",
+                  "px-4 mb-3 text-[9px] font-black uppercase tracking-[0.2em] opacity-40",
                   textPrimary,
                 )}
               >
@@ -373,17 +373,17 @@ export default function Email() {
                   <button
                     key={label.id}
                     className={cn(
-                      "w-full flex items-center gap-4 px-4 py-3 rounded-2xl transition-all duration-300 group hover:bg-slate-500/10 text-slate-400",
+                      "w-full flex items-center gap-3 px-4 py-2.5 rounded-xl transition-all duration-300 group hover:bg-slate-500/10 text-slate-400",
                       isDark ? "hover:text-white" : "hover:text-slate-900",
                     )}
                   >
                     <div
                       className={cn(
-                        "w-2 h-2 rounded-full ring-4 ring-transparent transition-all group-hover:ring-orange-500/20",
+                        "w-1.5 h-1.5 rounded-full ring-4 ring-transparent transition-all group-hover:ring-orange-500/20",
                         label.color,
                       )}
                     />
-                    <span className="text-sm font-medium">{label.id}</span>
+                    <span className="text-[13px] font-medium">{label.id}</span>
                   </button>
                 ))}
               </div>
@@ -408,10 +408,7 @@ export default function Email() {
           >
             <div className="flex items-center justify-between">
               <h2
-                className={cn(
-                  "text-2xl font-black tracking-tight",
-                  textPrimary,
-                )}
+                className={cn("text-xl font-black tracking-tight", textPrimary)}
               >
                 Inbox
               </h2>
@@ -421,7 +418,7 @@ export default function Email() {
                   size="icon"
                   className="rounded-xl text-slate-400 transition-all hover:bg-orange-500 hover:text-white"
                 >
-                  <Filter className="w-5 h-5" />
+                  <Filter className="w-4 h-4" />
                 </Button>
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
@@ -430,7 +427,7 @@ export default function Email() {
                       size="icon"
                       className="rounded-xl text-slate-400 transition-all hover:bg-orange-500 hover:text-white"
                     >
-                      <MoreVertical className="w-5 h-5" />
+                      <MoreVertical className="w-4 h-4" />
                     </Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="end">
@@ -450,7 +447,7 @@ export default function Email() {
                 placeholder="Search messages..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-11 h-12 rounded-2xl bg-slate-500/5 border-none focus:ring-2 focus:ring-orange-500/50 transition-all"
+                className="pl-10 h-10 text-[13px] rounded-xl bg-slate-500/5 border-none focus:ring-2 focus:ring-orange-500/50 transition-all"
               />
             </div>
           </div>
@@ -459,8 +456,8 @@ export default function Email() {
           <div className="flex-1 overflow-y-auto premium-scrollbar bg-transparent">
             {filteredEmails.length === 0 ? (
               <div className="h-full flex flex-col items-center justify-center opacity-30 select-none">
-                <Inbox className="w-16 h-16 mb-4" />
-                <p className="font-bold">No emails found</p>
+                <Inbox className="w-12 h-12 mb-3" />
+                <p className="font-bold text-[13px]">No emails found</p>
               </div>
             ) : (
               <div className="divide-y divide-slate-500/5">
@@ -473,7 +470,7 @@ export default function Email() {
                       setIsMobileListVisible(false);
                     }}
                     className={cn(
-                      "p-6 cursor-pointer transition-all duration-300 relative group overflow-hidden",
+                      "p-4 cursor-pointer transition-all duration-300 relative group overflow-hidden",
                       selectedEmailId === email.id
                         ? "bg-slate-500/5 ring-1 ring-inset ring-orange-500/10"
                         : "hover:bg-slate-500/5",
@@ -492,16 +489,16 @@ export default function Email() {
                         {email.sender.avatar ? (
                           <img
                             src={email.sender.avatar}
-                            className="w-12 h-12 rounded-2xl object-cover shadow-lg"
+                            className="w-10 h-10 rounded-xl object-cover shadow-lg"
                             alt=""
                           />
                         ) : (
-                          <div className="w-12 h-12 rounded-2xl bg-orange-500/10 flex items-center justify-center text-orange-500 font-black">
+                          <div className="w-10 h-10 rounded-xl bg-orange-500/10 flex items-center justify-center text-orange-500 font-black text-sm">
                             {email.sender.name.charAt(0)}
                           </div>
                         )}
                         {email.isUnread && (
-                          <div className="absolute -top-1 -right-1 h-3 w-3 rounded-full bg-orange-500 shadow-sm" />
+                          <div className="absolute -top-1 -right-1 h-2.5 w-2.5 rounded-full bg-orange-500 shadow-sm" />
                         )}
                       </div>
 
@@ -509,7 +506,7 @@ export default function Email() {
                         <div className="flex items-center justify-between mb-1">
                           <h4
                             className={cn(
-                              "text-sm font-black truncate",
+                              "text-[13px] font-black truncate",
                               email.isUnread ? textPrimary : textMuted,
                             )}
                           >
@@ -517,7 +514,7 @@ export default function Email() {
                           </h4>
                           <span
                             className={cn(
-                              "text-[10px] font-bold opacity-50 shrink-0",
+                              "text-[9px] font-bold opacity-50 shrink-0",
                               textMuted,
                             )}
                           >
@@ -526,7 +523,7 @@ export default function Email() {
                         </div>
                         <h5
                           className={cn(
-                            "text-xs font-bold leading-snug mb-1 truncate",
+                            "text-[12px] font-bold leading-snug mb-1 truncate",
                             textPrimary,
                           )}
                         >
@@ -547,7 +544,7 @@ export default function Email() {
                               key={l}
                               variant="outline"
                               className={cn(
-                                "px-2 py-0 h-5 text-[9px] font-black border-slate-500/20 bg-slate-500/5",
+                                "px-1.5 py-0 h-4 text-[8px] font-black border-slate-500/20 bg-slate-500/5",
                                 isDark ? "text-slate-300" : "text-slate-600",
                               )}
                             >
@@ -555,7 +552,7 @@ export default function Email() {
                             </Badge>
                           ))}
                           {email.attachments && (
-                            <Paperclip className="w-3 h-3 text-slate-400 ml-1" />
+                            <Paperclip className="w-2.5 h-2.5 text-slate-400 ml-1" />
                           )}
                         </div>
                       </div>
@@ -566,11 +563,11 @@ export default function Email() {
                       <Button
                         variant="ghost"
                         size="icon"
-                        className="group w-8 h-8 rounded-lg hover:bg-orange-500 transition-all"
+                        className="group w-7 h-7 rounded-lg hover:bg-orange-500 transition-all"
                       >
                         <Star
                           className={cn(
-                            "w-3.5 h-3.5 transition-all",
+                            "w-3 h-3 transition-all",
                             email.isStarred
                               ? "fill-orange-500 text-orange-500 group-hover:fill-white group-hover:text-white"
                               : "text-slate-400 group-hover:text-white",
@@ -580,9 +577,9 @@ export default function Email() {
                       <Button
                         variant="ghost"
                         size="icon"
-                        className="w-8 h-8 rounded-lg hover:bg-red-500 hover:text-white"
+                        className="w-7 h-7 rounded-lg hover:bg-red-500 hover:text-white"
                       >
-                        <Trash2 className="w-3.5 h-3.5" />
+                        <Trash2 className="w-3 h-3" />
                       </Button>
                     </div>
                   </motion.div>
@@ -607,13 +604,13 @@ export default function Email() {
                 exit={{ opacity: 0 }}
                 className="h-full flex flex-col items-center justify-center text-center opacity-20 select-none"
               >
-                <div className="w-32 h-32 rounded-[2.5rem] bg-slate-500/5 flex items-center justify-center mb-8 border border-dashed border-slate-500/20">
-                  <Inbox className="w-12 h-12" />
+                <div className="w-24 h-24 rounded-[2rem] bg-slate-500/5 flex items-center justify-center mb-6 border border-dashed border-slate-500/20">
+                  <Inbox className="w-10 h-10" />
                 </div>
-                <h3 className={cn("text-xl font-black mb-2", textPrimary)}>
+                <h3 className={cn("text-lg font-black mb-2", textPrimary)}>
                   Select an email to read
                 </h3>
-                <p className="text-sm font-medium">
+                <p className="text-[13px] font-medium">
                   Nothing is selected at the moment.
                 </p>
               </motion.div>
@@ -628,7 +625,7 @@ export default function Email() {
                 {/* View Toolbar */}
                 <div
                   className={cn(
-                    "px-4 sm:px-8 h-20 flex items-center justify-between border-b shrink-0",
+                    "px-4 sm:px-6 h-14 flex items-center justify-between border-b shrink-0",
                     borderMuted,
                   )}
                 >
@@ -639,7 +636,7 @@ export default function Email() {
                       onClick={() => setIsMobileListVisible(true)}
                       className="lg:hidden rounded-xl text-slate-400 shrink-0"
                     >
-                      <ChevronLeft className="w-5 h-5" />
+                      <ChevronLeft className="w-4 h-4" />
                     </Button>
                     <div className="flex items-center gap-1 sm:gap-2 shrink-0">
                       <Button
@@ -647,14 +644,14 @@ export default function Email() {
                         size="icon"
                         className="rounded-xl text-slate-400 transition-all hover:bg-orange-500 hover:text-white"
                       >
-                        <Reply className="w-4 h-4" />
+                        <Reply className="w-3.5 h-3.5" />
                       </Button>
                       <Button
                         variant="ghost"
                         size="icon"
                         className="rounded-xl text-slate-400 transition-all hover:bg-orange-500 hover:text-white"
                       >
-                        <Forward className="w-4 h-4" />
+                        <Forward className="w-3.5 h-3.5" />
                       </Button>
                       <div className="w-px h-6 bg-slate-500/10 mx-2" />
                       <Button
@@ -664,7 +661,7 @@ export default function Email() {
                       >
                         <Star
                           className={cn(
-                            "w-4 h-4 transition-all",
+                            "w-3.5 h-3.5 transition-all",
                             selectedEmail.isStarred
                               ? "fill-orange-500 text-orange-500 group-hover:fill-white group-hover:text-white"
                               : "text-slate-400 group-hover:text-white",
@@ -676,14 +673,14 @@ export default function Email() {
                         size="icon"
                         className="rounded-xl text-slate-400 transition-all hover:bg-red-500 hover:text-white"
                       >
-                        <Trash2 className="w-4 h-4" />
+                        <Trash2 className="w-3.5 h-3.5" />
                       </Button>
                       <Button
                         variant="ghost"
                         size="icon"
                         className="rounded-xl text-slate-400 transition-all hover:bg-orange-500 hover:text-white"
                       >
-                        <Archive className="w-4 h-4" />
+                        <Archive className="w-3.5 h-3.5" />
                       </Button>
                     </div>
                   </div>
@@ -694,14 +691,14 @@ export default function Email() {
                       size="icon"
                       className="rounded-xl text-slate-400 hidden sm:flex"
                     >
-                      <Printer className="w-4 h-4" />
+                      <Printer className="w-3.5 h-3.5" />
                     </Button>
                     <Button
                       variant="ghost"
                       size="icon"
                       className="rounded-xl text-slate-400 hidden sm:flex"
                     >
-                      <Flag className="w-4 h-4" />
+                      <Flag className="w-3.5 h-3.5" />
                     </Button>
                   </div>
                 </div>
@@ -714,7 +711,7 @@ export default function Email() {
                       <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
                         <h1
                           className={cn(
-                            "text-2xl sm:text-4xl font-black tracking-tight leading-tight",
+                            "text-xl sm:text-2xl font-black tracking-tight leading-tight",
                             textPrimary,
                           )}
                         >
@@ -724,7 +721,7 @@ export default function Email() {
                           {selectedEmail.labels.map((l) => (
                             <Badge
                               key={l}
-                              className="bg-orange-500/10 text-orange-500 border-none font-black text-[10px] uppercase tracking-widest"
+                              className="bg-orange-500/10 text-orange-500 border-none font-black text-[9px] uppercase tracking-widest"
                             >
                               {l}
                             </Badge>
@@ -771,26 +768,26 @@ export default function Email() {
                                   {msg.sender.avatar ? (
                                     <img
                                       src={msg.sender.avatar}
-                                      className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl object-cover shadow-lg"
+                                      className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl object-cover shadow-lg"
                                       alt=""
                                     />
                                   ) : (
-                                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-orange-500/10 flex items-center justify-center text-orange-500 font-black">
+                                    <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-orange-500/10 flex items-center justify-center text-orange-500 font-black">
                                       {msg.sender.name.charAt(0)}
                                     </div>
                                   )}
-                                  <div className="absolute -bottom-1 -right-1 h-3 w-3 sm:h-4 sm:w-4 rounded-full bg-emerald-500 border-2 border-white dark:border-slate-950 shadow-sm" />
+                                  <div className="absolute -bottom-1 -right-1 h-2.5 w-2.5 sm:h-3 sm:w-3 rounded-full bg-emerald-500 border-2 border-white dark:border-slate-950 shadow-sm" />
                                 </div>
                                 <div className="min-w-0 flex-1">
                                   <h4
                                     className={cn(
-                                      "text-base sm:text-lg font-black truncate",
+                                      "text-[13px] sm:text-sm font-black truncate",
                                       textPrimary,
                                     )}
                                   >
                                     {msg.sender.name}
                                   </h4>
-                                  <div className="flex items-center gap-2 text-[10px] sm:text-xs font-bold opacity-60">
+                                  <div className="flex items-center gap-2 text-[9px] sm:text-[10px] font-bold opacity-60">
                                     <span
                                       className={cn(
                                         textMuted,
@@ -809,7 +806,7 @@ export default function Email() {
                               <div className="flex flex-row sm:flex-col items-center sm:items-end gap-2 sm:gap-1 text-left sm:text-right shrink-0">
                                 <p
                                   className={cn(
-                                    "text-[10px] sm:text-xs font-black uppercase tracking-widest",
+                                    "text-[9px] sm:text-[10px] font-black uppercase tracking-widest",
                                     textPrimary,
                                   )}
                                 >
@@ -817,7 +814,7 @@ export default function Email() {
                                 </p>
                                 <p
                                   className={cn(
-                                    "text-[10px] font-bold uppercase tracking-widest opacity-60",
+                                    "text-[9px] font-bold uppercase tracking-widest opacity-60",
                                     textMuted,
                                   )}
                                 >
@@ -828,7 +825,7 @@ export default function Email() {
 
                             <article
                               className={cn(
-                                "text-base leading-[1.8] font-medium opacity-80 whitespace-pre-wrap",
+                                "text-[13px] leading-relaxed font-medium opacity-80 whitespace-pre-wrap",
                                 textPrimary,
                               )}
                             >
@@ -844,13 +841,13 @@ export default function Email() {
                                     className="p-4 rounded-2xl bg-slate-500/5 border border-dashed border-slate-500/20 group/att hover:border-orange-500/50 transition-all cursor-pointer flex items-center justify-between"
                                   >
                                     <div className="flex items-center gap-3 overflow-hidden">
-                                      <div className="w-10 h-10 rounded-xl bg-orange-500/10 flex items-center justify-center text-orange-500 shrink-0">
-                                        <FileText className="w-5 h-5" />
+                                      <div className="w-8 h-8 rounded-lg bg-orange-500/10 flex items-center justify-center text-orange-500 shrink-0">
+                                        <FileText className="w-4 h-4" />
                                       </div>
                                       <div className="overflow-hidden">
                                         <p
                                           className={cn(
-                                            "text-xs font-black truncate",
+                                            "text-[11px] font-black truncate",
                                             textPrimary,
                                           )}
                                         >
@@ -858,7 +855,7 @@ export default function Email() {
                                         </p>
                                         <p
                                           className={cn(
-                                            "text-[10px] font-bold uppercase tracking-widest",
+                                            "text-[9px] font-bold uppercase tracking-widest",
                                             isDark
                                               ? "text-slate-500"
                                               : "text-slate-400",
@@ -873,7 +870,7 @@ export default function Email() {
                                       size="icon"
                                       className="rounded-xl text-slate-400 group-hover/att:text-orange-500 group-hover/att:bg-orange-500/10"
                                     >
-                                      <Plus className="w-4 h-4 rotate-45" />
+                                      <Plus className="w-3.5 h-3.5 rotate-45" />
                                     </Button>
                                   </div>
                                 ))}
@@ -893,7 +890,7 @@ export default function Email() {
                       >
                         <textarea
                           placeholder="Click here to reply..."
-                          className="w-full bg-transparent border-none outline-none resize-none text-sm font-medium opacity-70 p-4 min-h-[120px] premium-scrollbar h-fit placeholder:text-slate-500"
+                          className="w-full bg-transparent border-none outline-none resize-none text-[13px] font-medium opacity-70 p-4 min-h-[80px] premium-scrollbar h-fit placeholder:text-slate-500"
                         />
                         <div className="flex items-center justify-between mt-4">
                           <div className="flex gap-1">
@@ -902,26 +899,26 @@ export default function Email() {
                               size="icon"
                               className="rounded-xl text-slate-400 transition-all hover:bg-orange-500 hover:text-white"
                             >
-                              <Plus className="w-5 h-5" />
+                              <Plus className="w-4 h-4" />
                             </Button>
                             <Button
                               variant="ghost"
                               size="icon"
                               className="rounded-xl text-slate-400 transition-all hover:bg-orange-500 hover:text-white"
                             >
-                              <User className="w-5 h-5" />
+                              <User className="w-4 h-4" />
                             </Button>
                             <Button
                               variant="ghost"
                               size="icon"
                               className="rounded-xl text-slate-400 transition-all hover:bg-orange-500 hover:text-white"
                             >
-                              <Tag className="w-5 h-5" />
+                              <Tag className="w-4 h-4" />
                             </Button>
                           </div>
-                          <Button className="bg-orange-500 hover:bg-orange-600 text-white rounded-2xl px-8 font-black shadow-lg shadow-orange-500/20 gap-2 h-12 transition-all active:scale-95">
+                          <Button className="bg-orange-500 hover:bg-orange-600 text-white rounded-xl px-6 text-[13px] font-black shadow-lg shadow-orange-500/20 gap-2 h-10 transition-all active:scale-95">
                             Send Reply
-                            <Send className="w-4 h-4" />
+                            <Send className="w-3.5 h-3.5" />
                           </Button>
                         </div>
                       </div>
@@ -944,13 +941,13 @@ export default function Email() {
           >
             <DialogHeader className="p-10 pb-0 flex flex-row items-center justify-between">
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-2xl bg-orange-500 flex items-center justify-center text-white shadow-xl shadow-orange-500/20">
-                  <Plus className="w-7 h-7" />
+                <div className="w-10 h-10 rounded-xl bg-orange-500 flex items-center justify-center text-white shadow-xl shadow-orange-500/20">
+                  <Plus className="w-5 h-5" />
                 </div>
                 <div>
                   <DialogTitle
                     className={cn(
-                      "text-3xl font-black tracking-tight",
+                      "text-2xl font-black tracking-tight",
                       textPrimary,
                     )}
                   >
@@ -958,7 +955,7 @@ export default function Email() {
                   </DialogTitle>
                   <p
                     className={cn(
-                      "text-[10px] font-black uppercase tracking-[0.2em] opacity-40",
+                      "text-[9px] font-black uppercase tracking-[0.2em] opacity-40",
                       textMuted,
                     )}
                   >
@@ -973,7 +970,7 @@ export default function Email() {
                   onClick={() => setIsComposeOpen(false)}
                   className="rounded-xl text-slate-400 hover:bg-slate-500/10"
                 >
-                  <X className="w-5 h-5" />
+                  <X className="w-4 h-4" />
                 </Button>
               </div>
             </DialogHeader>
@@ -981,30 +978,30 @@ export default function Email() {
             <div className="p-10 space-y-8">
               <div className="space-y-6">
                 <div className="relative group">
-                  <span className="absolute left-0 top-1/2 -translate-y-1/2 text-[10px] font-black uppercase tracking-widest text-orange-500">
+                  <span className="absolute left-0 top-1/2 -translate-y-1/2 text-[9px] font-black uppercase tracking-widest text-orange-500">
                     To
                   </span>
                   <Input
                     placeholder="recipient@example.com"
-                    className="pl-10 border-0 border-b border-slate-500/10 rounded-none bg-transparent h-14 focus:ring-0 focus:border-orange-500/50 transition-all font-bold"
+                    className="pl-10 border-0 border-b border-slate-500/10 rounded-none bg-transparent h-12 focus:ring-0 focus:border-orange-500/50 transition-all text-[13px] font-bold"
                   />
-                  <button className="absolute right-0 top-1/2 -translate-y-1/2 text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-orange-500">
+                  <button className="absolute right-0 top-1/2 -translate-y-1/2 text-[9px] font-black uppercase tracking-widest text-slate-400 hover:text-orange-500">
                     Cc/Bcc
                   </button>
                 </div>
                 <div className="relative group">
-                  <span className="absolute left-0 top-1/2 -translate-y-1/2 text-[10px] font-black uppercase tracking-widest text-orange-500">
+                  <span className="absolute left-0 top-1/2 -translate-y-1/2 text-[9px] font-black uppercase tracking-widest text-orange-500">
                     Subject
                   </span>
                   <Input
                     placeholder="Briefly describe the topic"
-                    className="pl-20 border-0 border-b border-slate-500/10 rounded-none bg-transparent h-14 focus:ring-0 focus:border-orange-500/80 transition-all font-black"
+                    className="pl-20 border-0 border-b border-slate-500/10 rounded-none bg-transparent h-12 focus:ring-0 focus:border-orange-500/80 transition-all text-[13px] font-black"
                   />
                 </div>
                 <div className="pt-4">
                   <textarea
                     placeholder="Write your brilliant thoughts here..."
-                    className="w-full bg-transparent border-none outline-none resize-none min-h-[300px] premium-scrollbar text-lg leading-relaxed placeholder:opacity-30 placeholder:font-black transition-all"
+                    className="w-full bg-transparent border-none outline-none resize-none min-h-[200px] premium-scrollbar text-[13px] leading-relaxed placeholder:opacity-30 placeholder:font-black transition-all"
                   />
                 </div>
               </div>
@@ -1017,34 +1014,34 @@ export default function Email() {
                     size="icon"
                     className="rounded-xl text-slate-400 transition-all hover:bg-orange-500 hover:text-white"
                   >
-                    <Plus className="w-5 h-5" />
+                    <Plus className="w-4 h-4" />
                   </Button>
                   <Button
                     variant="ghost"
                     size="icon"
                     className="rounded-xl text-slate-400 transition-all hover:bg-orange-500 hover:text-white"
                   >
-                    <Tag className="w-5 h-5" />
+                    <Tag className="w-4 h-4" />
                   </Button>
                   <Button
                     variant="ghost"
                     size="icon"
                     className="rounded-xl text-slate-400 transition-all hover:bg-orange-500 hover:text-white"
                   >
-                    <AlertCircle className="w-5 h-5" />
+                    <AlertCircle className="w-4 h-4" />
                   </Button>
                 </div>
                 <div className="flex items-center gap-4">
                   <Button
                     variant="ghost"
                     onClick={() => setIsComposeOpen(false)}
-                    className="rounded-2xl font-black text-xs uppercase tracking-widest text-slate-400 hover:text-slate-900 dark:hover:text-white px-6"
+                    className="rounded-xl font-black text-[11px] uppercase tracking-widest text-slate-400 hover:text-slate-900 dark:hover:text-white px-5"
                   >
                     Discard
                   </Button>
-                  <Button className="bg-orange-500 hover:bg-orange-600 text-white rounded-2xl font-black shadow-2xl shadow-orange-500/30 gap-3 transition-all active:scale-95 text-sm uppercase tracking-widest">
+                  <Button className="bg-orange-500 hover:bg-orange-600 text-white rounded-xl font-black shadow-2xl shadow-orange-500/30 gap-2 transition-all active:scale-95 text-[12px] uppercase tracking-widest h-10 px-5">
                     Send Email
-                    <Send className="w-5 h-5" />
+                    <Send className="w-4 h-4" />
                   </Button>
                 </div>
               </div>

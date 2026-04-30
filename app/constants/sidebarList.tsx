@@ -51,6 +51,11 @@ export const sidebarList: ISidebarList[] = [
         icon: <Contact />,
         label: "Contact List",
       },
+      {
+        href: "/apps/file-manager-list",
+        icon: <FileText />,
+        label: "File Manager List",
+      },
     ],
   },
   {
