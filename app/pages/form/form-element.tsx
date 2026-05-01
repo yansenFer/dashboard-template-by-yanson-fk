@@ -3,7 +3,6 @@ import InputField from "~/components/Form/InputField";
 import { SelectField } from "~/components/Form/SelectField";
 import TextareaField from "~/components/Form/TextareaField";
 import Layout from "~/components/Layout";
-import { Card, CardContent, CardHeader } from "~/components/ui/card";
 import { frameworks } from "~/data/dataFrameworks";
 import { useState } from "react";
 import {
@@ -17,7 +16,77 @@ import {
 } from "lucide-react";
 import { useSelector } from "react-redux";
 import type { RootState } from "~/store/store";
-import { CardTitle } from "~/components/ui/card";
+import { cn } from "~/lib/utils";
+
+interface FormSectionProps {
+  title: string;
+  description: string;
+  icon: any;
+  children: React.ReactNode;
+}
+
+const FormSection = ({
+  title,
+  description,
+  icon: Icon,
+  children,
+}: FormSectionProps) => {
+  const isDark = useSelector((state: RootState) => state.dark.isDark);
+  return (
+    <div
+      className={cn(
+        "grid grid-cols-1 lg:grid-cols-12 gap-8 p-8 rounded-3xl transition-all duration-300",
+        isDark ? "bg-slate-950" : "bg-white border border-slate-100 shadow-sm",
+      )}
+    >
+      {/* Left Column: Description */}
+      <div className="lg:col-span-4 space-y-4">
+        <div
+          className={cn(
+            "w-12 h-12 rounded-2xl flex items-center justify-center shadow-lg transition-colors",
+            isDark
+              ? "bg-orange-500/10 text-orange-500"
+              : "bg-orange-500 text-white",
+          )}
+        >
+          <Icon className="w-6 h-6" />
+        </div>
+        <div>
+          <h3
+            className={cn(
+              "text-xl font-black tracking-tight mb-2",
+              isDark ? "text-white" : "text-slate-900",
+            )}
+          >
+            {title}
+          </h3>
+          <p
+            className={cn(
+              "text-sm font-medium leading-relaxed opacity-60",
+              isDark ? "text-slate-400" : "text-slate-500",
+            )}
+          >
+            {description}
+          </p>
+        </div>
+      </div>
+
+      {/* Right Column: Form Fields */}
+      <div className="lg:col-span-8">
+        <div
+          className={cn(
+            "grid grid-cols-1 gap-6 p-6 sm:p-8 rounded-[2rem] transition-all",
+            isDark
+              ? "bg-slate-950/40 border border-slate-800"
+              : "bg-slate-50/50 border border-slate-200/50",
+          )}
+        >
+          {children}
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default function FormElement() {
   const isDark = useSelector((state: RootState) => state.dark.isDark);
@@ -26,293 +95,193 @@ export default function FormElement() {
 
   return (
     <Layout>
-      <div className="grid gap-5 lg:grid-cols-2 grid-cols-1 w-full">
-        <div className="flex flex-col gap-5">
-          {/* start default input */}
-          <Card className="overflow-hidden shadow-sm border-none">
-            <CardHeader>
-              <div className="flex items-center gap-3">
-                <div className="w-1 h-6 bg-orange-500 rounded-full" />
-                <CardTitle
-                  className={`text-lg flex items-center gap-2 ${isDark ? "text-white" : "text-black"}`}
-                >
-                  <Type
-                    className={`w-5 h-5 ${isDark ? "text-slate-400" : "text-slate-600"}`}
-                    strokeWidth={2.5}
-                  />
-                  Default Input
-                </CardTitle>
-              </div>
-            </CardHeader>
-            <CardContent className="gap-5 flex flex-col">
-              {/* standart input  */}
-              <InputField labelName="Input" onChange={() => {}} />
-              {/* input with placeholder */}
-              <InputField
-                labelName="Input with placeholder"
-                placeholder="Input with placeholder"
-                onChange={() => {}}
-              />
-              {/* password input */}
-              <InputField
-                labelName="Password input"
-                type="password"
-                placeholder="Input your password"
-                onChange={() => {}}
-              />
-              {/* date picker input */}
-              <CalendarPicker labelTitle="Date Picker" />
-              {/* disabled input */}
-              <InputField
-                labelName="Input disabled"
-                disabled
-                onChange={() => {}}
-              />
-            </CardContent>
-          </Card>
-          {/* end default input */}
-
-          {/* start select input */}
-          <Card className="overflow-hidden shadow-sm border-none">
-            <CardHeader>
-              <div className="flex items-center gap-3">
-                <div className="w-1 h-6 bg-orange-500 rounded-full" />
-                <CardTitle
-                  className={`text-lg flex items-center gap-2 ${isDark ? "text-white" : "text-black"}`}
-                >
-                  <ListFilter
-                    className={`w-5 h-5 ${isDark ? "text-slate-400" : "text-slate-600"}`}
-                    strokeWidth={2.5}
-                  />
-                  Select Input
-                </CardTitle>
-              </div>
-            </CardHeader>
-            <CardContent className="flex flex-col gap-5">
-              {/* default select */}
-              <SelectField
-                labelName="Select input"
-                dataDropdown={frameworks}
-                value={select1}
-                onChange={(e) => setSelect1(e)}
-              />
-              {/* select with search */}
-              <SelectField
-                isShowSearch
-                labelName="Select input with search"
-                dataDropdown={frameworks}
-                value={select2}
-                onChange={(e) => setSelect2(e)}
-              />
-            </CardContent>
-          </Card>
-          {/* end select input */}
-
-          {/* start input error */}
-          <Card className="overflow-hidden shadow-sm border-none">
-            <CardHeader>
-              <div className="flex items-center gap-3">
-                <div className="w-1 h-6 bg-orange-500 rounded-full" />
-                <CardTitle
-                  className={`text-lg flex items-center gap-2 ${isDark ? "text-white" : "text-black"}`}
-                >
-                  <AlertCircle
-                    className={`w-5 h-5 ${isDark ? "text-slate-400" : "text-slate-600"}`}
-                    strokeWidth={2.5}
-                  />
-                  Error Input
-                </CardTitle>
-              </div>
-            </CardHeader>
-            <CardContent className="flex flex-col gap-5">
-              <InputField
-                labelName="Input Default"
-                error="*Input default is required"
-                onChange={() => {}}
-              />
-              <TextareaField
-                labelName="Text area input"
-                error="*Text area is required"
-                onChange={() => {}}
-              />
-              <SelectField
-                labelName="Select input"
-                dataDropdown={frameworks}
-                error="*Select input is required"
-                value={select1}
-                onChange={(e) => setSelect1(e)}
-              />
-              <SelectField
-                labelName="Select input with search"
-                dataDropdown={frameworks}
-                isShowSearch
-                error="*Select input with search is required"
-                value={select1}
-                onChange={(e) => setSelect1(e)}
-              />
-              <InputField
-                labelName="Input group float label 1"
-                variant="float-label-1"
-                error="*Input group float label 1 is required"
-                onChange={() => {}}
-              />
-              <InputField
-                labelName="Input group float label 2"
-                variant="float-label-2"
-                error="*Input group float label 2 is required"
-                onChange={() => {}}
-              />
-            </CardContent>
-          </Card>
-          {/* end input error */}
+      <div className="flex flex-col gap-10 w-full max-w-6xl mx-auto py-10">
+        <div className="mb-4">
+          <h1
+            className={cn(
+              "text-4xl font-black tracking-tight mb-3",
+              isDark ? "text-white" : "text-slate-900",
+            )}
+          >
+            Form Elements
+          </h1>
+          <p
+            className={cn(
+              "text-base font-medium opacity-60",
+              isDark ? "text-slate-400" : "text-slate-500",
+            )}
+          >
+            A comprehensive collection of input components designed for premium
+            user experiences.
+          </p>
         </div>
-        <div className="flex flex-col gap-5">
-          {/* start textarea input */}
-          <Card className="overflow-hidden shadow-sm border-none">
-            <CardHeader>
-              <div className="flex items-center gap-3">
-                <div className="w-1 h-6 bg-orange-500 rounded-full" />
-                <CardTitle
-                  className={`text-lg flex items-center gap-2 ${isDark ? "text-white" : "text-black"}`}
-                >
-                  <AlignLeft
-                    className={`w-5 h-5 ${isDark ? "text-slate-400" : "text-slate-600"}`}
-                    strokeWidth={2.5}
-                  />
-                  Textarea Input
-                </CardTitle>
-              </div>
-            </CardHeader>
-            <CardContent className="flex flex-col gap-5">
-              {/* text area normal */}
-              <TextareaField
-                placeholder="Input a description"
-                className="focus:ring-orange-500 h-32"
-                labelName="Description"
-                onChange={() => {}}
-              />
-              {/* text area disabled */}
-              <TextareaField
-                disabled
-                placeholder="Input a description"
-                className="focus:ring-orange-500 h-32"
-                labelName="Description"
-                onChange={() => {}}
-              />
-            </CardContent>
-          </Card>
-          {/* end textarea input */}
 
-          {/* start input group */}
-          <Card className="overflow-hidden shadow-sm border-none">
-            <CardHeader>
-              <div className="flex items-center gap-3">
-                <div className="w-1 h-6 bg-orange-500 rounded-full" />
-                <CardTitle
-                  className={`text-lg flex items-center gap-2 ${isDark ? "text-white" : "text-black"}`}
-                >
-                  <LayoutGrid
-                    className={`w-5 h-5 ${isDark ? "text-slate-400" : "text-slate-600"}`}
-                    strokeWidth={2.5}
-                  />
-                  Input Group
-                </CardTitle>
-              </div>
-            </CardHeader>
-            <CardContent className="flex flex-col gap-5">
-              {/* input group variant float label 1 */}
-              <InputField
-                labelName="Variant float label 1 with icon"
-                Icon={ALargeSmall}
-                variant="float-label-1"
-                onChange={() => {}}
-              />
-              {/* input variant float label 2 with icon */}
-              <InputField
-                labelName="Variant float label 2 with icon"
-                Icon={ALargeSmall}
-                variant="float-label-2"
-                onChange={() => {}}
-              />
-              {/* input variant prefix label */}
-              <InputField
-                labelName="Url"
-                Icon={ALargeSmall}
-                prefixLabelName="https://"
-                placeholder="Input your url"
-                variant="prefix-label"
-                onChange={() => {}}
-              />
-              <InputField
-                labelName="Phone Number"
-                Icon={ALargeSmall}
-                prefixLabelName="+62"
-                placeholder="812xxxxxxxxx"
-                variant="prefix-label"
-                onChange={() => {}}
-              />
-            </CardContent>
-          </Card>
-          {/* end input group */}
+        {/* Default Input Section */}
+        <FormSection
+          title="Default Input"
+          description="Standard text input fields for various data types including text, email, password and date pickers."
+          icon={Type}
+        >
+          <InputField labelName="Input" onChange={() => {}} />
+          <InputField
+            labelName="Input with placeholder"
+            placeholder="Enter your information here..."
+            onChange={() => {}}
+          />
+          <InputField
+            labelName="Password input"
+            type="password"
+            placeholder="••••••••"
+            onChange={() => {}}
+          />
+          <CalendarPicker labelTitle="Date Picker" />
+          <InputField
+            labelName="Input disabled"
+            disabled
+            placeholder="You cannot edit this field"
+            onChange={() => {}}
+          />
+        </FormSection>
 
-          {/* start success input */}
-          <Card className="overflow-hidden shadow-sm border-none">
-            <CardHeader>
-              <div className="flex items-center gap-3">
-                <div className="w-1 h-6 bg-orange-500 rounded-full" />
-                <CardTitle
-                  className={`text-lg flex items-center gap-2 ${isDark ? "text-white" : "text-black"}`}
-                >
-                  <CheckCheck
-                    className={`w-5 h-5 ${isDark ? "text-slate-400" : "text-slate-600"}`}
-                    strokeWidth={2.5}
-                  />
-                  Success Input
-                </CardTitle>
-              </div>
-            </CardHeader>
-            <CardContent className="flex flex-col gap-5">
+        {/* Select Input Section */}
+        <FormSection
+          title="Select Input"
+          description="Custom select components with support for searching, filtering, and single/multiple selection modes."
+          icon={ListFilter}
+        >
+          <SelectField
+            labelName="Default Select"
+            dataDropdown={frameworks}
+            value={select1}
+            onChange={(e) => setSelect1(e)}
+          />
+          <SelectField
+            isShowSearch
+            labelName="Select with Search"
+            dataDropdown={frameworks}
+            value={select2}
+            onChange={(e) => setSelect2(e)}
+          />
+        </FormSection>
+
+        {/* Textarea Section */}
+        <FormSection
+          title="Textarea Input"
+          description="Multi-line input fields for longer content like descriptions, notes, or detailed feedback."
+          icon={AlignLeft}
+        >
+          <TextareaField
+            placeholder="Start typing your description..."
+            className="focus:ring-orange-500 h-32"
+            labelName="Project Description"
+            onChange={() => {}}
+          />
+          <TextareaField
+            variant="float-label-1"
+            labelName="Floating Label Style 1"
+            className="focus:ring-orange-500 h-32"
+            onChange={() => {}}
+          />
+          <TextareaField
+            variant="float-label-2"
+            labelName="Floating Label Style 2"
+            className="focus:ring-orange-500 h-32"
+            onChange={() => {}}
+          />
+          <TextareaField
+            disabled
+            placeholder="This field is currently read-only"
+            className="focus:ring-orange-500 h-32"
+            labelName="Read-only Content"
+            onChange={() => {}}
+          />
+        </FormSection>
+
+        {/* Input Group Section */}
+        <FormSection
+          title="Input Groups"
+          description="Advanced input fields featuring floating labels, prefixes, and icons for enhanced visual hierarchy."
+          icon={LayoutGrid}
+        >
+          <InputField
+            labelName="Floating Label Style 1"
+            Icon={ALargeSmall}
+            variant="float-label-1"
+            onChange={() => {}}
+          />
+          <InputField
+            labelName="Floating Label Style 2"
+            Icon={ALargeSmall}
+            variant="float-label-2"
+            onChange={() => {}}
+          />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <InputField
+              labelName="Website URL"
+              prefixLabelName="https://"
+              placeholder="example.com"
+              variant="prefix-label"
+              onChange={() => {}}
+            />
+            <InputField
+              labelName="Phone Number"
+              prefixLabelName="+62"
+              placeholder="812-000-0000"
+              variant="prefix-label"
+              onChange={() => {}}
+            />
+          </div>
+        </FormSection>
+
+        {/* Validation States Section */}
+        <FormSection
+          title="Validation States"
+          description="Visual feedback indicators for error and success states to guide users through form completion."
+          icon={AlertCircle}
+        >
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="space-y-6">
+              <h4
+                className={cn(
+                  "text-xs font-black uppercase tracking-widest text-red-500",
+                )}
+              >
+                Error States
+              </h4>
               <InputField
-                labelName="Input Default"
-                isSuccess
+                labelName="Required Field"
+                error="* This field is mandatory"
                 onChange={() => {}}
               />
               <TextareaField
-                labelName="Text area input"
+                labelName="Message"
+                error="* Please enter at least 20 characters"
+                onChange={() => {}}
+              />
+            </div>
+            <div className="space-y-6">
+              <h4
+                className={cn(
+                  "text-xs font-black uppercase tracking-widest text-emerald-500",
+                )}
+              >
+                Success States
+              </h4>
+              <InputField
+                labelName="Username Available"
                 isSuccess
                 onChange={() => {}}
               />
               <SelectField
-                labelName="Select input"
+                labelName="Country Verified"
                 dataDropdown={frameworks}
                 isSuccess
                 value={select1}
                 onChange={(e) => setSelect1(e)}
               />
-              <SelectField
-                labelName="Select input with search"
-                dataDropdown={frameworks}
-                isShowSearch
-                isSuccess
-                value={select1}
-                onChange={(e) => setSelect1(e)}
-              />
-              <InputField
-                labelName="Input group float label 1"
-                variant="float-label-1"
-                isSuccess
-                onChange={() => {}}
-              />
-              <InputField
-                labelName="Input group float label 2"
-                variant="float-label-2"
-                isSuccess
-                onChange={() => {}}
-              />
-            </CardContent>
-          </Card>
-          {/* end succes input */}
-        </div>
+            </div>
+          </div>
+        </FormSection>
       </div>
     </Layout>
   );

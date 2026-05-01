@@ -115,7 +115,7 @@ export default function Sidebar() {
                   className="w-full flex items-center justify-between mb-1 group cursor-pointer"
                 >
                   <p
-                    className={`transition-all duration-300 text-sm font-bold origin-left ease-in-out ${isDark ? "text-white" : "text-[var(--muted-foreground)]"}`}
+                    className={`transition-all duration-300 text-base font-bold origin-left ease-in-out ${isDark ? "text-white" : "text-[var(--muted-foreground)]"}`}
                   >
                     {parent.titleMenu}
                   </p>

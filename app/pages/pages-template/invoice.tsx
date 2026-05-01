@@ -34,6 +34,7 @@ import {
   SelectValue,
 } from "~/components/ui/select";
 import { Textarea } from "~/components/ui/textarea";
+import { cn } from "~/lib/utils";
 import type { RootState } from "~/store/store";
 
 // --- Types ---
@@ -283,22 +284,26 @@ const statusConfig: Record<
 > = {
   Paid: {
     label: "Paid",
-    className: "bg-emerald-500/15 text-emerald-600 border-emerald-200",
+    className:
+      "bg-emerald-500/10 text-emerald-600 border-emerald-500/20 dark:bg-emerald-500/15 dark:text-emerald-400 dark:border-emerald-500/25",
     icon: Check,
   },
   Unpaid: {
     label: "Unpaid",
-    className: "bg-red-500/15 text-red-600 border-red-200",
+    className:
+      "bg-rose-500/10 text-rose-600 border-rose-500/20 dark:bg-rose-500/15 dark:text-rose-400 dark:border-rose-500/25",
     icon: Clock,
   },
   Draft: {
     label: "Draft",
-    className: "bg-gray-400/15 text-gray-500 border-gray-200",
+    className:
+      "bg-slate-500/10 text-slate-600 border-slate-500/20 dark:bg-slate-400/15 dark:text-slate-300 dark:border-slate-400/25",
     icon: FileText,
   },
   Overdue: {
     label: "Overdue",
-    className: "bg-orange-500/15 text-orange-600 border-orange-200",
+    className:
+      "bg-amber-500/10 text-amber-600 border-amber-500/20 dark:bg-amber-500/15 dark:text-amber-400 dark:border-amber-500/25",
     icon: X,
   },
 };
@@ -315,7 +320,12 @@ function StatusBadge({ status }: { status: InvoiceStatus }) {
   const config = statusConfig[status];
   const Icon = config.icon;
   return (
-    <Badge className={`gap-1 border text-xs font-semibold ${config.className}`}>
+    <Badge
+      className={cn(
+        "gap-1 border text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full",
+        config.className,
+      )}
+    >
       <Icon className="w-3 h-3" />
       {config.label}
     </Badge>

@@ -1,73 +1,283 @@
-import { LockKeyhole, Mail } from "lucide-react";
+import { LockKeyhole, Mail, ArrowRight, Github } from "lucide-react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import InputField from "~/components/Form/InputField";
 import { Button } from "~/components/ui/button";
-import { Card } from "~/components/ui/card";
+import { Checkbox } from "~/components/ui/checkbox";
 import type { RootState } from "~/store/store";
+import { cn } from "~/lib/utils";
 
 export default function SimpleSignIn() {
   const isDark = useSelector((state: RootState) => state.dark.isDark);
   const navigate = useNavigate();
+
+  const textPrimary = isDark ? "text-white" : "text-slate-900";
+  const textMuted = isDark ? "text-slate-400" : "text-slate-500";
+
   return (
-    <main className="flex w-full h-screen justify-center items-center bg-gradient-to-r from-orange-300 via-orange-100 to-orange-300">
-      <Card className="px-16 w-xl flex flex-col gap-0 justify-center items-center shadow-none border-none">
-        <span
-          className={`text-4xl font-semibold text-black mt-5 ${isDark && "text-white"}`}
+    <main
+      className={cn(
+        "flex w-full min-h-screen transition-colors duration-500",
+        isDark ? "bg-[#0b1120]" : "bg-white",
+      )}
+    >
+      <div className="grid grid-cols-1 lg:grid-cols-2 w-full">
+        {/* Left Side: Branding & Illustration */}
+        <div
+          className={cn(
+            "hidden lg:flex flex-col justify-between p-12 relative overflow-hidden transition-all duration-700",
+            isDark
+              ? "bg-gradient-to-br from-orange-600/20 via-slate-900 to-slate-950"
+              : "bg-gradient-to-br from-orange-50/50 via-white to-orange-50/30 border-r border-slate-100",
+          )}
         >
-          Welcome Back!
-        </span>
-        <span className={`text-gray-500 mt-2 ${isDark && "text-white"}`}>
-          Sign in to your account to continue
-        </span>
-        <form className="flex flex-col gap-10 w-full mt-10">
-          <InputField
-            labelName="Email"
-            onChange={() => {}}
-            type="email"
-            Icon={Mail}
-            variant="float-label-2"
-          />
-          <InputField
-            labelName="Password"
-            onChange={() => {}}
-            type="password"
-            Icon={LockKeyhole}
-            variant="float-label-2"
-          />
-          <Button
-            type="button"
-            onClick={() => navigate("/", { replace: true })}
-            className="hover:shadow-lg"
+          {/* Decorative shapes - Softer for Light Mode */}
+          <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none opacity-20">
+            <div
+              className={cn(
+                "absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full blur-3xl animate-pulse",
+                isDark ? "bg-white/10" : "bg-orange-200/40",
+              )}
+            />
+            <div
+              className={cn(
+                "absolute bottom-[-5%] right-[-5%] w-[30%] h-[30%] rounded-full blur-3xl animate-bounce duration-[10s]",
+                isDark ? "bg-orange-400/20" : "bg-orange-100/60",
+              )}
+            />
+          </div>
+
+          <div className="relative z-10">
+            <div className="flex items-center gap-2 mb-12">
+              <div
+                className={cn(
+                  "flex items-center justify-center w-10 h-10 rounded-xl font-black text-xl shadow-xl transition-colors",
+                  isDark ? "bg-white text-orange-600" : "bg-orange-600 text-white",
+                )}
+              >
+                Gv
+              </div>
+              <span
+                className={cn(
+                  "font-extrabold text-2xl tracking-tight transition-colors",
+                  isDark ? "text-white" : "text-slate-900",
+                )}
+              >
+                Gvixer
+              </span>
+            </div>
+
+            <div className="max-w-md">
+              <h1
+                className={cn(
+                  "text-5xl font-black leading-[1.1] mb-6 tracking-tight transition-colors",
+                  isDark ? "text-white" : "text-slate-900",
+                )}
+              >
+                Design your future with{" "}
+                <span className="text-orange-500">Gvixer Premium.</span>
+              </h1>
+              <p
+                className={cn(
+                  "text-lg font-medium leading-relaxed mb-8 transition-colors",
+                  isDark ? "text-orange-50/80" : "text-slate-500",
+                )}
+              >
+                Join thousands of designers and developers building the next
+                generation of web applications with our high-value dashboard
+                template.
+              </p>
+
+              <Button
+                variant="outline"
+                className={cn(
+                  "rounded-full border-2 px-8 h-12 font-bold group transition-all",
+                  isDark
+                    ? "bg-white/10 border-white/20 text-white hover:bg-white hover:text-orange-600"
+                    : "bg-white border-orange-500/20 text-orange-600 hover:bg-orange-500 hover:text-white hover:border-orange-500 shadow-sm",
+                )}
+              >
+                Take a Tour{" "}
+                <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </Button>
+            </div>
+          </div>
+
+          <div
+            className={cn(
+              "relative z-10 flex items-center justify-between text-xs font-bold tracking-widest uppercase transition-colors",
+              isDark ? "text-white/60" : "text-slate-400",
+            )}
           >
-            Login
-          </Button>
-          <div className="flex items-center">
-            <div className="flex-grow border-t border-gray-300"></div>
+            <span>© 2026 Gvixer Dashboard</span>
+            <div className="flex gap-6">
+              <span className="hover:text-orange-500 cursor-pointer transition-colors">
+                Privacy
+              </span>
+              <span className="hover:text-orange-500 cursor-pointer transition-colors">
+                Terms
+              </span>
+            </div>
+          </div>
+        </div>
+
+        {/* Right Side: Login Form */}
+        <div className="flex flex-col justify-center items-center p-8 lg:p-24 relative">
+          {/* Mobile Logo */}
+          <div className="lg:hidden flex items-center gap-2 mb-12 absolute top-8 left-8">
+            <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-orange-600 text-white font-black text-lg">
+              Gv
+            </div>
             <span
-              className={`mx-4 text-gray-500 text-sm ${isDark && "text-white"}`}
+              className={cn("font-bold text-xl tracking-tight", textPrimary)}
             >
-              Or Login With
+              Gvixer
             </span>
-            <div className="flex-grow border-t border-gray-300"></div>
           </div>
-          <Button
-            className={` border border-orange-600 hover:shadow-lg  ${isDark ? "bg-dark text-white" : "hover:bg-white bg-white text-black"}`}
-          >
-            <img src="/google.png" width={24} height={24} /> Login With Google
-          </Button>
-          <div className="flex gap-1">
-            <p>Don't have an account?</p>
-            <button
-              type="button"
-              onClick={() => navigate("/account/simple-sign-up")}
-              className="text-blue-600 cursor-pointer"
+
+          <div className="w-full max-w-[420px] flex flex-col">
+            <div className="mb-10 text-center lg:text-left">
+              <h2
+                className={cn(
+                  "text-4xl font-black tracking-tight mb-3",
+                  textPrimary,
+                )}
+              >
+                Sign in
+              </h2>
+              <p className={cn("text-base font-medium", textMuted)}>
+                Enter your credentials to access your account
+              </p>
+            </div>
+
+            <form
+              className="flex flex-col gap-6 w-full"
+              onSubmit={(e) => e.preventDefault()}
             >
-              Sign Up
-            </button>
+              <div className="space-y-1">
+                <InputField
+                  labelName="Email Address"
+                  onChange={() => {}}
+                  type="email"
+                  Icon={Mail}
+                  variant="float-label-2"
+                  className="h-12"
+                />
+              </div>
+              <div className="space-y-1">
+                <div className="flex justify-between items-center mb-1">
+                  <label className="sr-only">Password</label>
+                  <button
+                    type="button"
+                    className="text-xs font-bold text-orange-500 hover:text-orange-600 ml-auto transition-colors"
+                  >
+                    Forgot Password?
+                  </button>
+                </div>
+                <InputField
+                  labelName="Password"
+                  onChange={() => {}}
+                  type="password"
+                  Icon={LockKeyhole}
+                  variant="float-label-2"
+                  className="h-12"
+                />
+              </div>
+
+              <div className="flex items-center space-x-2 my-2">
+                <Checkbox
+                  id="remember"
+                  className="data-[state=checked]:bg-orange-500 data-[state=checked]:border-orange-500"
+                />
+                <label
+                  htmlFor="remember"
+                  className={cn(
+                    "text-sm font-semibold leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer",
+                    textMuted,
+                  )}
+                >
+                  Keep me logged in
+                </label>
+              </div>
+
+              <Button
+                type="submit"
+                onClick={() => navigate("/", { replace: true })}
+                className="bg-orange-600 hover:bg-orange-700 text-white h-12 rounded-xl font-bold text-base shadow-lg shadow-orange-600/20 active:scale-[0.98] transition-all"
+              >
+                Login to Dashboard
+              </Button>
+
+              <div className="relative my-4">
+                <div className="absolute inset-0 flex items-center">
+                  <div
+                    className={cn(
+                      "w-full border-t",
+                      isDark ? "border-slate-800" : "border-slate-200",
+                    )}
+                  ></div>
+                </div>
+                <div className="relative flex justify-center text-xs uppercase">
+                  <span
+                    className={cn(
+                      "px-4 font-bold tracking-widest",
+                      isDark
+                        ? "bg-[#0b1120] text-slate-500"
+                        : "bg-white text-slate-400",
+                    )}
+                  >
+                    Or continue with
+                  </span>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                <Button
+                  variant="outline"
+                  className={cn(
+                    "h-12 rounded-xl font-bold border-2 transition-all active:scale-[0.98] flex items-center gap-2",
+                    isDark
+                      ? "bg-slate-900/50 border-slate-800 hover:bg-slate-800 text-white"
+                      : "bg-white border-slate-100 hover:bg-slate-50 text-slate-900",
+                  )}
+                >
+                  <img src="/google.png" width={20} height={20} alt="Google" />
+                  <span className="hidden sm:inline">Google</span>
+                </Button>
+                <Button
+                  variant="outline"
+                  className={cn(
+                    "h-12 rounded-xl font-bold border-2 transition-all active:scale-[0.98] flex items-center gap-2",
+                    isDark
+                      ? "bg-slate-900/50 border-slate-800 hover:bg-slate-800 text-white"
+                      : "bg-white border-slate-100 hover:bg-slate-50 text-slate-900",
+                  )}
+                >
+                  <Github className="w-5 h-5" />
+                  <span className="hidden sm:inline">GitHub</span>
+                </Button>
+              </div>
+
+              <div className="mt-8 text-center">
+                <p className={cn("text-sm font-medium", textMuted)}>
+                  Don't have an account yet?{" "}
+                  <button
+                    type="button"
+                    onClick={() => navigate("/pages-template/simple-sign-up")}
+                    className="text-orange-500 font-bold hover:underline transition-all"
+                  >
+                    Create an account
+                  </button>
+                </p>
+              </div>
+            </form>
           </div>
-        </form>
-      </Card>
+
+          <div className="mt-auto pt-10 lg:hidden text-center text-slate-400 text-[10px] font-bold tracking-widest uppercase">
+            © 2026 Gvixer Dashboard
+          </div>
+        </div>
+      </div>
     </main>
   );
 }

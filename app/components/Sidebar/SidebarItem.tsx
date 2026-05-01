@@ -26,7 +26,7 @@ export default function SidebarItem({
   const content = (
     <div
       className={cn(
-        "group flex items-center h-9 rounded-sm relative transition-none",
+        "group flex items-center h-10 rounded-sm relative transition-none",
         // tighten spacing when collapsed so icon stays centered
         collapsed ? "justify-center px-0" : "gap-3 ml-2 px-2",
         `${isDark ? "text-white" : "text-[var(--color-sidebar-foreground)]"}`,
@@ -70,7 +70,7 @@ export default function SidebarItem({
       {/* Animated label: slide+fade and collapse width */}
       <span
         className={cn(
-          "text-xs font-medium origin-left transition-[opacity,transform,width] duration-300 ease-in-out",
+          "text-sm font-medium origin-left transition-[opacity,transform,width] duration-300 ease-in-out",
           "group-hover:text-white group-focus-within:text-white group-hover:transition-none",
           collapsed
             ? "opacity-0 -translate-x-2 w-0 overflow-hidden"

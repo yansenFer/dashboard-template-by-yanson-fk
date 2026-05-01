@@ -930,124 +930,112 @@ export default function Email() {
           </AnimatePresence>
         </main>
 
-        {/* --- Compose Modal --- --- */}
-        <Dialog open={isComposeOpen} onOpenChange={setIsComposeOpen}>
-          <DialogContent
-            showCloseButton={false}
-            className={cn(
-              "sm:max-w-[700px] border-none shadow-[0_50px_100px_rgba(0,0,0,0.3)] backdrop-blur-3xl p-0 overflow-hidden rounded-2xl",
-              isDark ? "bg-slate-900/90" : "bg-white/95",
-            )}
-          >
-            <DialogHeader className="p-10 pb-0 flex flex-row items-center justify-between">
-              <div className="flex items-center gap-4">
-                <div className="w-10 h-10 rounded-xl bg-orange-500 flex items-center justify-center text-white shadow-xl shadow-orange-500/20">
-                  <Plus className="w-5 h-5" />
-                </div>
-                <div>
-                  <DialogTitle
-                    className={cn(
-                      "text-2xl font-black tracking-tight",
-                      textPrimary,
-                    )}
+        {/* --- Floating Compose Modal --- */}
+        <AnimatePresence>
+          {isComposeOpen && (
+            <motion.div
+              initial={{ y: "100%", opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: "100%", opacity: 0 }}
+              className={cn(
+                "fixed bottom-0 right-8 w-[500px] sm:w-[600px] shadow-[0_20px_50px_rgba(0,0,0,0.3)] rounded-t-2xl overflow-hidden z-[100] border-x border-t transition-colors duration-300",
+                isDark ? "bg-[#1a1a1a] border-slate-800" : "bg-white border-slate-200"
+              )}
+            >
+              {/* Header */}
+              <div className="bg-[#2a2a2a] text-white p-4 flex items-center justify-between">
+                <span className="text-sm font-bold tracking-tight">Compose Email</span>
+                <div className="flex items-center gap-2">
+                  <button className="p-1 hover:bg-white/10 rounded-md transition-colors">
+                    <X className="w-3.5 h-3.5 rotate-45" /> {/* Mimic minimize */}
+                  </button>
+                  <button className="p-1 hover:bg-white/10 rounded-md transition-colors">
+                    <ChevronRight className="w-3.5 h-3.5 -rotate-45" /> {/* Mimic maximize */}
+                  </button>
+                  <button 
+                    onClick={() => setIsComposeOpen(false)}
+                    className="p-1 hover:bg-red-500 rounded-md transition-colors"
                   >
-                    Compose
-                  </DialogTitle>
-                  <p
-                    className={cn(
-                      "text-[9px] font-black uppercase tracking-[0.2em] opacity-40",
-                      textMuted,
-                    )}
-                  >
-                    New message
-                  </p>
-                </div>
-              </div>
-              <div className="flex gap-2">
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  onClick={() => setIsComposeOpen(false)}
-                  className="rounded-xl text-slate-400 hover:bg-slate-500/10"
-                >
-                  <X className="w-4 h-4" />
-                </Button>
-              </div>
-            </DialogHeader>
-
-            <div className="p-10 space-y-8">
-              <div className="space-y-6">
-                <div className="relative group">
-                  <span className="absolute left-0 top-1/2 -translate-y-1/2 text-[9px] font-black uppercase tracking-widest text-orange-500">
-                    To
-                  </span>
-                  <Input
-                    placeholder="recipient@example.com"
-                    className="pl-10 border-0 border-b border-slate-500/10 rounded-none bg-transparent h-12 focus:ring-0 focus:border-orange-500/50 transition-all text-[13px] font-bold"
-                  />
-                  <button className="absolute right-0 top-1/2 -translate-y-1/2 text-[9px] font-black uppercase tracking-widest text-slate-400 hover:text-orange-500">
-                    Cc/Bcc
+                    <X className="w-3.5 h-3.5" />
                   </button>
                 </div>
-                <div className="relative group">
-                  <span className="absolute left-0 top-1/2 -translate-y-1/2 text-[9px] font-black uppercase tracking-widest text-orange-500">
-                    Subject
-                  </span>
-                  <Input
-                    placeholder="Briefly describe the topic"
-                    className="pl-20 border-0 border-b border-slate-500/10 rounded-none bg-transparent h-12 focus:ring-0 focus:border-orange-500/80 transition-all text-[13px] font-black"
-                  />
-                </div>
-                <div className="pt-4">
-                  <textarea
-                    placeholder="Write your brilliant thoughts here..."
-                    className="w-full bg-transparent border-none outline-none resize-none min-h-[200px] premium-scrollbar text-[13px] leading-relaxed placeholder:opacity-30 placeholder:font-black transition-all"
-                  />
-                </div>
               </div>
 
-              {/* Toolbar mockup */}
-              <div className="flex items-center justify-between pt-8 border-t border-slate-500/10">
-                <div className="flex gap-1">
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className="rounded-xl text-slate-400 transition-all hover:bg-orange-500 hover:text-white"
-                  >
-                    <Plus className="w-4 h-4" />
-                  </Button>
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className="rounded-xl text-slate-400 transition-all hover:bg-orange-500 hover:text-white"
-                  >
-                    <Tag className="w-4 h-4" />
-                  </Button>
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className="rounded-xl text-slate-400 transition-all hover:bg-orange-500 hover:text-white"
-                  >
-                    <AlertCircle className="w-4 h-4" />
-                  </Button>
+              {/* Form Content */}
+              <div className="p-4 space-y-4">
+                {/* Recipients Chips */}
+                <div className="flex items-center gap-3 flex-wrap py-2 border-b border-slate-500/10">
+                  <div className="flex items-center gap-2 px-2 py-1 bg-orange-500/10 rounded-lg border border-orange-500/20 group">
+                    <img src="https://i.pravatar.cc/150?u=morgan" className="w-5 h-5 rounded-full object-cover" />
+                    <span className="text-xs font-bold text-orange-600">Morgan</span>
+                    <X className="w-3 h-3 text-orange-400 hover:text-orange-600 cursor-pointer" />
+                  </div>
+                  <div className={cn(
+                    "flex items-center gap-2 px-2 py-1 rounded-lg border group transition-colors",
+                    isDark ? "bg-slate-800/50 border-slate-700" : "bg-slate-100 border-slate-200"
+                  )}>
+                    <img src="https://i.pravatar.cc/150?u=huma" className="w-5 h-5 rounded-full object-cover" />
+                    <span className={cn("text-xs font-bold", isDark ? "text-slate-300" : "text-slate-600")}>Charlie</span>
+                    <X className="w-3 h-3 text-slate-400 hover:text-slate-600 cursor-pointer" />
+                  </div>
+                  <div className={cn(
+                    "flex items-center gap-2 px-2 py-1 rounded-lg border group transition-colors",
+                    isDark ? "bg-slate-800/50 border-slate-700" : "bg-slate-100 border-slate-200"
+                  )}>
+                    <img src="https://i.pravatar.cc/150?u=jane" className="w-5 h-5 rounded-full object-cover" />
+                    <span className={cn("text-xs font-bold", isDark ? "text-slate-300" : "text-slate-600")}>Winston</span>
+                    <X className="w-3 h-3 text-slate-400 hover:text-slate-600 cursor-pointer" />
+                  </div>
+                  <Input 
+                    placeholder="Add recipients..." 
+                    className="flex-1 min-w-[120px] border-none shadow-none focus-visible:ring-0 text-xs h-8 bg-transparent" 
+                  />
                 </div>
-                <div className="flex items-center gap-4">
-                  <Button
-                    variant="ghost"
-                    onClick={() => setIsComposeOpen(false)}
-                    className="rounded-xl font-black text-[11px] uppercase tracking-widest text-slate-400 hover:text-slate-900 dark:hover:text-white px-5"
-                  >
-                    Discard
-                  </Button>
-                  <Button className="bg-orange-500 hover:bg-orange-600 text-white rounded-xl font-black shadow-2xl shadow-orange-500/30 gap-2 transition-all active:scale-95 text-[12px] uppercase tracking-widest h-10 px-5">
-                    Send Email
-                    <Send className="w-4 h-4" />
-                  </Button>
+
+                {/* Subject */}
+                <div className="border-b border-slate-500/10">
+                  <Input 
+                    placeholder="Subject" 
+                    className="border-none shadow-none focus-visible:ring-0 text-sm font-bold h-10 px-0 bg-transparent" 
+                  />
+                </div>
+
+                {/* Message Body */}
+                <div className="relative">
+                  <textarea
+                    placeholder="Write your message here..."
+                    className={cn(
+                      "w-full min-h-[250px] bg-transparent border-none outline-none resize-none text-[13px] leading-relaxed p-0 premium-scrollbar",
+                      isDark ? "text-slate-300" : "text-slate-600"
+                    )}
+                  />
+                </div>
+
+                {/* Footer Toolbar */}
+                <div className="flex items-center justify-between pt-4 border-t border-slate-500/10">
+                  <div className="flex items-center gap-1">
+                    <Button 
+                      className="bg-[#2d7d8a] hover:bg-[#24636d] text-white rounded-lg h-9 px-6 font-bold text-xs"
+                    >
+                      Send
+                    </Button>
+                    <Button variant="ghost" size="icon" className="text-slate-400 hover:text-orange-500 hover:bg-orange-500/10 rounded-lg h-9 w-9">
+                      <Paperclip className="w-4 h-4" />
+                    </Button>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <Button variant="ghost" size="icon" className="text-slate-400 hover:text-orange-500 hover:bg-orange-500/10 rounded-lg h-9 w-9">
+                      <FileText className="w-4 h-4" />
+                    </Button>
+                    <Button variant="ghost" size="icon" className="text-slate-400 hover:text-red-500 hover:bg-red-500/10 rounded-lg h-9 w-9">
+                      <Trash2 className="w-4 h-4" />
+                    </Button>
+                  </div>
                 </div>
               </div>
-            </div>
-          </DialogContent>
-        </Dialog>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </Layout>
   );
