@@ -7,6 +7,7 @@ import { AnimatePresence } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "~/store/store";
 import { setIsDark } from "~/store/features/darkMode/darkModeSlice";
+import LanguageSelector from "./LanguageSelector";
 
 export default function Header() {
   const [isHaveNotif, setIsHaveNotif] = useState(true);
@@ -52,6 +53,7 @@ export default function Header() {
               <MoonStar name="moon-star" color={isDark ? "white" : "black"} />
             )}
           </Button>
+          <LanguageSelector />
           <div className="relative" ref={notifRef}>
             <Button
               className="bg-transparent relative border rounded-full hover:border-orange-600 hover:bg-transparent"
