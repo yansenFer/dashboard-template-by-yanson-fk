@@ -3,7 +3,7 @@ import { type RouteConfig, index, route } from "@react-router/dev/routes";
 export default [
   //dashboard
   index("pages/dashboard.tsx"),
-
+  route("dashboards/ai", "pages/dashboards/ai.tsx"),
   //Apps
   route("/apps/chat", "pages/apps/chat.tsx"),
   route("/apps/calendar", "pages/apps/calendar.tsx"),

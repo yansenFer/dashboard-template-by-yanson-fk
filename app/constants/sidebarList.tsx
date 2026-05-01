@@ -15,6 +15,7 @@ import {
   Calendar,
   Mail,
   Contact,
+  Cpu,
 } from "lucide-react";
 
 export const sidebarList: ISidebarList[] = [
@@ -25,6 +26,11 @@ export const sidebarList: ISidebarList[] = [
         href: "/",
         icon: <HomeIcon />,
         label: "Overview",
+      },
+      {
+        href: "/dashboards/ai",
+        icon: <Cpu />,
+        label: "AI Dashboard",
       },
     ],
   },
