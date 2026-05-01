@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "~/store/store";
 import { setIsDark } from "~/store/features/darkMode/darkModeSlice";
 import LanguageSelector from "./LanguageSelector";
+import ProfileDropdown from "./ProfileDropdown";
 
 export default function Header() {
   const [isHaveNotif, setIsHaveNotif] = useState(true);
@@ -82,9 +83,7 @@ export default function Header() {
             </AnimatePresence>
           </div>
 
-          <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
-            <User name="user" size={16} className="text-primary-foreground" />
-          </div>
+          <ProfileDropdown />
         </div>
       </div>
     </header>
