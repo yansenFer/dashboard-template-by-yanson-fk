@@ -1,4 +1,4 @@
-import type React from "react";
+import React, { useEffect } from "react";
 import Header from "./Header/Header";
 import Sidebar from "./Sidebar/Sidebar";
 import { useSelector } from "react-redux";
@@ -14,8 +14,16 @@ export default function Layout({
 }: LayoutProps) {
   const isDark = useSelector((state: RootState) => state.dark.isDark);
 
+  useEffect(() => {
+    if (isDark) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [isDark]);
+
   return (
-    <div className={`min-h-screen bg-background text-foreground ${isDark ? "dark" : ""}`}>
+    <div className="min-h-screen bg-background text-foreground transition-colors duration-300">
       <div
         className={`flex ${isFullscreen ? "h-screen overflow-hidden" : "max-h-screen overflow-auto"}`}
       >

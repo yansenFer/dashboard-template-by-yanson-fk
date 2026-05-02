@@ -641,7 +641,7 @@ export default function AI() {
                     filteredLogs.map((log) => (
                       <TableRow
                         key={log.id}
-                        className="group border-b border-black/[0.02] dark:border-white/[0.02] hover:bg-gray-50/80 dark:hover:bg-slate-800/30 transition-colors"
+                        className="group border-b border-black/[0.02] dark:border-white/[0.02] hover:bg-orange-500/[0.02] dark:hover:bg-white/[0.02] transition-colors"
                       >
                         <TableCell className="px-6 py-4">
                           <span
@@ -760,9 +760,12 @@ export default function AI() {
                       </span>
                     </div>
                     {/* Custom Progress Bar */}
-                    <div className="h-2 w-full bg-gray-100 dark:bg-slate-800 rounded-full overflow-hidden">
+                    <div className={cn(
+                      "h-2 w-full rounded-full overflow-hidden transition-colors",
+                      isDark ? "bg-slate-800" : "bg-slate-100"
+                    )}>
                       <div
-                        className={cn("h-full rounded-full", health.color)}
+                        className={cn("h-full rounded-full transition-all duration-500", health.color)}
                         style={{ width: `${health.percentage}%` }}
                       />
                     </div>
