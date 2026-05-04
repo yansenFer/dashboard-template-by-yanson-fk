@@ -33,7 +33,7 @@ export default function Layout({
         >
           <Header />
           <div
-            className={`flex flex-1 justify-center ${isFullscreen ? "p-0 overflow-hidden" : "p-5"} ${isDark ? "bg-content-dark" : "bg-content-background"}`}
+            className={`flex flex-1 justify-center ${isFullscreen ? "p-0 overflow-hidden" : "p-5"} ${isDark ? "bg-content-dark" : "bg-slate-50/45"}`}
           >
             <div
               className={`flex flex-1 justify-center ${isFullscreen ? "h-full w-full" : "max-w-[1920px] w-full"}`}
