@@ -5,6 +5,8 @@ export default [
   index("pages/dashboard.tsx"),
   route("dashboards/ai", "pages/dashboards/ai.tsx"),
   route("dashboards/analytic", "pages/dashboards/analytic.tsx"),
+  route("dashboards/logistics", "pages/dashboards/logistics.tsx"),
+
   //Apps
   route("/apps/chat", "pages/apps/chat.tsx"),
   route("/apps/calendar", "pages/apps/calendar.tsx"),
