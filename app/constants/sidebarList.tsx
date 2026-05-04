@@ -16,6 +16,7 @@ import {
   Mail,
   Contact,
   Cpu,
+  TrendingUp,
 } from "lucide-react";
 
 export const sidebarList: ISidebarList[] = [
@@ -30,7 +31,12 @@ export const sidebarList: ISidebarList[] = [
       {
         href: "/dashboards/ai",
         icon: <Cpu />,
-        label: "AI Dashboard",
+        label: "AI",
+      },
+      {
+        href: "/dashboards/analytic",
+        icon: <TrendingUp />,
+        label: "Analytic",
       },
     ],
   },
