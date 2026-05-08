@@ -241,9 +241,9 @@ export default function Chat() {
               <Button
                 variant="ghost"
                 size="icon"
-                className="rounded-full hover:bg-orange-500 hover:text-white transition-all duration-300 group"
+                className="rounded-full bg-transparent text-slate-400 hover:bg-orange-500 hover:text-white focus:bg-orange-500 focus:text-white transition-all duration-300 group border-none"
               >
-                <Settings className="w-5 h-5 text-slate-400 group-hover:text-white transition-colors" />
+                <Settings className="w-5 h-5 group-hover:text-white group-focus:text-white transition-colors" />
               </Button>
             </div>
             <div className="relative group">
@@ -273,13 +273,13 @@ export default function Chat() {
             <div className="flex items-center gap-4 overflow-x-auto py-2 premium-scrollbar">
               <button
                 className={cn(
-                  "flex-shrink-0 w-11 h-11 rounded-full border-2 border-dashed flex items-center justify-center transition-all duration-300 hover:border-orange-500 hover:text-orange-500",
+                  "flex-shrink-0 w-11 h-11 rounded-full border-2 border-dashed flex items-center justify-center transition-all duration-300 bg-transparent text-slate-400 hover:bg-orange-500 hover:text-white hover:border-orange-500 focus:bg-orange-500 focus:text-white focus:border-orange-500 group",
                   isDark
-                    ? "border-slate-800 text-slate-600"
-                    : "border-slate-300 text-slate-400",
+                    ? "border-slate-800"
+                    : "border-slate-300",
                 )}
               >
-                <Plus className="w-5 h-5" />
+                <Plus className="w-5 h-5 group-hover:text-white group-focus:text-white transition-colors" />
               </button>
               {CONTACTS.map((c) => (
                 <div
@@ -425,36 +425,36 @@ export default function Chat() {
               <Button
                 variant="ghost"
                 size="icon"
-                className="rounded-xl text-orange-500 hover:bg-orange-500/10 hover:text-white border-transparent hover:border-transparent ring-0 outline-none"
+                className="rounded-xl bg-transparent text-orange-500 hover:bg-orange-500 hover:text-white focus:bg-orange-500 focus:text-white border-none transition-all duration-300 group"
               >
-                <Phone className="w-5 h-5" />
+                <Phone className="w-5 h-5 group-hover:text-white group-focus:text-white transition-colors" />
               </Button>
               <Button
                 variant="ghost"
                 size="icon"
-                className="rounded-xl text-orange-500 hover:bg-orange-500/10 hover:text-white border-transparent hover:border-transparent ring-0 outline-none"
+                className="rounded-xl bg-transparent text-orange-500 hover:bg-orange-500 hover:text-white focus:bg-orange-500 focus:text-white border-none transition-all duration-300 group"
               >
-                <Video className="w-5 h-5" />
+                <Video className="w-5 h-5 group-hover:text-white group-focus:text-white transition-colors" />
               </Button>
               <Button
                 variant="ghost"
                 size="icon"
                 onClick={() => setShowDetail(!showDetail)}
                 className={cn(
-                  "rounded-xl transition-all border-transparent hover:border-transparent ring-0 outline-none",
+                  "rounded-xl transition-all border-none ring-0 outline-none group",
                   showDetail
                     ? "bg-orange-500 text-white shadow-lg shadow-orange-500/20"
-                    : "hover:bg-orange-500/10 hover:text-white text-orange-500",
+                    : "bg-transparent text-orange-500 hover:bg-orange-500 hover:text-white focus:bg-orange-500 focus:text-white",
                 )}
               >
-                <Info className="w-5 h-5" />
+                <Info className={cn("w-5 h-5 transition-colors", showDetail ? "text-white" : "group-hover:text-white group-focus:text-white")} />
               </Button>
               <Button
                 variant="ghost"
                 size="icon"
-                className="rounded-xl text-orange-500 hover:bg-orange-500/10 hover:text-white border-transparent hover:border-transparent ring-0 outline-none"
+                className="rounded-xl bg-transparent text-orange-500 hover:bg-orange-500 hover:text-white focus:bg-orange-500 focus:text-white border-none transition-all duration-300 group"
               >
-                <MoreVertical className="w-5 h-5" />
+                <MoreVertical className="w-5 h-5 group-hover:text-white group-focus:text-white transition-colors" />
               </Button>
             </div>
           </div>
@@ -577,22 +577,16 @@ export default function Chat() {
               <Button
                 variant="ghost"
                 size="icon"
-                className={cn(
-                  "rounded-full hover:bg-orange-500 hover:text-white border-transparent hover:border-transparent ring-0 outline-none",
-                  isDark ? "text-slate-400" : "text-slate-500",
-                )}
+                className="rounded-full bg-transparent text-slate-400 hover:bg-orange-500 hover:text-white focus:bg-orange-500 focus:text-white border-none transition-all duration-300 group"
               >
-                <Plus className="w-5 h-5" />
+                <Plus className="w-5 h-5 group-hover:text-white group-focus:text-white transition-colors" />
               </Button>
               <Button
                 variant="ghost"
                 size="icon"
-                className={cn(
-                  "rounded-full hover:bg-orange-500 hover:text-white border-transparent hover:border-transparent ring-0 outline-none",
-                  isDark ? "text-slate-400" : "text-slate-500",
-                )}
+                className="rounded-full bg-transparent text-slate-400 hover:bg-orange-500 hover:text-white focus:bg-orange-500 focus:text-white border-none transition-all duration-300 group"
               >
-                <Paperclip className="w-5 h-5" />
+                <Paperclip className="w-5 h-5 group-hover:text-white group-focus:text-white transition-colors" />
               </Button>
               <Input
                 value={inputText}
@@ -608,12 +602,9 @@ export default function Chat() {
               <Button
                 variant="ghost"
                 size="icon"
-                className={cn(
-                  "rounded-full hover:bg-orange-500 hover:text-white border-transparent hover:border-transparent ring-0 outline-none",
-                  isDark ? "text-slate-400" : "text-slate-500",
-                )}
+                className="rounded-full bg-transparent text-slate-400 hover:bg-orange-500 hover:text-white focus:bg-orange-500 focus:text-white border-none transition-all duration-300 group"
               >
-                <Smile className="w-5 h-5" />
+                <Smile className="w-5 h-5 group-hover:text-white group-focus:text-white transition-colors" />
               </Button>
               <motion.div
                 whileHover={{ scale: 1.05 }}
@@ -676,16 +667,11 @@ export default function Chat() {
                       Message
                     </Button>
                     <Button
-                      variant="outline"
+                      variant="ghost"
                       size="icon"
-                      className={cn(
-                        "rounded-xl h-11 w-11 transition-all active:scale-95",
-                        isDark
-                          ? "border-slate-700 text-slate-300 hover:bg-orange-500/10 hover:text-orange-500 hover:border-orange-500"
-                          : "border-slate-200 text-slate-600 hover:bg-orange-50 hover:text-orange-500 hover:border-orange-500",
-                      )}
+                      className="rounded-xl h-11 w-11 bg-transparent text-slate-400 hover:bg-orange-500 hover:text-white focus:bg-orange-500 focus:text-white border-none transition-all active:scale-95 group"
                     >
-                      <Star className="w-5 h-5" />
+                      <Star className="w-5 h-5 group-hover:text-white group-focus:text-white transition-colors" />
                     </Button>
                   </div>
                 </div>

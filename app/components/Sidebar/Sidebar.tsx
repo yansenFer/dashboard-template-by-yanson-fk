@@ -161,33 +161,6 @@ export default function Sidebar() {
           })
         )}
       </nav>
-
-      {/* Footer */}
-      {!collapsed && (
-        <div className="mt-auto p-3">
-          <div
-            className={[
-              `rounded-md border ${isDark ? "border-dark" : "border-light"}`,
-              `${isDark ? "input-dark" : "bg-[var(--color-sidebar-accent)]"} `,
-              "px-3 py-2",
-            ].join(" ")}
-          >
-            <p
-              className={[
-                "text-xs origin-left  ease-in-out",
-                collapsed
-                  ? "opacity-0 -translate-x-2 w-0 overflow-hidden"
-                  : "opacity-100 translate-x-0 w-auto",
-              ].join(" ")}
-              aria-hidden={collapsed}
-            >
-              Signed in as{" "}
-              <span className="ml-1 font-medium">you@example.com</span>
-            </p>
-            {collapsed && <span className="sr-only">Signed in</span>}
-          </div>
-        </div>
-      )}
     </aside>
   );
 }

@@ -1,0 +1,52 @@
+0 verbose cli /opt/homebrew/Cellar/node/25.9.0_2/bin/node /opt/homebrew/bin/npm
+1 info using npm@11.12.1
+2 info using node@v25.9.0
+3 silly config load:file:/opt/homebrew/lib/node_modules/npm/npmrc
+4 silly config load:file:/Users/yansonferdinandkurniadi/myproject/dashboard-template-by-yanson-fk/.npmrc
+5 silly config load:file:/Users/yansonferdinandkurniadi/.npmrc
+6 verbose config error loading user config Error: EPERM: operation not permitted, open '/Users/yansonferdinandkurniadi/.npmrc'
+6 verbose config     at async open (node:internal/fs/promises:1281:25)
+6 verbose config     at async readFile (node:internal/fs/promises:1929:14)
+6 verbose config     at async #loadFile (/opt/homebrew/lib/node_modules/npm/node_modules/@npmcli/config/lib/index.js:646:5)
+6 verbose config     at async Config.load (/opt/homebrew/lib/node_modules/npm/node_modules/@npmcli/config/lib/index.js:260:5)
+6 verbose config     at async #load (/opt/homebrew/lib/node_modules/npm/lib/npm.js:95:5)
+6 verbose config     at async Npm.load (/opt/homebrew/lib/node_modules/npm/lib/npm.js:77:14)
+6 verbose config     at async module.exports (/opt/homebrew/lib/node_modules/npm/lib/cli/entry.js:36:37) {
+6 verbose config   errno: -1,
+6 verbose config   code: 'EPERM',
+6 verbose config   syscall: 'open',
+6 verbose config   path: '/Users/yansonferdinandkurniadi/.npmrc'
+6 verbose config }
+7 silly config load:file:/opt/homebrew/etc/npmrc
+8 verbose title npm install
+9 verbose argv "install" "--cache" "/Users/yansonferdinandkurniadi/myproject/dashboard-template-by-yanson-fk/.npm-cache"
+10 verbose logfile logs-max:10 dir:/Users/yansonferdinandkurniadi/myproject/dashboard-template-by-yanson-fk/.npm-cache/_logs/2026-05-08T03_59_26_826Z-
+11 verbose logfile /Users/yansonferdinandkurniadi/myproject/dashboard-template-by-yanson-fk/.npm-cache/_logs/2026-05-08T03_59_26_826Z-debug-0.log
+12 silly logfile done cleaning log files
+13 silly packumentCache heap:4496293888 maxSize:1124073472 maxEntrySize:562036736
+14 verbose shrinkwrap failed to load node_modules/.package-lock.json out of date, updated: node_modules
+15 silly idealTree buildDeps
+16 silly fetch manifest @radix-ui/react-label@^2.1.8
+17 silly packumentCache full:https://registry.npmjs.org/@radix-ui%2freact-label cache-miss
+18 http fetch GET https://registry.npmjs.org/@radix-ui%2freact-label attempt 1 failed with ENOTFOUND
+19 http fetch GET https://registry.npmjs.org/@radix-ui%2freact-label attempt 2 failed with ENOTFOUND
+20 http fetch GET https://registry.npmjs.org/@radix-ui%2freact-label attempt 3 failed with ENOTFOUND
+21 silly fetch manifest @radix-ui/react-slot@^1.2.4
+22 silly packumentCache full:https://registry.npmjs.org/@radix-ui%2freact-slot cache-miss
+23 http fetch GET https://registry.npmjs.org/@radix-ui%2freact-slot attempt 1 failed with ENOTFOUND
+24 http fetch GET https://registry.npmjs.org/@radix-ui%2freact-slot attempt 2 failed with ENOTFOUND
+25 http fetch GET https://registry.npmjs.org/@radix-ui%2freact-slot attempt 3 failed with ENOTFOUND
+26 silly fetch manifest @react-router/node@^7.15.0
+27 silly packumentCache full:https://registry.npmjs.org/@react-router%2fnode cache-miss
+28 http fetch GET https://registry.npmjs.org/@react-router%2fnode attempt 1 failed with ENOTFOUND
+29 http fetch GET https://registry.npmjs.org/@react-router%2fnode attempt 2 failed with ENOTFOUND
+30 http fetch GET https://registry.npmjs.org/@react-router%2fnode attempt 3 failed with ENOTFOUND
+31 silly fetch manifest @react-router/serve@^7.15.0
+32 silly packumentCache full:https://registry.npmjs.org/@react-router%2fserve cache-miss
+33 http fetch GET https://registry.npmjs.org/@react-router%2fserve attempt 1 failed with ENOTFOUND
+34 http fetch GET https://registry.npmjs.org/@react-router%2fserve attempt 2 failed with ENOTFOUND
+35 http fetch GET https://registry.npmjs.org/@react-router%2fserve attempt 3 failed with ENOTFOUND
+36 silly fetch manifest @reduxjs/toolkit@^2.11.2
+37 silly packumentCache full:https://registry.npmjs.org/@reduxjs%2ftoolkit cache-miss
+38 http fetch GET https://registry.npmjs.org/@reduxjs%2ftoolkit attempt 1 failed with ENOTFOUND
+39 http fetch GET https://registry.npmjs.org/@reduxjs%2ftoolkit attempt 2 failed with ENOTFOUND

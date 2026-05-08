@@ -281,7 +281,7 @@ export default function AI() {
                     content={
                       (
                         <ChartTooltipContent
-                          labelFormatter={(value) => value}
+                          labelFormatter={(value: any) => value}
                           indicator="dot"
                         />
                       ) as any
@@ -386,7 +386,7 @@ export default function AI() {
                       (
                         <ChartTooltipContent
                           hideLabel
-                          formatter={(value, name) => (
+                          formatter={(value: any, name: any) => (
                             <div className="flex items-center gap-2">
                               <span className="font-medium">
                                 {name as string}
