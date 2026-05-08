@@ -124,6 +124,7 @@ export default function Calendar() {
   const isDark = useSelector((state: RootState) => state.dark.isDark);
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(new Date());
+  const [activeView, setActiveView] = useState("Month");
   const [selectedEventId, setSelectedEventId] = useState<string | null>(null);
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [activeCategories, setActiveCategories] = useState<string[]>(
@@ -547,11 +548,12 @@ export default function Calendar() {
                     key={view}
                     variant="ghost"
                     size="sm"
+                    onClick={() => setActiveView(view)}
                     className={cn(
                       "h-8 px-4 rounded-lg font-black text-[10px] uppercase tracking-wider transition-all duration-300",
-                      view === "Month"
-                        ? "bg-orange-500 shadow-lg shadow-orange-500/20 text-white"
-                        : cn(textMuted, "hover:bg-orange-500 hover:text-white"),
+                      view === activeView
+                        ? "bg-orange-500 shadow-lg shadow-orange-500/20 !text-white"
+                        : cn(textMuted, "hover:bg-orange-500 hover:text-white focus:text-white"),
                     )}
                   >
                     {view}
