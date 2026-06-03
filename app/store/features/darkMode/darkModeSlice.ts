@@ -5,8 +5,19 @@ export interface DarkModeState {
   isDark: boolean
 }
 
+const getInitialIsDark = (): boolean => {
+  if (typeof window !== 'undefined') {
+    const saved = localStorage.getItem('isDark')
+    if (saved !== null) {
+      return saved === 'true'
+    }
+    return window.matchMedia('(prefers-color-scheme: dark)').matches
+  }
+  return false
+}
+
 const initialState: DarkModeState = {
-  isDark: false,
+  isDark: getInitialIsDark(),
 }
 
 export const darkModeSlice = createSlice({
@@ -15,6 +26,9 @@ export const darkModeSlice = createSlice({
   reducers: {
     setIsDark: (state, action: PayloadAction<boolean>) => {
       state.isDark = action.payload
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('isDark', action.payload ? 'true' : 'false')
+      }
     },
   },
 })

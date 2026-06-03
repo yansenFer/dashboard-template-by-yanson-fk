@@ -2,7 +2,6 @@ import Layout from "~/components/Layout";
 import type { Route } from "../+types/root";
 import {
   Activity,
-  ArrowUpRight,
   Calendar,
   CheckCircle2,
   Clock,
@@ -149,7 +148,7 @@ const schedules = [
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "Business Dashboard" },
+    { title: "Ferforge UI - Template Dashboard" },
     { name: "Dashboard", content: "Executive Business Overview" },
   ];
 }
@@ -315,23 +314,32 @@ export default function Dashboard() {
                   <TrendingUp className="w-5 h-5 text-orange-500" />
                   Business Statistics
                 </CardTitle>
-                <CardDescription>Performance tracking for the current year</CardDescription>
+                <CardDescription>
+                  Performance tracking for the current year
+                </CardDescription>
               </div>
-              <div className={cn(
-                "flex p-1 rounded-xl border transition-colors",
-                isDark ? "bg-slate-900/50 border-white/[0.03]" : "bg-slate-100 border-black/[0.03]"
-              )}>
+              <div
+                className={cn(
+                  "flex p-1 rounded-xl border transition-colors",
+                  isDark
+                    ? "bg-slate-900/50 border-white/[0.03]"
+                    : "bg-slate-100 border-black/[0.03]",
+                )}
+              >
                 {["Monthly", "Quarterly"].map((v) => (
-                  <button key={v} className={cn(
-                    "px-4 py-1.5 text-[10px] font-black uppercase rounded-lg transition-all",
-                    v === "Monthly" 
-                      ? (isDark 
-                          ? "bg-slate-800 text-orange-500 shadow-sm border border-white/[0.05]" 
-                          : "bg-white text-orange-500 shadow-sm border border-black/[0.03]")
-                      : (isDark
+                  <button
+                    key={v}
+                    className={cn(
+                      "px-4 py-1.5 text-[10px] font-black uppercase rounded-lg transition-all",
+                      v === "Monthly"
+                        ? isDark
+                          ? "bg-slate-800 text-orange-500 shadow-sm border border-white/[0.05]"
+                          : "bg-white text-orange-500 shadow-sm border border-black/[0.03]"
+                        : isDark
                           ? "text-slate-500 hover:text-slate-300"
-                          : "text-slate-400 hover:text-slate-600")
-                  )}>
+                          : "text-slate-400 hover:text-slate-600",
+                    )}
+                  >
                     {v}
                   </button>
                 ))}
@@ -340,24 +348,53 @@ export default function Dashboard() {
             <CardContent className="pt-6 pb-4">
               <div className="h-[320px] w-full">
                 <ChartContainer config={{}}>
-                  <AreaChart data={salesData} margin={{ top: 10, right: 10, left: -10, bottom: 50 }}>
+                  <AreaChart
+                    data={salesData}
+                    margin={{ top: 10, right: 10, left: -10, bottom: 50 }}
+                  >
                     <defs>
-                      <linearGradient id="colorRevenue" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="5%" stopColor="#f97316" stopOpacity={0.3} />
-                        <stop offset="95%" stopColor="#f97316" stopOpacity={0} />
+                      <linearGradient
+                        id="colorRevenue"
+                        x1="0"
+                        y1="0"
+                        x2="0"
+                        y2="1"
+                      >
+                        <stop
+                          offset="5%"
+                          stopColor="#f97316"
+                          stopOpacity={0.3}
+                        />
+                        <stop
+                          offset="95%"
+                          stopColor="#f97316"
+                          stopOpacity={0}
+                        />
                       </linearGradient>
                     </defs>
-                    <CartesianGrid strokeDasharray="3 3" vertical={false} stroke={isDark ? "#1e293b" : "#f1f5f9"} />
-                    <XAxis 
-                      dataKey="month" 
-                      axisLine={false} 
-                      tickLine={false} 
-                      tick={{ fill: isDark ? "#64748b" : "#94a3b8", fontSize: 12, fontWeight: 600 }} 
+                    <CartesianGrid
+                      strokeDasharray="3 3"
+                      vertical={false}
+                      stroke={isDark ? "#1e293b" : "#f1f5f9"}
                     />
-                    <YAxis 
-                      axisLine={false} 
-                      tickLine={false} 
-                      tick={{ fill: isDark ? "#64748b" : "#94a3b8", fontSize: 12, fontWeight: 600 }} 
+                    <XAxis
+                      dataKey="month"
+                      axisLine={false}
+                      tickLine={false}
+                      tick={{
+                        fill: isDark ? "#64748b" : "#94a3b8",
+                        fontSize: 12,
+                        fontWeight: 600,
+                      }}
+                    />
+                    <YAxis
+                      axisLine={false}
+                      tickLine={false}
+                      tick={{
+                        fill: isDark ? "#64748b" : "#94a3b8",
+                        fontSize: 12,
+                        fontWeight: 600,
+                      }}
                     />
                     <Tooltip content={<ChartTooltipContent />} />
                     <Area
@@ -487,12 +524,17 @@ export default function Dashboard() {
                         {item.value}
                       </span>
                     </div>
-                    <div className={cn(
-                      "h-1.5 w-full rounded-full overflow-hidden transition-colors",
-                      isDark ? "bg-slate-800" : "bg-slate-100"
-                    )}>
+                    <div
+                      className={cn(
+                        "h-1.5 w-full rounded-full overflow-hidden transition-colors",
+                        isDark ? "bg-slate-800" : "bg-slate-100",
+                      )}
+                    >
                       <div
-                        className={cn("h-full rounded-full transition-all duration-500", item.color)}
+                        className={cn(
+                          "h-full rounded-full transition-all duration-500",
+                          item.color,
+                        )}
                         style={{ width: item.value }}
                       />
                     </div>
@@ -549,12 +591,15 @@ export default function Dashboard() {
                       stroke="none"
                     >
                       {categoryData.map((entry, index) => (
-                        <Cell 
-                          key={`cell-${index}`} 
+                        <Cell
+                          key={`cell-${index}`}
                           fill={
-                            entry.name === "Affiliate" ? "url(#colorOrange)" : 
-                            entry.name === "Direct" ? "url(#colorPink)" : "url(#colorViolet)"
-                          } 
+                            entry.name === "Affiliate"
+                              ? "url(#colorOrange)"
+                              : entry.name === "Direct"
+                                ? "url(#colorPink)"
+                                : "url(#colorViolet)"
+                          }
                           stroke="none"
                         />
                       ))}
@@ -759,12 +804,14 @@ export default function Dashboard() {
                     </TableCell>
                     <TableCell className="py-4">
                       <div className="flex items-center gap-3">
-                        <div className={cn(
-                          "w-8 h-8 rounded-full flex items-center justify-center text-[10px] font-black border transition-colors",
-                          isDark 
-                            ? "bg-slate-800 text-orange-500 border-white/[0.05]" 
-                            : "bg-orange-50 text-orange-600 border-orange-100"
-                        )}>
+                        <div
+                          className={cn(
+                            "w-8 h-8 rounded-full flex items-center justify-center text-[10px] font-black border transition-colors",
+                            isDark
+                              ? "bg-slate-800 text-orange-500 border-white/[0.05]"
+                              : "bg-orange-50 text-orange-600 border-orange-100",
+                          )}
+                        >
                           {order.customer
                             .split(" ")
                             .map((n) => n[0])
