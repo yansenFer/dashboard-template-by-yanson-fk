@@ -402,11 +402,11 @@ export default function Profile() {
             <div className="flex flex-col gap-8">
               {/* Tabs */}
               <div
-                className={`flex items-center gap-1 ${
+                className={`flex items-center gap-1 overflow-x-auto scrollbar-hide ${
                   activeTab === "overview"
                     ? `${isDark ? "bg-dark" : "bg-gray-100"} `
                     : `${isDark ? "bg-dark" : "bg-gray-100"}`
-                } p-1 rounded-2xl w-fit`}
+                } p-1 rounded-2xl w-full sm:w-fit`}
               >
                 {["overview", "journey", "projects", "documents"].map((tab) => (
                   <button

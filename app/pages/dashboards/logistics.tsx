@@ -425,15 +425,15 @@ export default function Logistics() {
                     Track your latest logistics events across all regions
                   </CardDescription>
                 </div>
-                <div className="flex items-center gap-2">
-                  <div className="relative">
+                <div className="flex items-center gap-2 w-full sm:w-auto">
+                  <div className="relative flex-1 sm:flex-none">
                     <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                     <Input
                       placeholder="Search order, company..."
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
                       className={cn(
-                        "pl-9 w-[220px] h-9 text-sm transition-all focus-visible:ring-orange-500/30",
+                        "pl-9 w-full sm:w-[220px] h-9 text-sm transition-all focus-visible:ring-orange-500/30",
                         isDark
                           ? "bg-slate-900 border-slate-800 text-white"
                           : "bg-white border-gray-200 text-slate-900",
@@ -444,7 +444,7 @@ export default function Logistics() {
                     variant="outline"
                     size="icon"
                     className={cn(
-                      "h-9 w-9 transition-all",
+                      "h-9 w-9 shrink-0 transition-all",
                       isDark
                         ? "bg-slate-900 border-slate-800 hover:bg-slate-800"
                         : "bg-white border-gray-200 hover:bg-gray-50 text-slate-600",
@@ -455,6 +455,7 @@ export default function Logistics() {
                 </div>
               </CardHeader>
               <CardContent className="px-3 pb-3">
+                <div className="overflow-x-auto">
                 <Table>
                   <TableHeader>
                     <TableRow className="hover:bg-transparent border-b border-black/[0.03] dark:border-white/[0.03]">
@@ -530,6 +531,7 @@ export default function Logistics() {
                     ))}
                   </TableBody>
                 </Table>
+                </div>
               </CardContent>
             </Card>
           </div>

@@ -146,7 +146,7 @@ export default function SignIn() {
         {/* Right Side: Login Form */}
         <div className="flex flex-col justify-center items-center p-8 lg:p-24 relative">
           {/* Mobile Logo */}
-          <div className="lg:hidden flex items-center gap-3 mb-12 absolute top-8 left-8">
+          <div className="lg:hidden flex items-center justify-center gap-3 mb-10 w-full max-w-[420px]">
             <LogoIcon isDark={isDark} />
             <span
               className={cn(

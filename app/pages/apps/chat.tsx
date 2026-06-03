@@ -188,6 +188,7 @@ export default function Chat() {
   const isDark = useSelector((state: RootState) => state.dark.isDark);
   const [selectedChatId, setSelectedChatId] = useState(INITIAL_CHATS[0].id);
   const [showDetail, setShowDetail] = useState(true);
+  const [isMobileListVisible, setIsMobileListVisible] = useState(true);
   const [inputText, setInputText] = useState("");
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -214,9 +215,10 @@ export default function Chat() {
         {/* --- Left Sidebar: Contacts --- */}
         <div
           className={cn(
-            "w-80 flex flex-col border-r h-full overflow-hidden transition-all duration-300",
+            "w-full md:w-80 flex-col border-r h-full overflow-hidden transition-all duration-300",
             borderMuted,
             isDark ? "bg-slate-950/80" : "bg-white",
+            isMobileListVisible ? "flex" : "hidden md:flex",
           )}
         >
           {/* Sidebar Header */}
@@ -312,7 +314,10 @@ export default function Chat() {
             {INITIAL_CHATS.map((chat) => (
               <button
                 key={chat.id}
-                onClick={() => setSelectedChatId(chat.id)}
+                onClick={() => {
+                  setSelectedChatId(chat.id);
+                  setIsMobileListVisible(false);
+                }}
                 className={cn(
                   "w-full p-3 rounded-2xl cursor-pointer flex items-center gap-4 transition-all duration-300 group relative",
                   selectedChatId === chat.id
@@ -340,13 +345,8 @@ export default function Chat() {
                   />
                 </div>
                 <div className="flex-1 text-left min-w-0">
-                  <div className="flex items-center justify-between mb-0.5">
-                    <h3
-                      className={cn(
-                        "text-sm font-bold truncate",
-                        selectedChatId === chat.id ? "text-white" : textPrimary,
-                      )}
-                    >
+                  <div className="flex items-center justify-between mb-1">
+                    <h3 className="font-bold text-sm truncate max-w-[150px]">
                       {chat.contact.name}
                     </h3>
                     <span
@@ -384,7 +384,12 @@ export default function Chat() {
         </div>
 
         {/* --- Middle: Chat Window --- */}
-        <div className="flex-1 flex flex-col h-full bg-transparent overflow-hidden">
+        <div
+          className={cn(
+            "flex-1 flex-col h-full bg-transparent overflow-hidden",
+            !isMobileListVisible ? "flex" : "hidden md:flex",
+          )}
+        >
           {/* Chat Header */}
           <div
             className={cn(
@@ -392,8 +397,16 @@ export default function Chat() {
               borderMuted,
             )}
           >
-            <div className="flex items-center gap-4">
-              <div className="relative">
+            <div className="flex items-center gap-2 sm:gap-4 flex-1 min-w-0">
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setIsMobileListVisible(true)}
+                className="md:hidden rounded-xl text-slate-400 shrink-0 hover:bg-orange-500 hover:text-white"
+              >
+                <ArrowLeft className="w-5 h-5" />
+              </Button>
+              <div className="relative shrink-0">
                 <img
                   src={activeChat.contact.avatar}
                   alt={activeChat.contact.name}
@@ -401,10 +414,10 @@ export default function Chat() {
                 />
                 <span className="absolute bottom-0 right-0 w-3.5 h-3.5 bg-emerald-500 rounded-full border-2 border-white dark:border-slate-950" />
               </div>
-              <div>
+              <div className="min-w-0">
                 <h2
                   className={cn(
-                    "text-base font-bold tracking-tight",
+                    "text-base font-bold tracking-tight truncate",
                     textPrimary,
                   )}
                 >
@@ -414,14 +427,14 @@ export default function Chat() {
                   <span className="text-[10px] font-semibold text-emerald-500 animate-pulse uppercase tracking-wider">
                     Online
                   </span>
-                  <span className={cn("w-1 h-1 rounded-full", textMuted)} />
-                  <p className={cn("text-[11px] font-medium", textMuted)}>
+                  <span className={cn("w-1 h-1 rounded-full shrink-0", textMuted)} />
+                  <p className={cn("text-[11px] font-medium truncate", textMuted)}>
                     Typing...
                   </p>
                 </div>
               </div>
             </div>
-            <div className="flex items-center gap-1">
+            <div className="flex items-center gap-1 shrink-0">
               <Button
                 variant="ghost"
                 size="icon"
@@ -628,7 +641,7 @@ export default function Chat() {
               exit={{ width: 0, opacity: 0 }}
               transition={{ duration: 0.2, ease: "easeOut" }}
               className={cn(
-                "border-l h-full overflow-hidden flex flex-col",
+                "border-l h-full overflow-hidden flex flex-col max-lg:hidden",
                 borderMuted,
                 isDark ? "bg-slate-950/80" : "bg-white",
               )}

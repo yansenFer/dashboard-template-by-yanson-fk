@@ -256,10 +256,10 @@ export default function FileManagerList() {
           isDark ? "bg-slate-950/20" : "bg-background",
         )}
       >
-        {/* Left Sidebar */}
+        {/* Left Sidebar - hidden on mobile */}
         <div
           className={cn(
-            "w-64 flex flex-col border-r shrink-0 transition-all duration-300",
+            "hidden md:flex w-64 flex-col border-r shrink-0 transition-all duration-300",
             isDark
               ? "bg-slate-950/80 border-slate-800"
               : "bg-slate-50/30 border-slate-200",

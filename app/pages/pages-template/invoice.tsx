@@ -446,7 +446,7 @@ export default function Invoice() {
     <Layout>
       <div className="flex flex-col gap-6 pb-10">
         {/* Page Header */}
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div className="flex flex-col gap-1">
             <h1
               className={`text-2xl font-extrabold tracking-tight ${textPrimary}`}
@@ -478,9 +478,9 @@ export default function Invoice() {
         </div>
 
         {/* Main content */}
-        <div className="flex gap-6 min-h-[700px]">
+        <div className="flex flex-col lg:flex-row gap-6 min-h-[700px] w-full min-w-0">
           {/* ── Left Panel: Invoice List ── */}
-          <Card className="w-[320px] flex-shrink-0 flex flex-col border-none shadow-sm overflow-hidden p-0! h-full">
+          <Card className="w-full lg:w-[320px] flex-shrink-0 flex flex-col border-none shadow-sm overflow-hidden p-0! h-full">
             {/* Search */}
             <div className={`px-4 py-3 border-b ${dividerColor}`}>
               <div className="relative">
@@ -573,13 +573,13 @@ export default function Invoice() {
           </Card>
 
           {/* ── Right Panel ── */}
-          <div className="flex-1 flex flex-col gap-4">
+          <div className="flex-1 flex flex-col gap-4 min-w-0 w-full">
             {isCreating ? (
               /* ═══════════════ CREATE INVOICE FORM ═══════════════ */
               <>
                 {/* Action Bar */}
                 <Card className="border-none shadow-sm overflow-hidden p-0!">
-                  <CardHeader className="flex flex-row items-center justify-between px-5 py-3.5 border-none">
+                  <CardHeader className="flex flex-col sm:flex-row items-start sm:items-center justify-between px-5 py-3.5 gap-4 border-none">
                     <div className="flex items-center gap-3">
                       <div
                         className={`p-2 rounded-xl ${
@@ -873,9 +873,9 @@ export default function Invoice() {
                     </div>
 
                     {/* Line Items Table */}
-                    <div className="px-8 py-6">
+                    <div className="px-4 sm:px-8 py-6 overflow-x-auto">
                       {/* Table Header */}
-                      <div className="grid grid-cols-12 gap-3 pb-3 text-[10px] uppercase tracking-widest font-black">
+                      <div className="grid grid-cols-12 gap-3 pb-3 text-[10px] uppercase tracking-widest font-black min-w-[800px]">
                         <div
                           className={`col-span-4 px-3 py-2 rounded-l-lg bg-gradient-to-r from-orange-500 to-orange-600 text-white`}
                         >
@@ -897,7 +897,7 @@ export default function Invoice() {
                       </div>
 
                       {/* Rows */}
-                      <div className="flex flex-col gap-3 mt-3">
+                      <div className="flex flex-col gap-3 mt-3 min-w-[800px]">
                         {lineItems.map((li, idx) => {
                           const amount = calcLineAmount(li);
                           return (
@@ -1189,7 +1189,7 @@ export default function Invoice() {
               <>
                 {/* Action Bar */}
                 <Card className="border-none shadow-sm overflow-hidden p-0!">
-                  <CardHeader className="flex flex-row items-center justify-between px-5 py-3.5 border-none">
+                  <CardHeader className="flex flex-col sm:flex-row items-start sm:items-center justify-between px-5 py-3.5 gap-4 border-none">
                     <div className="flex items-center gap-3">
                       <div
                         className={`p-2 rounded-xl ${
@@ -1280,7 +1280,7 @@ export default function Invoice() {
 
                     {/* Billed To + Invoice Info */}
                     <div
-                      className={`px-8 py-6 grid grid-cols-2 gap-8 border-b ${dividerColor}`}
+                      className={`px-4 sm:px-8 py-6 grid grid-cols-1 md:grid-cols-2 gap-8 border-b ${dividerColor}`}
                     >
                       {/* Billed To */}
                       <div className="flex flex-col gap-2">
@@ -1364,10 +1364,10 @@ export default function Invoice() {
                     </div>
 
                     {/* Invoice Items Table */}
-                    <div className="px-8 py-6">
+                    <div className="px-4 sm:px-8 py-6 overflow-x-auto">
                       {/* Header */}
                       <div
-                        className={`grid grid-cols-12 gap-4 pb-3 border-b text-[10px] uppercase tracking-widest font-black ${dividerColor} ${textMuted}`}
+                        className={`grid grid-cols-12 gap-4 pb-3 border-b text-[10px] uppercase tracking-widest font-black min-w-[600px] ${dividerColor} ${textMuted}`}
                       >
                         <div className="col-span-2">Type</div>
                         <div className="col-span-5">Description</div>
@@ -1377,7 +1377,7 @@ export default function Invoice() {
                       </div>
 
                       {/* Rows */}
-                      <div className="flex flex-col divide-y divide-dashed divide-border">
+                      <div className="flex flex-col divide-y divide-dashed divide-border min-w-[600px]">
                         {selected.items.map((item, i) => (
                           <div key={i} className="grid grid-cols-12 gap-4 py-4">
                             <div className="col-span-2">
@@ -1412,9 +1412,9 @@ export default function Invoice() {
 
                     {/* Summary & Totals */}
                     <div
-                      className={`mx-8 mb-6 rounded-2xl overflow-hidden ${dividerColor}`}
+                      className={`mx-4 sm:mx-8 mb-6 rounded-2xl overflow-hidden border ${dividerColor}`}
                     >
-                      <div className="grid grid-cols-3 divide-x divide-border">
+                      <div className="grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-border">
                         {/* Subtotal */}
                         <div
                           className={`p-5 ${isDark ? "bg-slate-800/40" : "bg-slate-50"}`}

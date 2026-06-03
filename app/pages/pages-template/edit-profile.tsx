@@ -62,7 +62,7 @@ export default function EditProfile() {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
           {/* Sidebar Navigation */}
-          <Card className="lg:col-span-3 p-0! h-fit sticky top-[100px] overflow-hidden">
+          <Card className="lg:col-span-3 p-0! h-fit lg:sticky lg:top-[100px] overflow-hidden">
             <div className="flex flex-col">
               {tabs.map((tab) => (
                 <button

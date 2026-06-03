@@ -1,11 +1,12 @@
-import { ChevronLeft, ChevronDown } from "lucide-react";
+import { ChevronLeft, ChevronDown, X } from "lucide-react";
 import SidebarItem from "./SidebarItem";
 import { useState } from "react";
 import { Link, useLocation } from "react-router";
 import { sidebarList } from "~/constants/sidebarList";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import type { RootState } from "~/store/store";
 import { motion, AnimatePresence } from "framer-motion";
+import { closeMobileSidebar } from "~/store/features/sidebar/sidebarSlice";
 
 const LogoIcon = ({ isDark }: { isDark: boolean }) => (
   <svg
@@ -46,6 +47,10 @@ export default function Sidebar() {
   );
   const location = useLocation();
   const isDark = useSelector((state: RootState) => state.dark.isDark);
+  const isMobileOpen = useSelector(
+    (state: RootState) => state.sidebar.isMobileOpen,
+  );
+  const dispatch = useDispatch();
   const pathname = location.pathname;
 
   const toggleSection = (title: string) => {
@@ -55,24 +60,16 @@ export default function Sidebar() {
     );
   };
 
-  return (
-    <aside
-      className={[
-        "sidebar-scroll-container hidden md:flex md:flex-col md:shrink-0 h-screen transition-all duration-300",
-        `${isDark ? "bg-dark text-white border-transparent" : "bg-white text-black border-slate-200"} border-r text-[var(--color-sidebar-foreground)]`,
-        "will-change-[width]",
-        collapsed ? "w-20 -ml-2" : "w-64",
-      ].join(" ")}
-      aria-label="Primary"
-      data-collapsed={collapsed}
-    >
+  const sidebarContent = (isMobile = false) => (
+    <>
       {/* Header / Logo */}
       <div className="flex items-center justify-between px-3 py-4">
         <Link
           to={{ pathname: "/" }}
           className="flex items-center gap-2 w-full rounded-md px-2"
+          onClick={() => isMobile && dispatch(closeMobileSidebar())}
         >
-          {collapsed ? (
+          {collapsed && !isMobile ? (
             <div className="w-full flex items-center justify-center py-2">
               <LogoIcon isDark={isDark} />
             </div>
@@ -91,33 +88,45 @@ export default function Sidebar() {
           )}
         </Link>
 
-        <div className="flex items-center gap-2 relative">
+        {isMobile ? (
+          /* Close button for mobile */
           <button
             type="button"
-            onClick={() => setCollapsed((v) => !v)}
-            className={`inline-flex size-8 cursor-pointer rounded-full absolute -left-1  z-50 items-center justify-center border  ${isDark ? "bg-dark border-dark" : "bg-white border-slate-200"}`}
-            aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
-            title={collapsed ? "Expand" : "Collapse"}
-            aria-live="polite"
+            onClick={() => dispatch(closeMobileSidebar())}
+            className={`inline-flex size-8 cursor-pointer rounded-full items-center justify-center border shrink-0 ${isDark ? "bg-dark border-slate-700" : "bg-white border-slate-200"}`}
+            aria-label="Close sidebar"
           >
-            <ChevronLeft
-              className={[
-                "size-4 transition-transform duration-300 ease-in-out",
-                collapsed ? "rotate-180" : "rotate-0",
-              ].join(" ")}
-              color={isDark ? "white" : "black"}
-            />
+            <X className="size-4" color={isDark ? "white" : "black"} />
           </button>
-        </div>
+        ) : (
+          <div className="flex items-center gap-2 relative">
+            <button
+              type="button"
+              onClick={() => setCollapsed((v) => !v)}
+              className={`inline-flex size-8 cursor-pointer rounded-full absolute -left-1 z-50 items-center justify-center border ${isDark ? "bg-dark border-dark" : "bg-white border-slate-200"}`}
+              aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
+              title={collapsed ? "Expand" : "Collapse"}
+              aria-live="polite"
+            >
+              <ChevronLeft
+                className={[
+                  "size-4 transition-transform duration-300 ease-in-out",
+                  collapsed ? "rotate-180" : "rotate-0",
+                ].join(" ")}
+                color={isDark ? "white" : "black"}
+              />
+            </button>
+          </div>
+        )}
       </div>
 
       {/* Navigation */}
       <nav
-        className={`px-2 pb-4 flex-1 relative z-10 ${collapsed ? "overflow-y-visible" : "overflow-y-auto"} premium-scrollbar`}
+        className={`px-2 pb-4 flex-1 relative z-10 ${collapsed && !isMobile ? "overflow-y-visible" : "overflow-y-auto"} premium-scrollbar`}
         role="navigation"
         aria-label="Main navigation"
       >
-        {collapsed ? (
+        {collapsed && !isMobile ? (
           <div className="flex flex-col gap-1">
             {sidebarList
               .flatMap((parent) => parent.menu)
@@ -178,7 +187,12 @@ export default function Sidebar() {
                               icon={menu.icon}
                               label={menu.label}
                               active={pathname === menu.href}
-                              collapsed={collapsed}
+                              collapsed={false}
+                              onNavigate={
+                                isMobile
+                                  ? () => dispatch(closeMobileSidebar())
+                                  : undefined
+                              }
                             />
                           </li>
                         ))}
@@ -191,6 +205,61 @@ export default function Sidebar() {
           })
         )}
       </nav>
-    </aside>
+    </>
+  );
+
+  return (
+    <>
+      {/* Desktop Sidebar */}
+      <aside
+        className={[
+          "sidebar-scroll-container hidden md:flex md:flex-col md:shrink-0 h-screen transition-all duration-300",
+          `${isDark ? "bg-dark text-white border-transparent" : "bg-white text-black border-slate-200"} border-r text-[var(--color-sidebar-foreground)]`,
+          "will-change-[width]",
+          collapsed ? "w-20 -ml-2" : "w-64",
+        ].join(" ")}
+        aria-label="Primary"
+        data-collapsed={collapsed}
+      >
+        {sidebarContent(false)}
+      </aside>
+
+      {/* Mobile Sidebar Drawer */}
+      <AnimatePresence>
+        {isMobileOpen && (
+          <>
+            {/* Backdrop */}
+            <motion.div
+              key="mobile-backdrop"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="fixed inset-0 z-40 bg-black/50 md:hidden"
+              onClick={() => dispatch(closeMobileSidebar())}
+              aria-hidden="true"
+            />
+            {/* Drawer */}
+            <motion.aside
+              key="mobile-sidebar"
+              initial={{ x: "-100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "-100%" }}
+              transition={{ duration: 0.25, ease: "easeInOut" }}
+              className={[
+                "fixed inset-y-0 left-0 z-50 flex flex-col w-72 h-screen md:hidden",
+                isDark
+                  ? "bg-dark text-white border-transparent"
+                  : "bg-white text-black border-slate-200",
+                "border-r shadow-2xl",
+              ].join(" ")}
+              aria-label="Mobile navigation"
+            >
+              {sidebarContent(true)}
+            </motion.aside>
+          </>
+        )}
+      </AnimatePresence>
+    </>
   );
 }

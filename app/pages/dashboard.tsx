@@ -306,9 +306,9 @@ export default function Dashboard() {
         </div>
 
         {/* ============ ROW 2: CHART + GOAL ============ */}
-        <div className="grid lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <Card className="lg:col-span-2 border-0 shadow-sm overflow-hidden">
-            <CardHeader className="flex flex-row items-center justify-between pb-2 border-b border-black/[0.03] dark:border-white/[0.03]">
+            <CardHeader className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-0 pb-2 border-b border-black/3 dark:border-white/3">
               <div className="grid gap-1">
                 <CardTitle className="text-xl flex items-center gap-2 italic">
                   <TrendingUp className="w-5 h-5 text-orange-500" />
@@ -322,8 +322,8 @@ export default function Dashboard() {
                 className={cn(
                   "flex p-1 rounded-xl border transition-colors",
                   isDark
-                    ? "bg-slate-900/50 border-white/[0.03]"
-                    : "bg-slate-100 border-black/[0.03]",
+                    ? "bg-slate-900/50 border-white/3"
+                    : "bg-slate-100 border-black/3",
                 )}
               >
                 {["Monthly", "Quarterly"].map((v) => (
@@ -333,8 +333,8 @@ export default function Dashboard() {
                       "px-4 py-1.5 text-[10px] font-black uppercase rounded-lg transition-all",
                       v === "Monthly"
                         ? isDark
-                          ? "bg-slate-800 text-orange-500 shadow-sm border border-white/[0.05]"
-                          : "bg-white text-orange-500 shadow-sm border border-black/[0.03]"
+                          ? "bg-slate-800 text-orange-500 shadow-sm border border-white/5"
+                          : "bg-white text-orange-500 shadow-sm border border-black/3"
                         : isDark
                           ? "text-slate-500 hover:text-slate-300"
                           : "text-slate-400 hover:text-slate-600",
@@ -345,12 +345,12 @@ export default function Dashboard() {
                 ))}
               </div>
             </CardHeader>
-            <CardContent className="pt-6 pb-4">
-              <div className="h-[320px] w-full">
+            <CardContent className="pt-4 pb-2">
+              <div className="h-60 w-full">
                 <ChartContainer config={{}}>
                   <AreaChart
                     data={salesData}
-                    margin={{ top: 10, right: 10, left: -10, bottom: 50 }}
+                    margin={{ top: 10, right: 10, left: -10, bottom: 0 }}
                   >
                     <defs>
                       <linearGradient
@@ -417,7 +417,7 @@ export default function Dashboard() {
               isDark ? "bg-slate-950" : "bg-white",
             )}
           >
-            <CardHeader className="pb-2 border-b border-black/[0.03] dark:border-white/[0.03]">
+            <CardHeader className="pb-2 border-b border-black/3 dark:border-white/3">
               <CardTitle
                 className={cn(
                   "text-xl italic flex items-center gap-2",
@@ -430,7 +430,7 @@ export default function Dashboard() {
               <CardDescription>Progress towards $500k target</CardDescription>
             </CardHeader>
             <CardContent className="flex-1 flex flex-col justify-center items-center pt-6">
-              <div className="h-[220px] w-full relative">
+              <div className="h-55 w-full relative">
                 <ResponsiveContainer width="100%" height="100%">
                   <PieChart>
                     <defs>
@@ -546,16 +546,16 @@ export default function Dashboard() {
         </div>
 
         {/* ============ ROW 3: CATEGORY + SCHEDULE ============ */}
-        <div className="grid lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <Card className="border-0 shadow-sm overflow-hidden">
-            <CardHeader className="border-b border-black/[0.03] dark:border-white/[0.03]">
+            <CardHeader className="border-b border-black/3 dark:border-white/3">
               <CardTitle className="text-xl flex items-center gap-2">
                 <Package className="w-5 h-5 text-pink-500" />
                 Sales Category
               </CardTitle>
             </CardHeader>
             <CardContent className="flex flex-col md:flex-row items-center justify-around py-8">
-              <div className="h-[200px] w-[200px]">
+              <div className="h-50 w-50">
                 <ResponsiveContainer width="100%" height="100%">
                   <PieChart>
                     <defs>
@@ -739,137 +739,143 @@ export default function Dashboard() {
                 Overview of the latest transactions
               </CardDescription>
             </div>
-            <div className="flex items-center gap-2">
-              <div className="relative">
+            <div className="flex items-center gap-2 w-full sm:w-auto">
+              <div className="relative flex-1 sm:flex-none">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
                 <Input
                   placeholder="Search order ID..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className={cn(
-                    "pl-9 w-[200px] h-9 text-xs transition-all focus-visible:ring-orange-500/30",
+                    "pl-9 w-full sm:w-[200px] h-9 text-xs transition-all focus-visible:ring-orange-500/30",
                     isDark
                       ? "bg-slate-900 border-slate-800 text-white"
                       : "bg-white border-slate-200 text-slate-900",
                   )}
                 />
               </div>
-              <Button variant="outline" size="sm" className="h-9 gap-2">
+              <Button
+                variant="outline"
+                size="sm"
+                className="h-9 gap-2 shrink-0"
+              >
                 <Filter className="w-3.5 h-3.5" />
-                <span>Filter</span>
+                <span className="hidden sm:inline">Filter</span>
               </Button>
             </div>
           </CardHeader>
           <CardContent className="p-0">
-            <Table>
-              <TableHeader>
-                <TableRow className="hover:bg-transparent border-b border-black/[0.03] dark:border-white/[0.03]">
-                  {[
-                    "Order ID",
-                    "Customer",
-                    "Product",
-                    "Value",
-                    "Date",
-                    "Status",
-                  ].map((h) => (
-                    <TableHead
-                      key={h}
-                      className={cn(
-                        "px-6 h-12 text-[10px] font-black uppercase tracking-widest",
-                        isDark ? "text-slate-500" : "text-slate-400",
-                      )}
-                    >
-                      {h}
-                    </TableHead>
-                  ))}
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {filteredOrders.map((order) => (
-                  <TableRow
-                    key={order.id}
-                    className="group border-b border-black/[0.02] dark:border-white/[0.02] hover:bg-orange-500/[0.02] dark:hover:bg-white/[0.02] transition-colors"
-                  >
-                    <TableCell className="px-6 py-4">
-                      <span
+            <div className="overflow-x-auto">
+              <Table>
+                <TableHeader>
+                  <TableRow className="hover:bg-transparent border-b border-black/[0.03] dark:border-white/[0.03]">
+                    {[
+                      "Order ID",
+                      "Customer",
+                      "Product",
+                      "Value",
+                      "Date",
+                      "Status",
+                    ].map((h) => (
+                      <TableHead
+                        key={h}
                         className={cn(
-                          "font-mono text-[10px] font-bold px-2 py-0.5 rounded border transition-colors",
-                          isDark
-                            ? "bg-slate-800 border-slate-700 text-slate-400"
-                            : "bg-slate-50 border-slate-100 text-slate-500",
+                          "px-6 h-12 text-[10px] font-black uppercase tracking-widest",
+                          isDark ? "text-slate-500" : "text-slate-400",
                         )}
                       >
-                        {order.id}
-                      </span>
-                    </TableCell>
-                    <TableCell className="py-4">
-                      <div className="flex items-center gap-3">
-                        <div
+                        {h}
+                      </TableHead>
+                    ))}
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {filteredOrders.map((order) => (
+                    <TableRow
+                      key={order.id}
+                      className="group border-b border-black/[0.02] dark:border-white/[0.02] hover:bg-orange-500/[0.02] dark:hover:bg-white/[0.02] transition-colors"
+                    >
+                      <TableCell className="px-6 py-4">
+                        <span
                           className={cn(
-                            "w-8 h-8 rounded-full flex items-center justify-center text-[10px] font-black border transition-colors",
+                            "font-mono text-[10px] font-bold px-2 py-0.5 rounded border transition-colors",
                             isDark
-                              ? "bg-slate-800 text-orange-500 border-white/[0.05]"
-                              : "bg-orange-50 text-orange-600 border-orange-100",
+                              ? "bg-slate-800 border-slate-700 text-slate-400"
+                              : "bg-slate-50 border-slate-100 text-slate-500",
                           )}
                         >
-                          {order.customer
-                            .split(" ")
-                            .map((n) => n[0])
-                            .join("")}
-                        </div>
-                        <div className="grid">
-                          <span
+                          {order.id}
+                        </span>
+                      </TableCell>
+                      <TableCell className="py-4">
+                        <div className="flex items-center gap-3">
+                          <div
                             className={cn(
-                              "text-sm font-bold",
-                              isDark ? "text-white" : "text-slate-900",
+                              "w-8 h-8 rounded-full flex items-center justify-center text-[10px] font-black border transition-colors",
+                              isDark
+                                ? "bg-slate-800 text-orange-500 border-white/[0.05]"
+                                : "bg-orange-50 text-orange-600 border-orange-100",
                             )}
                           >
-                            {order.customer}
-                          </span>
-                          <span className="text-[10px] text-slate-500 font-medium">
-                            {order.email}
-                          </span>
+                            {order.customer
+                              .split(" ")
+                              .map((n) => n[0])
+                              .join("")}
+                          </div>
+                          <div className="grid">
+                            <span
+                              className={cn(
+                                "text-sm font-bold",
+                                isDark ? "text-white" : "text-slate-900",
+                              )}
+                            >
+                              {order.customer}
+                            </span>
+                            <span className="text-[10px] text-slate-500 font-medium">
+                              {order.email}
+                            </span>
+                          </div>
                         </div>
-                      </div>
-                    </TableCell>
-                    <TableCell className="py-4">
-                      <span className="text-sm font-medium text-slate-600 dark:text-slate-400">
-                        {order.product}
-                      </span>
-                    </TableCell>
-                    <TableCell className="py-4">
-                      <span
-                        className={cn(
-                          "text-sm font-black",
-                          isDark ? "text-white" : "text-slate-900",
-                        )}
-                      >
-                        {order.value}
-                      </span>
-                    </TableCell>
-                    <TableCell className="py-4">
-                      <span className="text-xs font-semibold text-slate-500">
-                        {order.date}
-                      </span>
-                    </TableCell>
-                    <TableCell className="px-6 py-4">
-                      <span
-                        className={cn(
-                          "inline-flex items-center px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest border shadow-xs",
-                          order.status === "Complete"
-                            ? "text-emerald-600 bg-emerald-50 border-emerald-100 dark:text-emerald-400 dark:bg-emerald-500/10 dark:border-emerald-500/20"
-                            : order.status === "Pending"
-                              ? "text-orange-600 bg-orange-50 border-orange-100 dark:text-orange-400 dark:bg-orange-500/10 dark:border-orange-500/20"
-                              : "text-rose-600 bg-rose-50 border-rose-100 dark:text-rose-400 dark:bg-rose-500/10 dark:border-rose-500/20",
-                        )}
-                      >
-                        {order.status}
-                      </span>
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
+                      </TableCell>
+                      <TableCell className="py-4">
+                        <span className="text-sm font-medium text-slate-600 dark:text-slate-400">
+                          {order.product}
+                        </span>
+                      </TableCell>
+                      <TableCell className="py-4">
+                        <span
+                          className={cn(
+                            "text-sm font-black",
+                            isDark ? "text-white" : "text-slate-900",
+                          )}
+                        >
+                          {order.value}
+                        </span>
+                      </TableCell>
+                      <TableCell className="py-4">
+                        <span className="text-xs font-semibold text-slate-500">
+                          {order.date}
+                        </span>
+                      </TableCell>
+                      <TableCell className="px-6 py-4">
+                        <span
+                          className={cn(
+                            "inline-flex items-center px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest border shadow-xs",
+                            order.status === "Complete"
+                              ? "text-emerald-600 bg-emerald-50 border-emerald-100 dark:text-emerald-400 dark:bg-emerald-500/10 dark:border-emerald-500/20"
+                              : order.status === "Pending"
+                                ? "text-orange-600 bg-orange-50 border-orange-100 dark:text-orange-400 dark:bg-orange-500/10 dark:border-orange-500/20"
+                                : "text-rose-600 bg-rose-50 border-rose-100 dark:text-rose-400 dark:bg-rose-500/10 dark:border-rose-500/20",
+                          )}
+                        >
+                          {order.status}
+                        </span>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </div>
           </CardContent>
         </Card>
       </div>

@@ -54,7 +54,7 @@ export default function SignUp() {
         {/* Left Side: Registration Form */}
         <div className="flex flex-col justify-center items-center p-8 lg:p-24 relative order-2 lg:order-1">
           {/* Mobile Logo */}
-          <div className="lg:hidden flex items-center gap-3 mb-12 absolute top-8 left-8">
+          <div className="lg:hidden flex items-center justify-center gap-3 mb-10 w-full max-w-[420px]">
             <LogoIcon isDark={isDark} />
             <span
               className={cn(

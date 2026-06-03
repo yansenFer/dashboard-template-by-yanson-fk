@@ -1,4 +1,4 @@
-import { Bell, Grid, MoonStar, Settings, Sun, User } from "lucide-react";
+import { Bell, Menu, MoonStar, Sun } from "lucide-react";
 import { Button } from "../ui/button";
 import SearchBar from "./SearchBar";
 import { useEffect, useRef, useState } from "react";
@@ -7,6 +7,7 @@ import { AnimatePresence } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "~/store/store";
 import { setIsDark } from "~/store/features/darkMode/darkModeSlice";
+import { toggleMobileSidebar } from "~/store/features/sidebar/sidebarSlice";
 import LanguageSelector from "./LanguageSelector";
 import ProfileDropdown from "./ProfileDropdown";
 
@@ -35,17 +36,32 @@ export default function Header() {
 
   return (
     <header
-      className={` ${isDark ? "bg-dark border-transparent" : "bg-white border-slate-200"} border-b sticky z-40 top-0 px-6 py-4`}
+      className={` ${isDark ? "bg-dark border-transparent" : "bg-white border-slate-200"} border-b sticky z-40 top-0 px-4 md:px-6 py-4`}
     >
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-4 ml-5">
-          <SearchBar />
+      <div className="flex items-center justify-between gap-3">
+        {/* Left: Hamburger (mobile) + Search */}
+        <div className="flex items-center gap-3">
+          {/* Hamburger — only on mobile */}
+          <Button
+            onClick={() => dispatch(toggleMobileSidebar())}
+            className={`md:hidden bg-transparent border rounded-full hover:bg-transparent shrink-0 ${isDark ? "border-slate-700 hover:border-slate-500" : "border-slate-200 hover:border-slate-300"}`}
+            size="icon"
+            aria-label="Open navigation menu"
+          >
+            <Menu className="size-5" color={isDark ? "white" : "black"} />
+          </Button>
+
+          {/* Search — hidden on small mobile, visible md+ */}
+          <div className="hidden sm:flex items-center">
+            <SearchBar />
+          </div>
         </div>
 
+        {/* Right: action buttons */}
         <div className="flex items-center gap-2">
           <Button
             onClick={() => dispatch(setIsDark(!isDark))}
-            className={`bg-transparent relative border rounded-full  hover:bg-transparent ${isDark ? "hover:border-dark" : "hover:border-light"}`}
+            className={`bg-transparent relative border rounded-full hover:bg-transparent ${isDark ? "hover:border-dark" : "hover:border-light"}`}
             size="icon"
           >
             {isDark ? (
@@ -54,7 +70,10 @@ export default function Header() {
               <MoonStar name="moon-star" color={isDark ? "white" : "black"} />
             )}
           </Button>
-          <LanguageSelector />
+          {/* Language selector hidden on small screens */}
+          <div className="hidden sm:block">
+            <LanguageSelector />
+          </div>
           <div className="relative" ref={notifRef}>
             <Button
               className="bg-transparent relative border rounded-full hover:border-orange-600 hover:bg-transparent"

@@ -11,6 +11,7 @@ type SidebarItemProps = {
   active?: boolean;
   badge?: string | number;
   collapsed?: boolean;
+  onNavigate?: () => void;
 };
 
 export default function SidebarItem({
@@ -20,6 +21,7 @@ export default function SidebarItem({
   badge,
   collapsed,
   href,
+  onNavigate,
 }: SidebarItemProps) {
   const isDark = useSelector((state: RootState) => state.dark.isDark);
 
@@ -100,7 +102,7 @@ export default function SidebarItem({
   );
 
   return href ? (
-    <Link to={{ pathname: href }} className="block">
+    <Link to={{ pathname: href }} className="block" onClick={onNavigate}>
       {content}
     </Link>
   ) : (

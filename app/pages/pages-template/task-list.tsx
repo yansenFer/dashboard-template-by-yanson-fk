@@ -252,7 +252,7 @@ export default function TaskList() {
                 type="text"
                 placeholder="Search tasks..."
                 className={cn(
-                  "pl-9 pr-4 py-2 text-sm rounded-lg border w-64 transition-all focus:outline-none focus:ring-2 focus:ring-orange-500/20",
+                  "pl-9 pr-4 py-2 text-sm rounded-lg border w-full sm:w-64 transition-all focus:outline-none focus:ring-2 focus:ring-orange-500/20",
                   isDark
                     ? "bg-slate-900/50 border-slate-800 text-white placeholder:text-slate-500"
                     : "bg-white border-slate-200 text-slate-900 placeholder:text-slate-400",

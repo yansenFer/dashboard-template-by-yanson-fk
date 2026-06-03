@@ -264,6 +264,7 @@ export default function ContactList() {
 
         {/* Main Table Section */}
         <div className="flex-1 overflow-auto">
+          <div className="overflow-x-auto">
           <Table>
             <TableHeader
               className={cn(
@@ -414,12 +415,13 @@ export default function ContactList() {
               ))}
             </TableBody>
           </Table>
+          </div>
         </div>
 
         {/* Pagination Footer */}
         <div
           className={cn(
-            "flex items-center justify-between px-4 py-4 border-t",
+            "flex flex-col sm:flex-row items-center justify-between gap-3 px-4 py-4 border-t",
             isDark
               ? "bg-slate-900 border-slate-800/50"
               : "bg-white border-slate-100",

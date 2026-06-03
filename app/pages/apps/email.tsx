@@ -396,7 +396,9 @@ export default function Email() {
           className={cn(
             "w-full lg:w-[450px] flex flex-col border-r h-full transition-all duration-300 relative z-10",
             borderMuted,
-            !isMobileListVisible && "hidden lg:flex",
+            // On mobile: hide when email is selected (detail view takes over)
+            // On lg+: always show as a column
+            selectedEmailId ? "hidden lg:flex" : "flex",
           )}
         >
           {/* List Header */}
@@ -633,7 +635,7 @@ export default function Email() {
                     <Button
                       variant="ghost"
                       size="icon"
-                      onClick={() => setIsMobileListVisible(true)}
+                      onClick={() => { setSelectedEmailId(null); }}
                       className="lg:hidden rounded-xl text-slate-400 shrink-0"
                     >
                       <ChevronLeft className="w-4 h-4" />
