@@ -80,9 +80,9 @@ export const sidebarList: ISidebarList[] = [
     titleMenu: "Pages",
     menu: [
       {
-        href: "/pages-template/simple-sign-in",
+        href: "/pages-template/sign-in",
         icon: <LogIn />,
-        label: "Simple Sign In",
+        label: "Sign In",
       },
       {
         href: "/pages-template/profile",

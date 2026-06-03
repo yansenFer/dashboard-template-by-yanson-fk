@@ -7,6 +7,38 @@ import { useSelector } from "react-redux";
 import type { RootState } from "~/store/store";
 import { motion, AnimatePresence } from "framer-motion";
 
+const LogoIcon = ({ isDark }: { isDark: boolean }) => (
+  <svg
+    className={`w-7 h-7 shrink-0 ${isDark ? "text-slate-100" : "text-slate-800"}`}
+    viewBox="0 0 32 32"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    {/* Arch / F outline */}
+    <path
+      d="M8 24V16C8 11.5817 11.5817 8 16 8C20.4183 8 24 11.5817 24 16V24"
+      stroke="currentColor"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    {/* Mid bar */}
+    <path
+      d="M8 17H24"
+      stroke="currentColor"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+    />
+    {/* Diagonal slash */}
+    <path
+      d="M9 26L23 6"
+      stroke="currentColor"
+      strokeWidth="3.2"
+      strokeLinecap="round"
+    />
+  </svg>
+);
+
 export default function Sidebar() {
   const [collapsed, setCollapsed] = useState(false);
   const [expandedSections, setExpandedSections] = useState<string[]>(
@@ -41,21 +73,19 @@ export default function Sidebar() {
           className="flex items-center gap-2 w-full rounded-md px-2"
         >
           {collapsed ? (
-            <span className="font-black py-2 w-full text-center text-xl bg-clip-text text-transparent bg-gradient-to-br from-orange-400 to-orange-600">
-              Gv
-            </span>
+            <div className="w-full flex items-center justify-center py-2">
+              <LogoIcon isDark={isDark} />
+            </div>
           ) : (
-            <div className="flex items-center gap-2 py-1">
-              <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-gradient-to-br from-orange-400 to-orange-600 text-white font-black text-lg shadow-md">
-                Gv
-              </div>
+            <div className="flex items-center gap-3 py-1 pl-1">
+              <LogoIcon isDark={isDark} />
               <span
                 className={[
-                  "font-extrabold text-2xl tracking-tight",
-                  isDark ? "text-white" : "text-slate-900",
+                  "font-semibold text-lg tracking-wider font-sans uppercase",
+                  isDark ? "text-slate-100" : "text-slate-800",
                 ].join(" ")}
               >
-                Gvixer
+                Ferforge UI
               </span>
             </div>
           )}

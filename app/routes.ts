@@ -15,14 +15,8 @@ export default [
   route("/apps/file-manager-list", "pages/apps/file-manager-list.tsx"),
 
   //Pages
-  route(
-    "/pages-template/simple-sign-in",
-    "pages/pages-template/simple-sign-in.tsx",
-  ),
-  route(
-    "/pages-template/simple-sign-up",
-    "pages/pages-template/simple-sign-up.tsx",
-  ),
+  route("/pages-template/sign-in", "pages/pages-template/sign-in.tsx"),
+  route("/pages-template/sign-up", "pages/pages-template/sign-up.tsx"),
   route("/pages-template/profile", "pages/pages-template/profile.tsx"),
   route(
     "/pages-template/edit-profile",

@@ -57,7 +57,7 @@ import { cn } from "~/lib/utils";
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "Analytic Command Center - Gvixer" },
+    { title: "Analytic Command Center - Ferforge UI" },
     {
       name: "description",
       content: "Premium visitor analytics dashboard for developers",

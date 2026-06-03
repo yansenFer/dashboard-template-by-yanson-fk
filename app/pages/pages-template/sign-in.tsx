@@ -7,7 +7,36 @@ import { Checkbox } from "~/components/ui/checkbox";
 import type { RootState } from "~/store/store";
 import { cn } from "~/lib/utils";
 
-export default function SimpleSignIn() {
+const LogoIcon = ({ isDark }: { isDark: boolean }) => (
+  <svg
+    className={`w-8 h-8 shrink-0 ${isDark ? "text-slate-100" : "text-slate-800"}`}
+    viewBox="0 0 32 32"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M8 24V16C8 11.5817 11.5817 8 16 8C20.4183 8 24 11.5817 24 16V24"
+      stroke="currentColor"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M8 17H24"
+      stroke="currentColor"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+    />
+    <path
+      d="M9 26L23 6"
+      stroke="currentColor"
+      strokeWidth="3.2"
+      strokeLinecap="round"
+    />
+  </svg>
+);
+
+export default function SignIn() {
   const isDark = useSelector((state: RootState) => state.dark.isDark);
   const navigate = useNavigate();
 
@@ -48,22 +77,15 @@ export default function SimpleSignIn() {
           </div>
 
           <div className="relative z-10">
-            <div className="flex items-center gap-2 mb-12">
-              <div
-                className={cn(
-                  "flex items-center justify-center w-10 h-10 rounded-xl font-black text-xl shadow-xl transition-colors",
-                  isDark ? "bg-white text-orange-600" : "bg-orange-600 text-white",
-                )}
-              >
-                Gv
-              </div>
+            <div className="flex items-center gap-3 mb-12">
+              <LogoIcon isDark={isDark} />
               <span
                 className={cn(
-                  "font-extrabold text-2xl tracking-tight transition-colors",
-                  isDark ? "text-white" : "text-slate-900",
+                  "font-semibold text-xl tracking-wider font-sans uppercase transition-colors",
+                  isDark ? "text-slate-100" : "text-slate-800",
                 )}
               >
-                Gvixer
+                Ferforge UI
               </span>
             </div>
 
@@ -75,7 +97,7 @@ export default function SimpleSignIn() {
                 )}
               >
                 Design your future with{" "}
-                <span className="text-orange-500">Gvixer Premium.</span>
+                <span className="text-orange-500">Ferforge UI.</span>
               </h1>
               <p
                 className={cn(
@@ -109,7 +131,7 @@ export default function SimpleSignIn() {
               isDark ? "text-white/60" : "text-slate-400",
             )}
           >
-            <span>© 2026 Gvixer Dashboard</span>
+            <span>© 2026 Ferforge UI</span>
             <div className="flex gap-6">
               <span className="hover:text-orange-500 cursor-pointer transition-colors">
                 Privacy
@@ -124,14 +146,15 @@ export default function SimpleSignIn() {
         {/* Right Side: Login Form */}
         <div className="flex flex-col justify-center items-center p-8 lg:p-24 relative">
           {/* Mobile Logo */}
-          <div className="lg:hidden flex items-center gap-2 mb-12 absolute top-8 left-8">
-            <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-orange-600 text-white font-black text-lg">
-              Gv
-            </div>
+          <div className="lg:hidden flex items-center gap-3 mb-12 absolute top-8 left-8">
+            <LogoIcon isDark={isDark} />
             <span
-              className={cn("font-bold text-xl tracking-tight", textPrimary)}
+              className={cn(
+                "font-semibold text-lg tracking-wider font-sans uppercase",
+                textPrimary,
+              )}
             >
-              Gvixer
+              Ferforge UI
             </span>
           </div>
 
@@ -263,7 +286,7 @@ export default function SimpleSignIn() {
                   Don't have an account yet?{" "}
                   <button
                     type="button"
-                    onClick={() => navigate("/pages-template/simple-sign-up")}
+                    onClick={() => navigate("/pages-template/sign-up")}
                     className="text-orange-500 font-bold hover:underline transition-all"
                   >
                     Create an account
@@ -274,7 +297,7 @@ export default function SimpleSignIn() {
           </div>
 
           <div className="mt-auto pt-10 lg:hidden text-center text-slate-400 text-[10px] font-bold tracking-widest uppercase">
-            © 2026 Gvixer Dashboard
+            © 2026 Ferforge UI
           </div>
         </div>
       </div>

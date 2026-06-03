@@ -7,7 +7,36 @@ import { Checkbox } from "~/components/ui/checkbox";
 import type { RootState } from "~/store/store";
 import { cn } from "~/lib/utils";
 
-export default function SimpleSignUp() {
+const LogoIcon = ({ isDark }: { isDark: boolean }) => (
+  <svg
+    className={`w-8 h-8 shrink-0 ${isDark ? "text-slate-100" : "text-slate-800"}`}
+    viewBox="0 0 32 32"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M8 24V16C8 11.5817 11.5817 8 16 8C20.4183 8 24 11.5817 24 16V24"
+      stroke="currentColor"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M8 17H24"
+      stroke="currentColor"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+    />
+    <path
+      d="M9 26L23 6"
+      stroke="currentColor"
+      strokeWidth="3.2"
+      strokeLinecap="round"
+    />
+  </svg>
+);
+
+export default function SignUp() {
   const isDark = useSelector((state: RootState) => state.dark.isDark);
   const navigate = useNavigate();
 
@@ -25,14 +54,15 @@ export default function SimpleSignUp() {
         {/* Left Side: Registration Form */}
         <div className="flex flex-col justify-center items-center p-8 lg:p-24 relative order-2 lg:order-1">
           {/* Mobile Logo */}
-          <div className="lg:hidden flex items-center gap-2 mb-12 absolute top-8 left-8">
-            <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-orange-600 text-white font-black text-lg">
-              Gv
-            </div>
+          <div className="lg:hidden flex items-center gap-3 mb-12 absolute top-8 left-8">
+            <LogoIcon isDark={isDark} />
             <span
-              className={cn("font-bold text-xl tracking-tight", textPrimary)}
+              className={cn(
+                "font-semibold text-lg tracking-wider font-sans uppercase",
+                textPrimary,
+              )}
             >
-              Gvixer
+              Ferforge UI
             </span>
           </div>
 
@@ -173,7 +203,7 @@ export default function SimpleSignUp() {
                   Already have an account?{" "}
                   <button
                     type="button"
-                    onClick={() => navigate("/pages-template/simple-sign-in")}
+                    onClick={() => navigate("/pages-template/sign-in")}
                     className="text-orange-500 font-bold hover:underline transition-all"
                   >
                     Login here
@@ -184,7 +214,7 @@ export default function SimpleSignUp() {
           </div>
 
           <div className="mt-auto pt-10 lg:hidden text-center text-slate-400 text-[10px] font-bold tracking-widest uppercase">
-            © 2026 Gvixer Dashboard
+            © 2026 Ferforge UI
           </div>
         </div>
 
@@ -214,25 +244,16 @@ export default function SimpleSignUp() {
           </div>
 
           <div className="relative z-10 text-right">
-            <div className="flex items-center gap-2 mb-12 justify-end">
+            <div className="flex items-center gap-3 mb-12 justify-end">
               <span
                 className={cn(
-                  "font-extrabold text-2xl tracking-tight transition-colors",
-                  isDark ? "text-white" : "text-slate-900",
+                  "font-semibold text-xl tracking-wider font-sans uppercase transition-colors",
+                  isDark ? "text-slate-100" : "text-slate-800",
                 )}
               >
-                Gvixer
+                Ferforge UI
               </span>
-              <div
-                className={cn(
-                  "flex items-center justify-center w-10 h-10 rounded-xl font-black text-xl shadow-xl transition-colors",
-                  isDark
-                    ? "bg-white text-orange-600"
-                    : "bg-orange-600 text-white",
-                )}
-              >
-                Gv
-              </div>
+              <LogoIcon isDark={isDark} />
             </div>
 
             <div className="ml-auto max-w-md">
@@ -257,7 +278,7 @@ export default function SimpleSignUp() {
 
               <Button
                 onClick={() =>
-                  navigate("/pages-template/simple-sign-in", { replace: true })
+                  navigate("/pages-template/sign-in", { replace: true })
                 }
                 variant="outline"
                 className={cn(
@@ -287,7 +308,7 @@ export default function SimpleSignUp() {
                 FAQ
               </span>
             </div>
-            <span>© 2026 Gvixer Dashboard</span>
+            <span>© 2026 Ferforge UI</span>
           </div>
         </div>
       </div>

@@ -78,7 +78,7 @@ import { cn } from "~/lib/utils";
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "AI Command Center - Gvixer" },
+    { title: "AI Command Center - Ferforge UI" },
     {
       name: "description",
       content: "Custom AI analytics dashboard with unique theme",
@@ -87,7 +87,7 @@ export function meta({}: Route.MetaArgs) {
 }
 
 // --- Custom Theme Chart Configs ---
-// Orange, Pink, Violet palette to match Gvixer brand
+// Orange, Pink, Violet palette to match Ferforge UI brand
 const aiChartConfig = {
   queries: {
     label: "API Queries",
