@@ -152,10 +152,10 @@ export default function ContactList() {
                 variant="ghost"
                 size="sm"
                 className={cn(
-                  "h-8 px-4 rounded-lg font-black text-[10px] uppercase tracking-wider transition-all duration-[300ms]",
+                  "h-8 px-4 rounded-lg font-black text-[10px] uppercase tracking-wider transition-all duration-300",
                   view === "list"
-                    ? "bg-orange-500 shadow-lg shadow-orange-500/20 text-white hover:bg-orange-600 hover:text-white"
-                    : "text-slate-500 hover:bg-orange-500 hover:text-white",
+                    ? "bg-orange-500 shadow-lg shadow-orange-500/20 !text-white hover:bg-orange-600 hover:!text-white"
+                    : "text-slate-500 hover:bg-orange-500 hover:!text-white",
                 )}
                 onClick={() => setView("list")}
               >
@@ -165,10 +165,10 @@ export default function ContactList() {
                 variant="ghost"
                 size="sm"
                 className={cn(
-                  "h-8 px-4 rounded-lg font-black text-[10px] uppercase tracking-wider transition-all duration-[300ms]",
+                  "h-8 px-4 rounded-lg font-black text-[10px] uppercase tracking-wider transition-all duration-300",
                   view === "grid"
-                    ? "bg-orange-500 shadow-lg shadow-orange-500/20 text-white hover:bg-orange-600 hover:text-white"
-                    : "text-slate-500 hover:bg-orange-500 hover:text-white",
+                    ? "bg-orange-500 shadow-lg shadow-orange-500/20 !text-white hover:bg-orange-600 hover:!text-white"
+                    : "text-slate-500 hover:bg-orange-500 hover:!text-white",
                 )}
                 onClick={() => setView("grid")}
               >
