@@ -444,7 +444,7 @@ export default function Invoice() {
 
   return (
     <Layout>
-      <div className="flex flex-col gap-6 pb-10">
+      <div className="flex flex-col gap-6 pb-10 w-full min-w-0">
         {/* Page Header */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div className="flex flex-col gap-1">
@@ -480,7 +480,7 @@ export default function Invoice() {
         {/* Main content */}
         <div className="flex flex-col lg:flex-row gap-6 min-h-[700px] w-full min-w-0">
           {/* ── Left Panel: Invoice List ── */}
-          <Card className="w-full lg:w-[320px] flex-shrink-0 flex flex-col border-none shadow-sm overflow-hidden p-0! h-full">
+          <Card className="w-full lg:w-[320px] flex-shrink-0 flex flex-col border-none shadow-sm overflow-hidden p-0! h-fit max-h-200">
             {/* Search */}
             <div className={`px-4 py-3 border-b ${dividerColor}`}>
               <div className="relative">
@@ -600,7 +600,7 @@ export default function Invoice() {
                         </p>
                       </div>
                     </div>
-                    <div className="flex items-center gap-2">
+                    <div className="flex flex-wrap items-center gap-2">
                       <Button
                         variant="outline"
                         size="sm"
@@ -631,7 +631,7 @@ export default function Invoice() {
                   <div className="flex flex-col h-full overflow-y-auto">
                     {/* Company Header + Upload */}
                     <div
-                      className={`px-8 py-6 border-b ${dividerColor} flex items-start justify-between`}
+                      className={`px-4 sm:px-8 py-6 border-b ${dividerColor} flex flex-col-reverse sm:flex-row items-start sm:items-center justify-between gap-4`}
                     >
                       <div
                         className={`w-40 h-28 rounded-xl border-2 border-dashed flex flex-col items-center justify-center gap-2 cursor-pointer transition-colors ${
@@ -643,9 +643,9 @@ export default function Invoice() {
                         <Upload className="w-5 h-5" />
                         <span className="text-xs font-medium">Upload Logo</span>
                       </div>
-                      <div className="text-right">
+                      <div className="w-full sm:w-auto text-left sm:text-right">
                         <p
-                          className={`text-5xl font-black tracking-tighter ${
+                          className={`text-3xl sm:text-5xl font-black tracking-tighter ${
                             isDark ? "text-white/20" : "text-slate-200"
                           }`}
                         >
@@ -1214,7 +1214,7 @@ export default function Invoice() {
                         </div>
                       </div>
                     </div>
-                    <div className="flex items-center gap-2">
+                    <div className="flex flex-wrap items-center gap-2">
                       <Button
                         variant="outline"
                         size="sm"
@@ -1244,7 +1244,7 @@ export default function Invoice() {
                   <div className="flex flex-col h-full">
                     {/* Company Header */}
                     <div
-                      className={`px-8 py-6 border-b ${dividerColor} flex items-start justify-between`}
+                      className={`px-4 sm:px-8 py-6 border-b ${dividerColor} flex flex-col-reverse sm:flex-row items-start sm:items-center justify-between gap-4`}
                     >
                       <div className="flex flex-col gap-1">
                         <div className="flex items-center gap-2 mb-1">
@@ -1267,9 +1267,9 @@ export default function Invoice() {
                           {companyInfo.email}
                         </p>
                       </div>
-                      <div className="text-right">
+                      <div className="w-full sm:w-auto text-left sm:text-right">
                         <p
-                          className={`text-5xl font-black tracking-tighter ${
+                          className={`text-3xl sm:text-5xl font-black tracking-tighter ${
                             isDark ? "text-white/20" : "text-slate-200"
                           }`}
                         >

@@ -334,9 +334,9 @@ export default function Gallery() {
 
   return (
     <Layout>
-      <div className="flex flex-col gap-6 pb-10">
+      <div className="flex flex-col gap-6 pb-10 w-full min-w-0">
         {/* Page Header */}
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div className="flex flex-col gap-1">
             <h1
               className={`text-2xl font-extrabold tracking-tight ${textPrimary}`}
@@ -347,7 +347,7 @@ export default function Gallery() {
               Organize, preview and manage all your media assets.
             </p>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2">
             <Button
               variant="outline"
               size="sm"
@@ -367,7 +367,7 @@ export default function Gallery() {
         </div>
 
         {/* Stats Bar */}
-        <div className="grid grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
           {(
             [
               {
@@ -419,14 +419,14 @@ export default function Gallery() {
 
         {/* Toolbar: Search + Category Tabs */}
         <Card className="border-none shadow-sm p-0! overflow-hidden">
-          <div className="flex items-center justify-between px-5 py-3">
+          <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between px-5 py-3 gap-4">
             {/* Category pills */}
-            <div className="flex items-center gap-1">
+            <div className="flex items-center gap-1 w-full overflow-x-auto pb-1 lg:pb-0">
               {(Object.keys(categoryIcons) as MediaCategory[]).map((cat) => (
                 <button
                   key={cat}
                   onClick={() => setActiveCategory(cat)}
-                  className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                  className={`flex shrink-0 items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
                     activeCategory === cat
                       ? "bg-gradient-to-r from-orange-500 to-orange-600 text-white shadow-md shadow-orange-500/20"
                       : isDark
@@ -452,7 +452,7 @@ export default function Gallery() {
             </div>
 
             {/* Search */}
-            <div className="relative w-64">
+            <div className="relative w-full lg:w-64">
               <Search
                 className="absolute left-3 top-1/2 -translate-y-1/2"
                 size={16}
