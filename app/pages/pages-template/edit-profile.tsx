@@ -24,8 +24,8 @@ export default function EditProfile() {
   const [formData, setFormData] = useState({
     firstName: "Yanson",
     lastName: "Ferdinand Kurniadi",
-    email: "yansenferdinand6@gmail.com",
-    phone: "(+62) 123-4567-890",
+    email: "yanson@example.com",
+    phone: "(+1) 212-555-0142",
     bio: "Passionate frontend developer with 3 years of experience in building dynamic web interfaces. Recently transitioned into a full-stack developer role, specializing in the Laravel framework to deliver end-to-end solutions.",
     country: "Indonesia",
     city: "Jakarta, Indonesia",

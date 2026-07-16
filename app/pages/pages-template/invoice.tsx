@@ -73,8 +73,8 @@ interface Invoice {
 const companyInfo = {
   name: "Yanson Dashboard, Inc.",
   address: "201 Something St., Something Town, YT 242, Country 6546",
-  tel: "Tel No: +62 813 8400 4840",
-  email: "Email: yansenferdinand6@gmail.com",
+  tel: "Tel No: +1 212-555-0198",
+  email: "Email: billing@example.com",
 };
 
 const invoices: Invoice[] = [
@@ -1484,13 +1484,13 @@ export default function Invoice() {
                           className={`flex items-center gap-2 text-xs ${textMuted}`}
                         >
                           <Phone className="w-3.5 h-3.5 text-orange-500" />
-                          +62 813 8400 4840
+                          +1 212-555-0198
                         </div>
                         <div
                           className={`flex items-center gap-2 text-xs ${textMuted}`}
                         >
                           <Mail className="w-3.5 h-3.5 text-orange-500" />
-                          yansenferdinand6@gmail.com
+                          billing@example.com
                         </div>
                       </div>
                       <div className="flex items-center gap-2">

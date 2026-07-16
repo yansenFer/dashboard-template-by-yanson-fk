@@ -42,8 +42,8 @@ const profileData = {
   role: "Frontend Developer / Fullstack Developer",
   bio: "Passionate frontend developer with 3 years of experience in building dynamic web interfaces. Recently transitioned into a full-stack developer role, specializing in the Laravel framework to deliver end-to-end solutions.",
   location: "Jakarta, Indonesia",
-  email: "yansenferdinand6@gmail.com",
-  phone: "(+62) 813-8400-4840",
+  email: "yanson@example.com",
+  phone: "(+1) 212-555-0142",
   social: [
     { icon: Github, url: "github.com/mintrona" },
     { icon: Twitter, url: "twitter.com/mintrona" },

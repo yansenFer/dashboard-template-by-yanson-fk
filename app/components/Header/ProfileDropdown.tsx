@@ -64,7 +64,7 @@ export default function ProfileDropdown() {
             <p
               className={`text-xs leading-none pt-1 ${isDark ? "text-slate-400" : "text-muted-foreground"}`}
             >
-              yansenferdinand6@gmail.com
+              yanson@example.com
             </p>
           </div>
         </DropdownMenuLabel>
