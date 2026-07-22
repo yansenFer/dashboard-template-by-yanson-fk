@@ -483,7 +483,7 @@ export default function Calendar() {
           {/* Header */}
           <header
             className={cn(
-              "p-4 sm:p-6 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 border-b transition-all duration-300 sticky top-0 z-10 backdrop-blur-md overflow-x-auto",
+              "p-4 sm:p-6 flex flex-col lg:flex-row lg:flex-wrap items-start lg:items-center justify-between gap-4 border-b transition-all duration-300 sticky top-0 z-10 backdrop-blur-md",
               borderMuted,
               isDark ? "bg-slate-950/40" : "bg-white/60",
             )}
@@ -638,7 +638,7 @@ export default function Calendar() {
                 exit={{ x: "100%", opacity: 0 }}
                 transition={{ duration: 0.1, ease: "linear" }}
                 className={cn(
-                  "fixed inset-y-0 right-0 w-96 flex flex-col transition-all duration-300 z-[101] shadow-[-20px_0_50px_rgba(0,0,0,0.1)] backdrop-blur-2xl border-l",
+                  "fixed inset-y-0 right-0 w-full sm:w-96 flex flex-col transition-all duration-300 z-101 shadow-[-20px_0_50px_rgba(0,0,0,0.1)] backdrop-blur-2xl border-l",
                   borderMuted,
                   isDark ? "bg-slate-900/90" : "bg-white/95",
                 )}

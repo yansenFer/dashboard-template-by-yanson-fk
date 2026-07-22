@@ -423,8 +423,8 @@ export default function Chat() {
                 >
                   {activeChat.contact.name}
                 </h2>
-                <div className="flex items-center gap-1.5">
-                  <span className="text-[10px] font-semibold text-emerald-500 animate-pulse uppercase tracking-wider">
+                <div className="flex items-center gap-1.5 min-w-0 overflow-hidden">
+                  <span className="text-[10px] font-semibold text-emerald-500 animate-pulse uppercase tracking-wider shrink-0">
                     Online
                   </span>
                   <span className={cn("w-1 h-1 rounded-full shrink-0", textMuted)} />
@@ -641,7 +641,7 @@ export default function Chat() {
               exit={{ width: 0, opacity: 0 }}
               transition={{ duration: 0.2, ease: "easeOut" }}
               className={cn(
-                "border-l h-full overflow-hidden flex flex-col max-lg:hidden",
+                "border-l h-full overflow-hidden flex flex-col max-xl:hidden",
                 borderMuted,
                 isDark ? "bg-slate-950/80" : "bg-white",
               )}

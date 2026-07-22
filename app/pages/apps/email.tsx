@@ -25,7 +25,6 @@ import {
   Clock,
   Printer,
   X,
-  Menu,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { format } from "date-fns";
@@ -287,7 +286,7 @@ export default function Email() {
         {/* --- Left Sidebar: Navigation --- */}
         <aside
           className={cn(
-            "sidebar-scroll-container w-72 hidden lg:flex flex-col border-r transition-all duration-300 relative z-20 backdrop-blur-3xl shadow-2xl shadow-black/5",
+            "sidebar-scroll-container w-64 xl:w-72 hidden lg:flex flex-col border-r transition-all duration-300 relative z-20 backdrop-blur-3xl shadow-2xl shadow-black/5",
             borderMuted,
             isDark ? "bg-slate-950/60" : "bg-white/80",
           )}
@@ -394,7 +393,7 @@ export default function Email() {
         {/* --- Middle: Email List --- --- */}
         <section
           className={cn(
-            "w-full lg:w-[450px] flex flex-col border-r h-full transition-all duration-300 relative z-10",
+            "w-full lg:w-80 xl:w-112.5 flex flex-col border-r h-full transition-all duration-300 relative z-10",
             borderMuted,
             // On mobile: hide when email is selected (detail view takes over)
             // On lg+: always show as a column
@@ -594,7 +593,7 @@ export default function Email() {
         {/* --- Right: Detail View --- --- */}
         <main
           className={cn(
-            "flex-1 flex flex-col h-full transition-all duration-300 relative z-0",
+            "flex-1 min-w-0 flex flex-col h-full transition-all duration-300 relative z-0",
             selectedEmailId ? "flex" : "hidden lg:flex",
           )}
         >
@@ -710,10 +709,10 @@ export default function Email() {
                   <div className="w-full space-y-6">
                     {/* Email Header */}
                     <div className="space-y-4">
-                      <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
+                      <div className="flex flex-wrap items-start justify-between gap-4">
                         <h1
                           className={cn(
-                            "text-xl sm:text-2xl font-black tracking-tight leading-tight",
+                            "text-xl sm:text-2xl font-black tracking-tight leading-tight min-w-0",
                             textPrimary,
                           )}
                         >
@@ -764,8 +763,8 @@ export default function Email() {
                                 : "bg-transparent",
                             )}
                           >
-                            <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-6">
-                              <div className="flex items-center gap-4 flex-1 min-w-0">
+                            <div className="flex flex-wrap items-start justify-between gap-4 mb-6">
+                              <div className="flex items-center gap-4 flex-1 min-w-52">
                                 <div className="relative shrink-0">
                                   {msg.sender.avatar ? (
                                     <img
@@ -836,7 +835,7 @@ export default function Email() {
 
                             {/* Internal Attachments */}
                             {msg.attachments && (
-                              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
+                              <div className="grid grid-cols-[repeat(auto-fit,minmax(180px,1fr))] gap-4 mt-8">
                                 {msg.attachments.map((att) => (
                                   <div
                                     key={att.name}
