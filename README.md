@@ -1,8 +1,8 @@
 # Ferforge UI — React Router 7 Admin Dashboard Template
 
-A premium admin dashboard template built with React Router 7, React 19, Tailwind CSS v4, and shadcn/ui. 20 pre-built pages, light and dark mode, fully responsive from mobile to desktop.
+A free admin dashboard template built with React Router 7, React 19, Tailwind CSS v4, and shadcn/ui. 20 pre-built pages, light and dark mode, fully responsive from mobile to desktop.
 
-**[Live Demo](https://ferforge-ui.netlify.app/)** · **[Buy on Gumroad](#)** · **[☕ Buy me a coffee](https://saweria.co/yansenfer)**
+**[Live Demo](https://ferforge-ui.netlify.app/)** · **[☕ Buy me a coffee](https://saweria.co/yansenfer)**
 
 ## Features
 
@@ -147,7 +147,7 @@ The latest two versions of Chrome, Edge, Firefox, and Safari. Colors use `oklch(
 
 ## License
 
-Covered by the license you purchased. See LICENSE.md.
+MIT — free to use, modify, and distribute, including in commercial projects. See [LICENSE.md](LICENSE.md).
 
 ## Support
 
