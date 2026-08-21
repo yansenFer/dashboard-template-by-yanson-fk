@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import Header from "./Header/Header";
 import Sidebar from "./Sidebar/Sidebar";
+import AccentColorPicker from "./AccentColorPicker";
 import { useSelector } from "react-redux";
 import type { RootState } from "~/store/store";
 
@@ -43,6 +44,7 @@ export default function Layout({
           </div>
         </div>
       </div>
+      <AccentColorPicker />
     </div>
   );
 }

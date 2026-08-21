@@ -1,4 +1,4 @@
-import { Bell, Coffee, Menu, MoonStar, Sun } from "lucide-react";
+import { Bell, Menu, MoonStar, Sun } from "lucide-react";
 import { Button } from "../ui/button";
 import SearchBar from "./SearchBar";
 import { useEffect, useRef, useState } from "react";
@@ -10,6 +10,7 @@ import { setIsDark } from "~/store/features/darkMode/darkModeSlice";
 import { toggleMobileSidebar } from "~/store/features/sidebar/sidebarSlice";
 import LanguageSelector from "./LanguageSelector";
 import ProfileDropdown from "./ProfileDropdown";
+import BuyMeACoffeeButton from "./BuyMeACoffeeButton";
 
 export default function Header() {
   const [isHaveNotif, setIsHaveNotif] = useState(true);
@@ -59,29 +60,7 @@ export default function Header() {
 
         {/* Right: action buttons */}
         <div className="flex items-center gap-2">
-          {/* Buy me a coffee — full pill on tablet/desktop */}
-          <a
-            href="https://saweria.co/yansenfer"
-            target="_blank"
-            rel="noopener noreferrer"
-            title="Buy me a coffee"
-            className="hidden sm:flex items-center gap-1.5 rounded-full px-3 py-1.5 text-sm font-semibold text-white bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 shadow-sm hover:shadow-md transition-all duration-200 shrink-0"
-          >
-            <Coffee className="size-4 shrink-0" />
-            <span>Buy me a coffee</span>
-          </a>
-
-          {/* Buy me a coffee — icon-only on mobile */}
-          <a
-            href="https://saweria.co/yansenfer"
-            target="_blank"
-            rel="noopener noreferrer"
-            title="Buy me a coffee"
-            aria-label="Buy me a coffee"
-            className="sm:hidden inline-flex size-9 items-center justify-center rounded-full text-white bg-gradient-to-r from-amber-500 to-orange-500 shadow-sm shrink-0"
-          >
-            <Coffee className="size-4 shrink-0" />
-          </a>
+          <BuyMeACoffeeButton />
 
           <Button
             onClick={() => dispatch(setIsDark(!isDark))}
