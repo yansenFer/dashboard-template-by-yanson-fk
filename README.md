@@ -2,7 +2,7 @@
 
 A premium admin dashboard template built with React Router 7, React 19, Tailwind CSS v4, and shadcn/ui. 20 pre-built pages, light and dark mode, fully responsive from mobile to desktop.
 
-**[Live Demo](https://ferforge-ui.netlify.app/)** · **[Buy on Gumroad](#)**
+**[Live Demo](https://ferforge-ui.netlify.app/)** · **[Buy on Gumroad](#)** · **[☕ Buy me a coffee](https://saweria.co/yansenfer)**
 
 ## Features
 
@@ -152,6 +152,8 @@ Covered by the license you purchased. See LICENSE.md.
 ## Support
 
 Questions or a bug report? Email yansenferdinand6@gmail.com.
+
+If this template saved you time, consider [buying me a coffee](https://saweria.co/yansenfer) ☕ — it helps keep templates like this free.
 
 ---
 
